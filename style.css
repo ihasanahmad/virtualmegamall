@@ -191,3 +191,34 @@ footer {
     padding: 20px;
     margin-top: 50px;
 }
+/* --- GLASSMORPHISM UTILITY (The Apple Effect) --- */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent */
+    backdrop-filter: blur(12px); /* The Blur Magic */
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft shadow */
+    border-radius: 15px;
+}
+
+/* Update Navbar to be Glassy */
+.navbar {
+    background: rgba(20, 20, 20, 0.85); /* Darker glass for nav */
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Remove the old solid background color if present */
+}
+
+/* Update Product Cards to be Glassy */
+.product-card {
+    background: rgba(255, 255, 255, 0.7); /* Lighter glass */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
