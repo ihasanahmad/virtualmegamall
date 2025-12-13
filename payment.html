@@ -1,97 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Secure Checkout | Virtual Mega Mall</title>
+    <title>Checkout | Virtual Mega Mall</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Specific Styles for Payment Form */
-        .payment-box {
-            max-width: 500px;
+        .checkout-container {
+            max-width: 900px;
             margin: 50px auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .form-section,
+        .summary-section {
             background: white;
             padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .method-card {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
         }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        .row { display: flex; gap: 10px; }
-        
-        .pay-btn {
-            background-color: #28a745; /* Green for Success */
-            color: white;
-            font-size: 18px;
-            margin-top: 10px;
+
+        .method-card:hover,
+        .method-card.active {
+            border-color: var(--primary-hazel);
+            background: rgba(142, 124, 104, 0.1);
         }
-        
-        /* Spinner for "Processing" effect */
-        .spinner {
-            display: none; /* Hidden by default */
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #28a745;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
-        <div class="logo">MEGA MALL</div>
+        <div class="logo">CHECKOUT</div>
+        <div class="nav-links">
+            <a href="cart.html">Back to Cart</a>
+        </div>
     </nav>
 
-    <div class="payment-box">
-        <h2>Checkout Details</h2>
-        <p style="margin-bottom: 20px; color: #666;">Total to Pay: <strong>Rs. 22,000</strong></p>
-
-        <form id="payment-form">
-            <div class="form-group">
-                <label>Cardholder Name</label>
-                <input type="text" placeholder="Ali Khan" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Card Number</label>
-                <input type="text" placeholder="1234 5678 1234 5678" maxlength="19" required>
-            </div>
-
-            <div class="row">
+    <div class="checkout-container">
+        <!-- LEFT: FORM -->
+        <div class="form-section">
+            <h2>Shipping Details</h2>
+            <form id="checkout-form">
                 <div class="form-group">
-                    <label>Expiry</label>
-                    <input type="text" placeholder="MM/YY" maxlength="5" required>
+                    <label>Full Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
                 </div>
                 <div class="form-group">
-                    <label>CVV</label>
-                    <input type="password" placeholder="123" maxlength="3" required>
+                    <label>Shipping Address</label>
+                    <input type="text" id="address" required placeholder="House #123, Street ABC, Lahore">
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" id="phone" required placeholder="0300-1234567">
+                </div>
 
-            <div class="spinner" id="loading-spinner"></div>
-            <button type="submit" class="pay-btn" id="pay-button">Pay Now</button>
-        </form>
+                <h2 style="margin-top: 30px;">Payment Method</h2>
+                <div class="payment-methods">
+                    <div class="method-card active" onclick="selectMethod('cod')" id="btn-cod">
+                        <i class="fa-solid fa-truck" style="font-size: 24px;"></i><br>Cash on Delivery
+                    </div>
+                    <div class="method-card" onclick="selectMethod('card')" id="btn-card">
+                        <i class="fa-solid fa-credit-card" style="font-size: 24px;"></i><br>Credit/Debit Card
+                    </div>
+                </div>
+
+                <!-- CARD DETAILS (Hidden by default) -->
+                <div id="card-details" style="display: none;">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX">
+                    </div>
+                    <div style="display: flex; gap: 20px;">
+                        <input type="text" placeholder="MM/YY">
+                        <input type="text" placeholder="CVC">
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-button" style="width: 100%; margin-top: 20px;">Place Order</button>
+            </form>
+        </div>
+
+        <!-- RIGHT: SUMMARY -->
+        <div class="summary-section">
+            <h3>Order Summary</h3>
+            <div id="order-items" style="margin-top: 20px; max-height: 400px; overflow-y: auto;">
+                <!-- dynamic items -->
+            </div>
+            <div class="total-row">
+                <span>Total</span>
+                <span id="grand-total">Rs. 0</span>
+            </div>
+            <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                <i class="fa-solid fa-lock"></i> 100% Secure Payment. Encrypted with SSL.
+            </p>
+        </div>
     </div>
 
     <script>
-        document.getElementById('payment-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page from refreshing
-            
-            // 1. Show Loading Spinner
-            document.getElementById('pay-button').style.display = 'none';
-            document.getElementById('loading-spinner').style.display = 'block';
+        // Load Cart
+        const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const orderItemsEl = document.getElementById('order-items');
+        const grandTotalEl = document.getElementById('grand-total');
 
-            // 2. Wait 2 seconds (Simulate talking to Bank)
+        if (cart.length === 0) {
+            window.location.href = "cart.html";
+        }
+
+        let total = 0;
+        cart.forEach(item => {
+            let price = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
+            total += price * item.qty;
+            orderItemsEl.innerHTML += `
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <img src="${item.img}" style="width: 50px; height: 50px; object-fit: contain;">
+                    <div>
+                        <p style="font-weight: bold; margin:0;">${item.name}</p>
+                        <p style="font-size: 12px; margin:0;">${item.qty} x ${item.price}</p>
+                    </div>
+                </div>
+            `;
+        });
+        grandTotalEl.innerText = "Rs. " + total.toLocaleString();
+
+        // Payment Toggle
+        let selectedMethod = 'cod';
+        function selectMethod(method) {
+            selectedMethod = method;
+            document.getElementById('btn-cod').classList.toggle('active', method === 'cod');
+            document.getElementById('btn-card').classList.toggle('active', method === 'card');
+            document.getElementById('card-details').style.display = method === 'card' ? 'block' : 'none';
+        }
+
+        // Handle Submit
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate API Call
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
             setTimeout(() => {
-                alert("Payment Successful! Order #99281 Placed.");
-                window.location.href = "index.html"; // Go back home
+                alert("✅ Order Placed Successfully! \n\nTracking ID: VMM-" + Math.floor(Math.random() * 100000));
+                localStorage.removeItem('cartItems');
+                window.location.href = "index.html";
             }, 2000);
         });
     </script>
 
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,55 +8,140 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        .cart-container { max-width: 900px; margin: 50px auto; padding: 20px; }
-        .cart-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .cart-table th { text-align: left; padding: 15px; color: #555; }
-        .cart-table td { padding: 15px; border-bottom: 1px solid #eee; }
-        .total-box { text-align: right; margin-top: 30px; font-size: 24px; font-weight: bold; }
-        .checkout-btn { background: #e6b800; color: #111; padding: 15px 40px; font-size: 18px; margin-top: 15px; }
+        .cart-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .cart-table th {
+            text-align: left;
+            padding: 15px;
+            color: #555;
+        }
+
+        .cart-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total-box {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            background: #e6b800;
+            color: #111;
+            padding: 15px 40px;
+            font-size: 18px;
+            margin-top: 15px;
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
-    <div class="logo">MEGA MALL</div>
-    
-    <div class="nav-links">
-        <a href="profile.html" style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;">👤 My Account</a>
-        <a href="comparison.html">Comparison</a>
-        <a href="cart.html" class="cart-btn">Cart (0)</a>
+        <a href="index.html" class="logo" style="text-decoration:none;">MEGA MALL</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="brands.html">Shop</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 style="text-align:center; margin-bottom:40px;">Your Shopping Bag</h1>
+
+        <div class="cart-wrapper" style="display: flex; gap: 40px; align-items: flex-start;">
+
+            <!-- LEFT: CART ITEMS -->
+            <div id="cart-list" style="flex: 2;">
+                <!-- Glass Item -->
+                <div class="glass-effect" style="padding: 30px; text-align:center;">
+                    <p>Your cart is empty.</p>
+                    <a href="index.html" class="cta-button" style="margin-top:20px; display:inline-block;">Start
+                        Shopping</a>
+                </div>
+            </div>
+
+            <!-- RIGHT: SUMMARY -->
+            <div class="glass-effect" style="flex: 1; padding: 30px; position:sticky; top:100px;">
+                <h3>Order Summary</h3>
+                <div
+                    style="margin: 20px 0; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); padding: 20px 0;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">Rs. 0</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <span>Shipping</span>
+                        <span style="color:green;">Free</span>
+                    </div>
+                </div>
+                <div
+                    style="display:flex; justify-content:space-between; font-size:20px; font-weight:bold; margin-bottom:20px;">
+                    <span>Total</span>
+                    <span id="summary-total">Rs. 0</span>
+                </div>
+
+                <a href="payment.html">
+                    <button class="cta-button" style="width:100%;">Proceed to Checkout</button>
+                </a>
+            </div>
+        </div>
     </div>
 
-</nav>
+    <!-- Script Override for New Cart Layout -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartList = document.getElementById('cart-list');
+            const summarySub = document.getElementById('summary-subtotal');
+            const summaryTotal = document.getElementById('summary-total');
+            const items = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-    <section class="cart-container glass-effect">
-        <h1>Your Shopping Bag</h1>
-        
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <!-- Items will be injected by script.js -->
-            </tbody>
-        </table>
+            if (items.length > 0) {
+                cartList.innerHTML = "";
+                let total = 0;
 
-        <div class="total-box">
-    <p>Total: <span id="cart-total">Rs. 22,000</span></p>
-    
-    <button class="clear-cart-btn" style="background-color: #ff4d4d; color: white; margin-right: 10px;">Clear Cart</button>
-    
-    <a href="payment.html">
-    <button class="checkout-btn">Proceed to Checkout</button>
-</a>
-</div>
-    </section>
-<script src="script.js"></script>
+                items.forEach((item, index) => {
+                    // Extract numeric price
+                    let priceRaw = parseInt(item.price.replace(/[^0-9]/g, ''));
+                    let itemTotal = priceRaw * item.qty;
+                    total += itemTotal;
 
+                    cartList.innerHTML += `
+                        <div class="glass-effect" style="display:flex; align-items:center; gap:20px; padding:20px; margin-bottom:20px;">
+                            <img src="${item.img}" style="width:80px; height:80px; object-fit:cover; border-radius:10px;">
+                            <div style="flex:1; text-align:left;">
+                                <h4>${item.name}</h4>
+                                <p style="color:#666;">${item.brand}</p>
+                                <p style="color:var(--primary-hazel); font-weight:bold; margin-top:5px;">${item.price}</p>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <button onclick="window.changeQty(${index}, -1); location.reload();" style="width:30px; height:30px; padding:0;">-</button>
+                                <span>${item.qty}</span>
+                                <button onclick="window.changeQty(${index}, 1); location.reload();" style="width:30px; height:30px; padding:0;">+</button>
+                            </div>
+                            <button onclick="window.removeFromCart(${index}); location.reload();" style="background:none; color:#ff4d4d; width:auto;"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    `;
+                });
+
+                summarySub.innerText = "Rs. " + total.toLocaleString();
+                summaryTotal.innerText = "Rs. " + total.toLocaleString();
+            }
+        });
+    </script>
 </body>
+
 </html>

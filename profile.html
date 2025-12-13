@@ -1,43 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>My Account | Virtual Mega Mall</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* PROFILE SPECIFIC STYLES */
-        .profile-container { display: flex; max-width: 1000px; margin: 50px auto; gap: 20px; }
-        
-        /* Sidebar */
-        .profile-sidebar { width: 250px; flex-shrink: 0; padding: 20px; }
-        .profile-btn { 
-            display: block; width: 100%; padding: 15px; margin-bottom: 10px; 
-            background: rgba(255,255,255,0.1); border: none; color: white; 
-            text-align: left; cursor: pointer; border-radius: 10px; font-size: 16px;
+        .profile-container {
+            display: flex;
+            max-width: 1000px;
+            margin: 50px auto;
+            gap: 20px;
         }
-        .profile-btn.active { background: #e6b800; color: black; font-weight: bold; }
-        
+
+        /* Sidebar */
+        .profile-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            padding: 20px;
+        }
+
+        .profile-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .profile-btn.active {
+            background: #e6b800;
+            color: black;
+            font-weight: bold;
+        }
+
         /* Content Area */
-        .profile-content { flex-grow: 1; background: white; padding: 30px; border-radius: 15px; min-height: 400px; }
-        .tab-content { display: none; } /* Hidden by default */
-        .tab-content.active { display: block; animation: fadeIn 0.5s; }
-        
+        .profile-content {
+            flex-grow: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            min-height: 400px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        /* Hidden by default */
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
         /* Order History Table */
-        .order-item { border-bottom: 1px solid #eee; padding: 15px 0; display: flex; justify-content: space-between; }
-        .status { padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; }
-        .delivered { background: #d4edda; color: #155724; }
-        .processing { background: #fff3cd; color: #856404; }
+        .order-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .delivered {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .processing {
+            background: #fff3cd;
+            color: #856404;
+        }
 
         /* Vouchers */
-        .voucher-card { 
-            border: 2px dashed #e6b800; padding: 20px; margin-bottom: 15px; 
-            background: #fffdf0; display: flex; justify-content: space-between; align-items: center; 
+        .voucher-card {
+            border: 2px dashed #e6b800;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #fffdf0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
-<body style="background-color: #1a1a1a;"> <nav class="navbar">
+
+<body style="background-color: #1a1a1a;">
+    <nav class="navbar">
         <div class="logo">MEGA MALL</div>
         <div class="nav-links">
             <a href="index.html">Back to Mall</a>
@@ -50,21 +122,28 @@
             <h3 style="color:white; margin-bottom:20px; padding-left:10px;">My Account</h3>
             <button class="profile-btn active" onclick="openTab('details')">Account Details</button>
             <button class="profile-btn" onclick="openTab('orders')">Order History</button>
+            <button class="profile-btn" onclick="openTab('tracking')">Live Order Tracking</button>
+            <button class="profile-btn" onclick="openTab('support')">Ticket Support</button>
+            <button class="profile-btn" onclick="openTab('returns')">Returns & Refunds</button>
             <button class="profile-btn" onclick="openTab('vouchers')">My Vouchers</button>
-            <button class="profile-btn" style="color: #ff4d4d;" onclick="window.location.href='index.html'">Logout</button>
+            <button class="profile-btn" style="color: #ff4d4d;"
+                onclick="window.location.href='index.html'">Logout</button>
         </div>
 
         <div class="profile-content">
-            
+
             <div id="details" class="tab-content active">
                 <h2>Account Details</h2>
                 <form style="margin-top: 20px;">
                     <label>Full Name</label>
-                    <input type="text" value="Student User" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd;">
+                    <input type="text" value="Student User"
+                        style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd;">
                     <label>Email</label>
-                    <input type="email" value="student@university.edu" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd;">
+                    <input type="email" value="student@university.edu"
+                        style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd;">
                     <label>Phone</label>
-                    <input type="text" value="+92 300 1234567" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd;">
+                    <input type="text" value="+92 300 1234567"
+                        style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd;">
                     <button style="background:#222; color:white; padding:10px 20px; border:none;">Update Info</button>
                 </form>
             </div>
@@ -93,25 +172,80 @@
                 </div>
             </div>
 
-            <div id="vouchers" class="tab-content">
-                <h2>Available Vouchers</h2>
-                <div class="voucher-card">
-                    <div>
-                        <h3 style="color:#e6b800;">FLAT 10% OFF</h3>
-                        <p>On all Electronics</p>
-                    </div>
-                    <button style="padding:5px 10px; background:#222; color:white; border:none;">Code: TECH10</button>
-                </div>
-                <div class="voucher-card">
-                    <div>
-                        <h3 style="color:#e6b800;">FREE DELIVERY</h3>
-                        <p>On orders above Rs. 5000</p>
-                    </div>
-                    <button style="padding:5px 10px; background:#222; color:white; border:none;">Code: FREESHIP</button>
+        </div>
+
+        <div id="tracking" class="tab-content">
+            <h2>Live Order Tracking</h2>
+            <div style="margin-top:20px; text-align:center;">
+                <input type="text" placeholder="Enter Order ID (e.g. 9921)"
+                    style="padding:10px; width:60%; border:1px solid #ddd; border-radius:5px;">
+                <button
+                    style="padding:10px 20px; background:var(--primary-hazel); color:white; border:none; border-radius:5px;">Track</button>
+
+                <div style="margin-top:30px; text-align:left; background:#f9f9f9; padding:20px; border-radius:10px;">
+                    <h4>Tracking Status: <span style="color:#e6b800;">In Transit</span></h4>
+                    <ul style="list-style:none; padding:0; margin-top:10px;">
+                        <li style="margin-bottom:10px;">✅ Order Placed - 10:00 AM</li>
+                        <li style="margin-bottom:10px;">✅ Packed - 02:00 PM</li>
+                        <li style="margin-bottom:10px; color:#222; font-weight:bold;">🚚 Out for Delivery - 09:00 AM
+                            (Today)</li>
+                    </ul>
                 </div>
             </div>
-
         </div>
+
+        <div id="support" class="tab-content">
+            <h2>Support Tickets</h2>
+            <button
+                style="float:right; background:var(--primary-hazel); color:white; border:none; padding:5px 15px; border-radius:5px;">+
+                New Ticket</button>
+            <div style="clear:both; margin-top:20px;">
+                <div class="order-item">
+                    <div>
+                        <h4>Top button missing on jacket</h4>
+                        <p style="font-size:12px; color:#666;">Ticket #552 • Submitted yesterday</p>
+                    </div>
+                    <span class="status processing">Open</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="returns" class="tab-content">
+            <h2>Returns & Refunds</h2>
+            <p style="color:#666; font-size:14px; margin-bottom:20px;">Select an eligible item to start a return.</p>
+            <div class="order-item">
+                <div style="display:flex; gap:15px; align-items:center;">
+                    <img src="https://via.placeholder.com/50" style="border-radius:5px;">
+                    <div>
+                        <h4>Nike Air Jordan 1</h4>
+                        <p style="font-size:12px; color:#666;">Delivered on 12 Dec 2025</p>
+                    </div>
+                </div>
+                <button
+                    style="padding:5px 15px; background:transparent; border:1px solid red; color:red; border-radius:5px;">Request
+                    Refund</button>
+            </div>
+        </div>
+
+        <div id="vouchers" class="tab-content">
+            <h2>Available Vouchers</h2>
+            <div class="voucher-card">
+                <div>
+                    <h3 style="color:#e6b800;">FLAT 10% OFF</h3>
+                    <p>On all Electronics</p>
+                </div>
+                <button style="padding:5px 10px; background:#222; color:white; border:none;">Code: TECH10</button>
+            </div>
+            <div class="voucher-card">
+                <div>
+                    <h3 style="color:#e6b800;">FREE DELIVERY</h3>
+                    <p>On orders above Rs. 5000</p>
+                </div>
+                <button style="padding:5px 10px; background:#222; color:white; border:none;">Code: FREESHIP</button>
+            </div>
+        </div>
+
+    </div>
     </div>
 
     <script>
@@ -120,13 +254,14 @@
             // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('active'));
-            
+
             // Show specific tab
             document.getElementById(tabName).classList.add('active');
-            
+
             // Highlight button (Simple logic finding button by text content is harder, skipping for MVP simplicity)
             event.target.classList.add('active');
         }
     </script>
 </body>
+
 </html>
