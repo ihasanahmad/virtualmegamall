@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Special Styles for Comparison Table */
+        .comparison-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+            width: 20%; /* First column width */
+        }
+
+        .product-col {
+            width: 40%;
+        }
+
+        .comp-img {
+            width: 150px;
+            height: 150px;
+            background-color: #eee;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        
+        /* Green Text for 'Winner' features */
+        .highlight {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MEGA MALL</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search to compare...">
+            <button>Search</button>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="comparison.html" style="color: #e6b800;">Comparison</a>
+            <a href="#" class="cart-btn">Cart (0)</a>
+        </div>
+    </nav>
+
+    <section class="comparison-container">
+        <div class="comparison-header">
+            <h1>Compare Products</h1>
+            <p>See the difference. Choose the best.</p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <td class="product-col">
+                    <div class="comp-img">Image A</div>
+                    <h3>Nike Air Zoom</h3>
+                    <p style="color: #666;">Nike Official Store</p>
+                </td>
+                <td class="product-col">
+                    <div class="comp-img">Image B</div>
+                    <h3>Adidas Ultraboost</h3>
+                    <p style="color: #666;">Adidas Official Store</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Price</th>
+                <td class="highlight">Rs. 22,000</td>
+                <td>Rs. 25,000</td>
+            </tr>
+
+            <tr>
+                <th>Material</th>
+                <td>Mesh / Synthetic</td>
+                <td>Primeknit Textile</td>
+            </tr>
+
+            <tr>
+                <th>Customer Rating</th>
+                <td>4.5 / 5.0 ⭐</td>
+                <td class="highlight">4.8 / 5.0 ⭐</td>
+            </tr>
+
+            <tr>
+                <th>Delivery</th>
+                <td>2-3 Days</td>
+                <td>2-3 Days</td>
+            </tr>
+
+            <tr>
+                <th>Action</th>
+                <td><button>Add to Cart</button></td>
+                <td><button>Add to Cart</button></td>
+            </tr>
+        </table>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Virtual Mega Mall. Compare & Save.</p>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>
