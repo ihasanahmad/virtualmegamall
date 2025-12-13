@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .cart-container { max-width: 900px; margin: 50px auto; padding: 20px; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .cart-table th { text-align: left; padding: 15px; color: #555; }
+        .cart-table td { padding: 15px; border-bottom: 1px solid #eee; }
+        .total-box { text-align: right; margin-top: 30px; font-size: 24px; font-weight: bold; }
+        .checkout-btn { background: #e6b800; color: #111; padding: 15px 40px; font-size: 18px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="logo">MEGA MALL</div>
+    
+    <div class="nav-links">
+        <a href="profile.html" style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;">👤 My Account</a>
+        <a href="comparison.html">Comparison</a>
+        <a href="cart.html" class="cart-btn">Cart (0)</a>
+    </div>
+
+</nav>
+
+    <section class="cart-container glass-effect">
+        <h1>Your Shopping Bag</h1>
+        
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Items will be injected by script.js -->
+            </tbody>
+        </table>
+
+        <div class="total-box">
+    <p>Total: <span id="cart-total">Rs. 22,000</span></p>
+    
+    <button class="clear-cart-btn" style="background-color: #ff4d4d; color: white; margin-right: 10px;">Clear Cart</button>
+    
+    <a href="payment.html">
+    <button class="checkout-btn">Proceed to Checkout</button>
+</a>
+</div>
+    </section>
+<script src="script.js"></script>
+
+</body>
+</html>

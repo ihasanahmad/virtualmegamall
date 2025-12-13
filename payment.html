@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Checkout | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific Styles for Payment Form */
+        .payment-box {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .row { display: flex; gap: 10px; }
+        
+        .pay-btn {
+            background-color: #28a745; /* Green for Success */
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        /* Spinner for "Processing" effect */
+        .spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #28a745;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MEGA MALL</div>
+    </nav>
+
+    <div class="payment-box">
+        <h2>Checkout Details</h2>
+        <p style="margin-bottom: 20px; color: #666;">Total to Pay: <strong>Rs. 22,000</strong></p>
+
+        <form id="payment-form">
+            <div class="form-group">
+                <label>Cardholder Name</label>
+                <input type="text" placeholder="Ali Khan" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" placeholder="1234 5678 1234 5678" maxlength="19" required>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>Expiry</label>
+                    <input type="text" placeholder="MM/YY" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" placeholder="123" maxlength="3" required>
+                </div>
+            </div>
+
+            <div class="spinner" id="loading-spinner"></div>
+            <button type="submit" class="pay-btn" id="pay-button">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page from refreshing
+            
+            // 1. Show Loading Spinner
+            document.getElementById('pay-button').style.display = 'none';
+            document.getElementById('loading-spinner').style.display = 'block';
+
+            // 2. Wait 2 seconds (Simulate talking to Bank)
+            setTimeout(() => {
+                alert("Payment Successful! Order #99281 Placed.");
+                window.location.href = "index.html"; // Go back home
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Official Store | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <body>
+
+    <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo" id="nav-brand-name">STORE</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Back to Mall</a>
+            <a href="cart.html" class="cart-btn">Cart (0)</a>
+        </div>
+    </nav>
+
+    <div id="side-menu" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        
+        <h3 id="sidebar-title" style="color: #e6b800; padding-left: 25px; margin-bottom: 20px;">Menu</h3>
+        
+        <div id="dynamic-categories"></div>
+
+        <div class="sidebar-footer">
+            <a href="#">Store Policy</a>
+            <a href="#">Contact Brand</a>
+        </div>
+    </div>
+    
+    <div id="overlay" onclick="toggleMenu()"></div>
+
+    <header class="hero" id="store-hero" style="height: 50vh;">
+        <div class="hero-content">
+            <h1 id="store-name">Loading...</h1>
+            <p id="store-slogan">Official Store</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <h2 style="text-align: left;">Latest Collection</h2>
+        <div class="product-grid" id="store-products"></div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

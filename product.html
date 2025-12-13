@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* PRODUCT PAGE LAYOUT */
+        .pdp-container { max-width: 1100px; margin: 50px auto; padding: 20px; display: flex; gap: 40px; flex-wrap: wrap; }
+        
+        /* Left: Image */
+        .pdp-image-section { flex: 1; background: white; padding: 20px; border-radius: 15px; display: flex; align-items: center; justify-content: center; }
+        .pdp-image-section img { max-width: 100%; max-height: 500px; object-fit: contain; }
+
+        /* Right: Details */
+        .pdp-details-section { flex: 1; padding: 10px; }
+        .pdp-brand { color: #888; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
+        .pdp-title { font-size: 32px; margin: 10px 0; }
+        .pdp-price { font-size: 28px; color: #e6b800; font-weight: bold; margin-bottom: 20px; }
+        .pdp-desc { line-height: 1.6; color: #555; margin-bottom: 30px; }
+
+        .add-btn { background: #222; color: white; padding: 15px 40px; border: none; font-size: 18px; cursor: pointer; border-radius: 5px; }
+        .add-btn:hover { background: #444; }
+
+        /* Specs Table */
+        .specs-container { max-width: 1100px; margin: 0 auto 50px; padding: 20px; }
+        .specs-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+        .specs-table th, .specs-table td { padding: 15px; border-bottom: 1px solid #eee; text-align: left; }
+        .specs-table th { background: #f9f9f9; width: 30%; font-weight: 600; }
+
+        @media(max-width: 768px) { .pdp-container { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MEGA MALL</div>
+        <div class="nav-links">
+            <a href="index.html">Back to Mall</a>
+            <a href="cart.html" class="cart-btn">Cart (0)</a>
+        </div>
+    </nav>
+
+    <div class="pdp-container">
+        <div class="pdp-image-section glass-effect">
+            <img id="pdp-img" src="" alt="Product Image">
+        </div>
+        <div class="pdp-details-section">
+            <span id="pdp-brand" class="pdp-brand">Brand Name</span>
+            <h1 id="pdp-name" class="pdp-title">Product Name</h1>
+            <div id="pdp-price" class="pdp-price">Rs. 0</div>
+            <p id="pdp-desc" class="pdp-desc">
+                Loading product description...
+            </p>
+            
+            <button class="add-btn" onclick="addToCart(this)">Add to Cart</button>
+            
+            <div style="margin-top: 30px;">
+                <p>✅ <strong>In Stock</strong> (Ships in 24 hours)</p>
+                <p>✅ <strong>Official Warranty</strong> Included</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="specs-container">
+        <h2>Technical Specifications</h2>
+        <table class="specs-table" id="specs-table">
+            </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

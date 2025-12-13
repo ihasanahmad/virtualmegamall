@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Special Styles for Comparison Table */
+        .comparison-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            /* Will look like glass if you add .glass-effect class below */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+            width: 20%;
+            /* First column width */
+        }
+
+        .product-col {
+            width: 40%;
+        }
+
+        .comp-img {
+            width: 150px;
+            height: 150px;
+            background-color: #eee;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        /* Green Text for 'Winner' features */
+        .highlight {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MEGA MALL</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search to compare...">
+            <button>Search</button>
+        </div>
+        <div class="nav-links">
+            <a href="profile.html" style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;">👤
+                My Account</a>
+
+            <a href="comparison.html" style="color: #e6b800;">Comparison</a>
+            <a href="cart.html" class="cart-btn">Cart (0)</a>
+        </div>
+    </nav>
+
+    <section class="comparison-container glass-effect">
+        <div class="comparison-header">
+            <h1>Compare Products</h1>
+            <p>See the difference. Choose the best.</p>
+        </div>
+
+        <table>
+            <!-- Comparison Data injected by script.js -->
+        </table>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Virtual Mega Mall. Compare & Save.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
