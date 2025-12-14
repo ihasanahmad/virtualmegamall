@@ -295,7 +295,7 @@ async function renderStorePage() {
         try {
             // Fetch Real Products from Backend
             // Note: If DB is empty, this returns [], so we rely on Seed Data being there or Vendor Uploads
-            const res = await fetch('http://localhost:5000/api/products');
+            const res = await fetch('https://virtualmall-backend.onrender.com/api/products');
             const allProducts = await res.json();
 
             // Filter
