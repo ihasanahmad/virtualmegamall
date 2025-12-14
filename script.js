@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuthState();
     initSlider();
     initCategorySliders();
+    initWishlist();
+    initSearchAutocomplete();
     updateCartDisplay();
     // Render Functions triggered if container exists
     if (document.getElementById('clothing-container')) renderBrands();
@@ -60,6 +62,138 @@ function checkAuthState() {
             <a href="login.html" class="auth-btn">Login / Sign Up</a>
         `;
     }
+}
+
+/* =========================================
+   PHASE 1: WISHLIST FUNCTIONALITY
+   ========================================= */
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+function toggleWishlist(btn, productId) {
+    const icon = btn.querySelector('i');
+    const index = wishlist.indexOf(productId);
+
+    if (index === -1) {
+        // Add to wishlist
+        wishlist.push(productId);
+        btn.classList.add('active');
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        showToast('Added to Wishlist ❤️');
+    } else {
+        // Remove from wishlist
+        wishlist.splice(index, 1);
+        btn.classList.remove('active');
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+        showToast('Removed from Wishlist');
+    }
+
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+}
+
+// Initialize wishlist buttons on page load
+function initWishlist() {
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        const productId = btn.getAttribute('onclick').match(/'([^']+)'/)?.[1];
+        if (productId && wishlist.includes(productId)) {
+            btn.classList.add('active');
+            const icon = btn.querySelector('i');
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+        }
+    });
+}
+
+/* =========================================
+   PHASE 1: SEARCH AUTOCOMPLETE
+   ========================================= */
+function initSearchAutocomplete() {
+    const searchInput = document.getElementById('global-search');
+    const suggestions = document.getElementById('search-suggestions');
+
+    if (!searchInput || !suggestions) return;
+
+    // Show suggestions on focus
+    searchInput.addEventListener('focus', () => {
+        suggestions.classList.add('active');
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+            suggestions.classList.remove('active');
+        }
+    });
+
+    // Filter suggestions as user types
+    searchInput.addEventListener('input', debounce((e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length < 2) {
+            document.getElementById('product-suggestions').style.display = 'none';
+            document.getElementById('trending-section').style.display = 'block';
+            return;
+        }
+
+        // Hide trending, show product matches
+        document.getElementById('trending-section').style.display = 'none';
+
+        // Search through products (you can enhance this with API call)
+        const productSection = document.getElementById('product-suggestions');
+        const matchedProducts = searchProducts(query);
+
+        if (matchedProducts.length > 0) {
+            productSection.style.display = 'block';
+            productSection.innerHTML = `
+                <div class="suggestion-title">🛍️ Products</div>
+                ${matchedProducts.map(p => `
+                    <div class="suggestion-item" onclick="window.location='product.html?id=${p.id}'">
+                        <img src="${p.img}" alt="${p.name}">
+                        <div class="item-info">
+                            <div class="item-name">${p.name}</div>
+                            <div class="item-category">${p.category}</div>
+                        </div>
+                        <div class="item-price">${p.price}</div>
+                    </div>
+                `).join('')}
+            `;
+        } else {
+            productSection.style.display = 'none';
+        }
+    }, 300));
+}
+
+// Sample product search (replace with real data/API)
+function searchProducts(query) {
+    const sampleProducts = [
+        { id: 1, name: 'Nike Air Max', category: 'Shoes', price: 'Rs. 12,000', img: 'https://via.placeholder.com/40/8E7C68/fff?text=N' },
+        { id: 2, name: 'Khaadi Lawn 3pc', category: 'Clothing', price: 'Rs. 4,550', img: 'https://via.placeholder.com/40/8E7C68/fff?text=K' },
+        { id: 3, name: 'Samsung Galaxy S24', category: 'Electronics', price: 'Rs. 350,000', img: 'https://via.placeholder.com/40/8E7C68/fff?text=S' },
+        { id: 4, name: 'Rolex Submariner', category: 'Watches', price: 'Rs. 1,875,000', img: 'https://via.placeholder.com/40/C5A065/fff?text=R' },
+        { id: 5, name: 'iPhone 15 Pro', category: 'Electronics', price: 'Rs. 450,000', img: 'https://via.placeholder.com/40/333/fff?text=i' },
+    ];
+
+    return sampleProducts.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+    ).slice(0, 4);
+}
+
+function searchFor(query) {
+    document.getElementById('global-search').value = query;
+    document.getElementById('search-suggestions').classList.remove('active');
+    // Trigger search or navigate
+    window.location = `category.html?search=${encodeURIComponent(query)}`;
+}
+
+// Debounce helper
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
 }
 
 /* =========================================

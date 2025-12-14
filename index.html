@@ -43,11 +43,45 @@
             </div>
 
             <div style="width:1px; height:20px; background:#ddd; margin:0 10px;"></div>
-            <input type="text" id="global-search" placeholder="Search products, brands...">
+            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
             <div class="search-icons">
                 <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
                 <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
                 <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <!-- Search Autocomplete Dropdown -->
+            <div class="search-suggestions" id="search-suggestions">
+                <div class="suggestion-section" id="trending-section">
+                    <div class="suggestion-title">🔥 Trending Searches</div>
+                    <div class="suggestion-item" onclick="searchFor('Nike Air Max')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Nike Air Max</span>
+                    </div>
+                    <div class="suggestion-item" onclick="searchFor('Khaadi Lawn')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Khaadi Lawn 2024</span>
+                    </div>
+                    <div class="suggestion-item" onclick="searchFor('iPhone 15')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>iPhone 15 Pro</span>
+                    </div>
+                </div>
+                <div class="suggestion-section">
+                    <div class="suggestion-title">📁 Categories</div>
+                    <div class="suggestion-item" onclick="window.location='category.html?type=clothing'">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span>Clothing & Fashion</span>
+                    </div>
+                    <div class="suggestion-item" onclick="window.location='category.html?type=tech'">
+                        <i class="fa-solid fa-mobile"></i>
+                        <span>Electronics & Tech</span>
+                    </div>
+                </div>
+                <div class="suggestion-section" id="product-suggestions" style="display:none;">
+                    <div class="suggestion-title">🛍️ Products</div>
+                    <!-- Populated by JS -->
+                </div>
             </div>
         </div>
 
@@ -127,33 +161,79 @@
             </div>
         </div>
         <div class="product-grid" id="flash-sale-container">
-            <!-- Flash sale products - dynamically loaded or hardcoded -->
+            <!-- Flash sale products with Phase 1 features -->
             <div class="product-card sale-card">
                 <span class="sale-badge">-50%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'nike-air-max')"><i
+                        class="fa-regular fa-heart"></i></button>
                 <img src="https://via.placeholder.com/300/8E7C68/FFF?text=Nike+Shoes" class="product-img"
                     style="object-fit: contain; width: 100%;">
                 <h4>Nike Air Max</h4>
                 <p class="brand-name">Nike Store</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★<span class="empty">★</span></span>
+                    <span class="rating-count">(128)</span>
+                </div>
+                <span class="stock-status low-stock">🔥 Only 3 left!</span>
                 <p class="price"><del style="color:#999;">Rs. 24,000</del> Rs. 12,000</p>
-                <button>Add to Cart</button>
+                <button
+                    onclick="addToCart('Nike Air Max', 'Rs. 12,000', 'Nike Store', 'https://via.placeholder.com/300/8E7C68/FFF?text=Nike+Shoes')">Add
+                    to Cart</button>
             </div>
             <div class="product-card sale-card">
                 <span class="sale-badge">-40%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'galaxy-buds')"><i
+                        class="fa-regular fa-heart"></i></button>
                 <img src="https://via.placeholder.com/300/8E7C68/FFF?text=Samsung+Buds" class="product-img"
                     style="object-fit: contain; width: 100%;">
                 <h4>Galaxy Buds Pro</h4>
                 <p class="brand-name">Samsung</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-count">(256)</span>
+                </div>
+                <span class="stock-status in-stock">✓ In Stock</span>
                 <p class="price"><del style="color:#999;">Rs. 35,000</del> Rs. 21,000</p>
-                <button>Add to Cart</button>
+                <button
+                    onclick="addToCart('Galaxy Buds Pro', 'Rs. 21,000', 'Samsung', 'https://via.placeholder.com/300/8E7C68/FFF?text=Samsung+Buds')">Add
+                    to Cart</button>
             </div>
             <div class="product-card sale-card">
                 <span class="sale-badge">-30%</span>
+                <span class="new-badge">New</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'khaadi-lawn')"><i
+                        class="fa-regular fa-heart"></i></button>
                 <img src="https://via.placeholder.com/300/8E7C68/FFF?text=Khaadi+Lawn" class="product-img"
                     style="object-fit: contain; width: 100%;">
                 <h4>Khaadi Lawn 3pc</h4>
                 <p class="brand-name">Khaadi</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★<span class="empty">★</span></span>
+                    <span class="rating-count">(89)</span>
+                </div>
+                <span class="stock-status low-stock">🔥 Only 5 left!</span>
                 <p class="price"><del style="color:#999;">Rs. 6,500</del> Rs. 4,550</p>
-                <button>Add to Cart</button>
+                <button
+                    onclick="addToCart('Khaadi Lawn 3pc', 'Rs. 4,550', 'Khaadi', 'https://via.placeholder.com/300/8E7C68/FFF?text=Khaadi+Lawn')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card sale-card">
+                <span class="sale-badge">-25%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'rolex-watch')"><i
+                        class="fa-regular fa-heart"></i></button>
+                <img src="https://via.placeholder.com/300/C5A065/FFF?text=Rolex+Watch" class="product-img"
+                    style="object-fit: contain; width: 100%;">
+                <h4>Rolex Submariner</h4>
+                <p class="brand-name">Rolex Official</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-count">(42)</span>
+                </div>
+                <span class="stock-status low-stock">🔥 Only 2 left!</span>
+                <p class="price"><del style="color:#999;">Rs. 2,500,000</del> Rs. 1,875,000</p>
+                <button
+                    onclick="addToCart('Rolex Submariner', 'Rs. 1,875,000', 'Rolex Official', 'https://via.placeholder.com/300/C5A065/FFF?text=Rolex+Watch')">Add
+                    to Cart</button>
             </div>
         </div>
     </section>
