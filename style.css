@@ -571,6 +571,68 @@ h3 {
     color: white;
 }
 
+/* --- COMPACT PROMO STRIP --- */
+.promo-strip {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.promo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 30px;
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.promo-item:last-child {
+    border-right: none;
+}
+
+.promo-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.promo-item i {
+    font-size: 20px;
+    color: var(--accent-gold);
+}
+
+.promo-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.promo-item strong {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.promo-item span {
+    font-size: 11px;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .promo-strip {
+        flex-wrap: wrap;
+    }
+
+    .promo-item {
+        flex: 1 1 50%;
+        justify-content: center;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
 /* --- BRAND GRID --- */
 .brand-grid {
     display: flex;
