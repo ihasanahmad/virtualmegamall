@@ -117,34 +117,43 @@
 
     </div>
 
-    <!-- Compact Promo Strip -->
-    <section class="promo-strip">
-        <div class="promo-item">
-            <i class="fa-solid fa-bolt"></i>
-            <div>
-                <strong>Flash Sale</strong>
-                <span>50% Off Sneakers</span>
+    <!-- FLASH SALE SECTION -->
+    <section class="container flash-sale-section">
+        <div class="section-header" style="border-bottom-color: #ff6b6b;">
+            <h3 style="color: #ff6b6b;"><i class="fa-solid fa-bolt"></i> Flash Sale - Up to 50% Off!</h3>
+            <div class="sale-timer">
+                <span>Ends in:</span>
+                <div class="timer-box">12</div>:<div class="timer-box">45</div>:<div class="timer-box">30</div>
             </div>
         </div>
-        <div class="promo-item">
-            <i class="fa-solid fa-credit-card"></i>
-            <div>
-                <strong>Bank Discount</strong>
-                <span>10% Off with HBL</span>
+        <div class="product-grid" id="flash-sale-container">
+            <!-- Flash sale products - dynamically loaded or hardcoded -->
+            <div class="product-card sale-card">
+                <span class="sale-badge">-50%</span>
+                <img src="https://via.placeholder.com/300/8E7C68/FFF?text=Nike+Shoes" class="product-img"
+                    style="object-fit: contain; width: 100%;">
+                <h4>Nike Air Max</h4>
+                <p class="brand-name">Nike Store</p>
+                <p class="price"><del style="color:#999;">Rs. 24,000</del> Rs. 12,000</p>
+                <button>Add to Cart</button>
             </div>
-        </div>
-        <div class="promo-item">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-                <strong>Free Delivery</strong>
-                <span>Over Rs. 5000</span>
+            <div class="product-card sale-card">
+                <span class="sale-badge">-40%</span>
+                <img src="https://via.placeholder.com/300/8E7C68/FFF?text=Samsung+Buds" class="product-img"
+                    style="object-fit: contain; width: 100%;">
+                <h4>Galaxy Buds Pro</h4>
+                <p class="brand-name">Samsung</p>
+                <p class="price"><del style="color:#999;">Rs. 35,000</del> Rs. 21,000</p>
+                <button>Add to Cart</button>
             </div>
-        </div>
-        <div class="promo-item">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-                <strong>Secure Payment</strong>
-                <span>100% Protected</span>
+            <div class="product-card sale-card">
+                <span class="sale-badge">-30%</span>
+                <img src="https://via.placeholder.com/300/8E7C68/FFF?text=Khaadi+Lawn" class="product-img"
+                    style="object-fit: contain; width: 100%;">
+                <h4>Khaadi Lawn 3pc</h4>
+                <p class="brand-name">Khaadi</p>
+                <p class="price"><del style="color:#999;">Rs. 6,500</del> Rs. 4,550</p>
+                <button>Add to Cart</button>
             </div>
         </div>
     </section>
@@ -206,6 +215,31 @@
                 <p class="brand-name">J. (Junaid Jamshed)</p>
                 <p class="price">Rs. 4,500</p>
                 <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Strip (above footer) -->
+    <section class="services-strip">
+        <div class="service-item">
+            <i class="fa-solid fa-credit-card"></i>
+            <div>
+                <strong>Bank Discount</strong>
+                <span>10% Off with HBL Cards</span>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+                <strong>Free Delivery</strong>
+                <span>On orders over Rs. 5000</span>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+                <strong>Secure Payment</strong>
+                <span>100% Protected</span>
             </div>
         </div>
     </section>
