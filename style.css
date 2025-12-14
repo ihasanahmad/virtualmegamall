@@ -672,6 +672,147 @@ h3 {
     }
 }
 
+/* --- AD BANNER STYLES --- */
+.ad-banner-section {
+    padding: 30px 60px;
+    background: var(--cream-bg);
+}
+
+.ad-banner {
+    display: block;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.ad-banner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.ad-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.ad-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #aaa;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.ad-banner.full-width {
+    width: 100%;
+}
+
+.ad-banner-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px 60px;
+}
+
+.ad-banner.half-width {
+    flex: 1;
+    max-width: 580px;
+}
+
+.ad-banner-row.triple {
+    gap: 20px;
+}
+
+.ad-banner.third-width {
+    flex: 1;
+    max-width: 380px;
+}
+
+.ad-banner.featured {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(142, 124, 104, 0.1), rgba(197, 160, 101, 0.1));
+    border: 2px dashed var(--primary-hazel);
+}
+
+.ad-banner.featured .ad-label {
+    position: static;
+    display: inline-block;
+    margin-bottom: 15px;
+    background: var(--primary-hazel);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .ad-banner-section {
+        padding: 20px;
+    }
+
+    .ad-banner-row {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .ad-banner.half-width,
+    .ad-banner.third-width {
+        max-width: 100%;
+    }
+}
+
+/* --- CATEGORY AD SLIDER --- */
+.category-ad-slider {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    margin: 15px 0 25px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cat-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.cat-slide.active {
+    opacity: 1;
+}
+
+.cat-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.cat-slide a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .category-ad-slider {
+        height: 120px;
+    }
+}
+
 /* --- BRAND GRID --- */
 .brand-grid {
     display: flex;

@@ -20,10 +20,27 @@ document.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     checkAuthState();
     initSlider();
+    initCategorySliders();
     updateCartDisplay();
     // Render Functions triggered if container exists
     if (document.getElementById('clothing-container')) renderBrands();
 });
+
+// Category Ad Sliders - Auto rotate every 4 seconds
+function initCategorySliders() {
+    const sliders = document.querySelectorAll('.category-ad-slider');
+    sliders.forEach(slider => {
+        const slides = slider.querySelectorAll('.cat-slide');
+        if (slides.length <= 1) return;
+
+        let currentIndex = 0;
+        setInterval(() => {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }, 4000); // Change every 4 seconds
+    });
+}
 
 function checkAuthState() {
     const authSection = document.getElementById('auth-section');
