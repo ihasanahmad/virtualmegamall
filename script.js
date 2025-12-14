@@ -384,17 +384,17 @@ const brandData = [
 
 // Mock Products
 const mockProducts = [
-    { name: "Khaadi Lawn 3pc", brand: "Khaadi", price: "Rs. 4,500", img: "https://via.placeholder.com/300/8E7C68/FFF?text=Khaadi+Lawn" },
-    { name: "Kurta Shalwar", brand: "J.", price: "Rs. 6,000", img: "https://via.placeholder.com/300/8E7C68/FFF?text=J.+Kurta" },
-    { name: "Sapphire Pop", brand: "Sapphire", price: "Rs. 3,200", img: "https://via.placeholder.com/300/8E7C68/FFF?text=Sapphire+Pop" },
-    { name: "Stylo Fancy Heels", brand: "Stylo", price: "Rs. 2,800", img: "https://via.placeholder.com/300/8E7C68/FFF?text=Stylo+Heels" },
-    { name: "Galaxy S24 Ultra", brand: "Samsung", price: "Rs. 400,000", img: "https://via.placeholder.com/300/8E7C68/FFF?text=S24+Ultra" },
-    { name: "iPhone 15 Pro", brand: "Apple", price: "Rs. 500,000", img: "https://via.placeholder.com/300/8E7C68/FFF?text=iPhone+15" },
-    { name: "Redmi Note 13", brand: "Xiaomi", price: "Rs. 60,000", img: "https://via.placeholder.com/300/8E7C68/FFF?text=Redmi+Note" },
-    { name: "Gold Plated Set", brand: "Tesoro", price: "Rs. 5,500", img: "https://via.placeholder.com/300/8E7C68/FFF?text=Tesoro+Set" },
-    { name: "Diamond Ring", brand: "Hanif", price: "Rs. 150,000", img: "https://via.placeholder.com/300/664/FFF?text=Hanif+Diamond" },
-    { name: "Bata Comfit", brand: "Bata", price: "Rs. 3,500", img: "https://via.placeholder.com/300/444/FFF?text=Bata+Comfit" },
-    { name: "Infinix Zero 30", brand: "Infinix", price: "Rs. 70,000", img: "https://via.placeholder.com/300/8E7C68/FFF?text=Infinix" }
+    { name: "Khaadi Lawn 3pc", brand: "Khaadi", price: "Rs. 4,500", img: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80" },
+    { name: "Kurta Shalwar", brand: "J.", price: "Rs. 6,000", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" },
+    { name: "Sapphire Pop", brand: "Sapphire", price: "Rs. 3,200", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=300&q=80" },
+    { name: "Running Shoes", brand: "Nike Store", price: "Rs. 12,000", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" },
+    { name: "Galaxy S24", brand: "Samsung Official", price: "Rs. 350,000", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80" },
+    { name: "iPhone 15 Pro", brand: "Apple", price: "Rs. 500,000", img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&q=80" },
+    { name: "Summer Kurta", brand: "J. (Junaid Jamshed)", price: "Rs. 4,500", img: "https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=300&q=80" },
+    { name: "Gold Plated Set", brand: "Tesoro", price: "Rs. 5,500", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80" },
+    { name: "Luxury Watch", brand: "Rolex", price: "Rs. 150,000", img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80" },
+    { name: "Sport Sneakers", brand: "Adidas", price: "Rs. 8,500", img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=300&q=80" },
+    { name: "Earbuds Pro", brand: "Samsung", price: "Rs. 25,000", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300&q=80" }
 ];
 
 /* =========================================

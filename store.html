@@ -768,25 +768,28 @@
             font-size: 12px;
         }
 
-        /* Back to Mall Link */
+        /* Back to Mall Link - Positioned LEFT to avoid chat overlap */
         .back-to-mall {
             position: fixed;
             bottom: 30px;
-            right: 30px;
-            background: white;
-            color: black;
+            left: 30px;
+            background: var(--glass-bg);
+            color: white;
             padding: 15px 25px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 12px;
             letter-spacing: 1px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            transition: all 0.3s;
             z-index: 1000;
+            border: 1px solid var(--primary-hazel);
+            backdrop-filter: blur(10px);
         }
 
         .back-to-mall:hover {
             transform: scale(1.05);
+            background: var(--primary-hazel);
         }
 
         /* Search Modal */
