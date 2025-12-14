@@ -18,6 +18,14 @@
             color: #fff;
         }
 
+        /* Override navbar max-width for brand page */
+        .navbar {
+            max-width: 100% !important;
+            width: 100%;
+            left: 0;
+            right: 0;
+        }
+
         /* Premium Navbar */
         .brand-navbar {
             background: transparent;
@@ -793,7 +801,16 @@
 
         // Initialize brand page
         function initBrandPage() {
-            const config = brandConfigs[brandName] || brandConfigs['Nike'];
+            // Use config if exists, otherwise create dynamic config from URL brand name
+            const config = brandConfigs[brandName] || {
+                name: brandName.toUpperCase(),
+                tagline: 'Official Store at Virtual Mega Mall',
+                hero: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600',
+                story: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800',
+                storyTitle: `About ${brandName}`,
+                storyText: `Welcome to the official ${brandName} store. Discover our exclusive collection of premium products.`,
+                color: '#1a1a1a'
+            };
 
             document.title = `${config.name} | Virtual Mega Mall`;
             document.getElementById('brand-name-nav').textContent = config.name;
