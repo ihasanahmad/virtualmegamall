@@ -314,6 +314,74 @@ body {
     gap: 20px;
 }
 
+/* Minimalist Icon Navigation */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-icon {
+    color: var(--dark-text);
+    font-size: 22px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.nav-icon:hover {
+    color: var(--primary-hazel);
+    background: rgba(142, 124, 104, 0.1);
+    transform: scale(1.1);
+}
+
+.nav-icon i {
+    font-size: 20px;
+}
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+    animation: badgePop 0.3s ease;
+}
+
+.cart-badge.hidden {
+    display: none;
+}
+
+@keyframes badgePop {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 .nav-links a {
     color: var(--primary-hazel);
     text-decoration: none;

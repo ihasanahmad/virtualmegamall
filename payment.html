@@ -3,201 +3,590 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | Virtual Mega Mall</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+        }
+
         .checkout-container {
-            max-width: 900px;
-            margin: 50px auto;
+            max-width: 1000px;
+            margin: 40px auto;
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 40px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
         }
 
         .form-section,
         .summary-section {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section h2 {
+            color: #1a1a2e;
+            margin-bottom: 25px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section h2 i {
+            color: var(--primary-hazel);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--dark-text);
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
         }
 
-        input,
-        select {
+        .form-group input,
+        .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: #f9f9f9;
+            padding: 14px 16px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #fafafa;
         }
 
-        .payment-methods {
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-hazel);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(142, 124, 104, 0.1);
+        }
+
+        /* Stripe Elements Container */
+        #card-element {
+            padding: 16px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        #card-element.StripeElement--focus {
+            border-color: var(--primary-hazel);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(142, 124, 104, 0.1);
+        }
+
+        #card-element.StripeElement--invalid {
+            border-color: #ff4444;
+        }
+
+        #card-errors {
+            color: #ff4444;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* Payment Button */
+        .pay-btn {
+            background: linear-gradient(135deg, #8E7C68 0%, #C5A065 100%);
+            color: white;
+            font-weight: 700;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pay-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(142, 124, 104, 0.4);
+        }
+
+        .pay-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pay-btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Summary Section */
+        .summary-section {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-section h3 {
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .order-item {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .method-card {
-            flex: 1;
-            padding: 15px;
-            border: 1px solid #ddd;
+        .order-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
             border-radius: 10px;
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
+            background: #f5f5f5;
+            padding: 5px;
         }
 
-        .method-card:hover,
-        .method-card.active {
-            border-color: var(--primary-hazel);
-            background: rgba(142, 124, 104, 0.1);
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-details h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .order-item-details p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .order-item-price {
+            font-weight: 700;
+            color: var(--primary-hazel);
+        }
+
+        .total-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
         }
 
         .total-row {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .total-row.grand-total {
             font-size: 20px;
-            font-weight: bold;
+            font-weight: 700;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .secure-badge i {
+            color: #28a745;
+            font-size: 16px;
+        }
+
+        /* Stripe Logo */
+        .powered-by-stripe {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .powered-by-stripe img {
+            height: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="logo">CHECKOUT</div>
+    <nav class="navbar" style="background: rgba(26, 26, 46, 0.95);">
+        <a href="index.html" class="logo" style="color: white; text-decoration: none;">MEGA MALL</a>
         <div class="nav-links">
-            <a href="cart.html">Back to Cart</a>
+            <a href="cart.html" style="color: #ddd;">← Back to Cart</a>
         </div>
     </nav>
 
     <div class="checkout-container">
         <!-- LEFT: FORM -->
         <div class="form-section">
-            <h2>Shipping Details</h2>
-            <form id="checkout-form">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="name" required placeholder="John Doe">
+            <h2><i class="fa-solid fa-truck"></i> Shipping Information</h2>
+            <form id="payment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" id="firstName" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" required placeholder="Doe">
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label>Shipping Address</label>
-                    <input type="text" id="address" required placeholder="House #123, Street ABC, Lahore">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
                 </div>
+
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="text" id="phone" required placeholder="0300-1234567">
+                    <input type="tel" id="phone" required placeholder="+92 300 1234567">
                 </div>
 
-                <h2 style="margin-top: 30px;">Payment Method</h2>
-                <div class="payment-methods">
-                    <div class="method-card active" onclick="selectMethod('cod')" id="btn-cod">
-                        <i class="fa-solid fa-truck" style="font-size: 24px;"></i><br>Cash on Delivery
-                    </div>
-                    <div class="method-card" onclick="selectMethod('card')" id="btn-card">
-                        <i class="fa-solid fa-credit-card" style="font-size: 24px;"></i><br>Credit/Debit Card
-                    </div>
+                <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" id="address" required placeholder="House #123, Street ABC">
                 </div>
 
-                <!-- CARD DETAILS (Hidden by default) -->
-                <div id="card-details" style="display: none;">
+                <div class="form-row">
                     <div class="form-group">
-                        <label>Card Number</label>
-                        <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX">
+                        <label>City</label>
+                        <input type="text" id="city" required placeholder="Lahore">
                     </div>
-                    <div style="display: flex; gap: 20px;">
-                        <input type="text" placeholder="MM/YY">
-                        <input type="text" placeholder="CVC">
+                    <div class="form-group">
+                        <label>Postal Code</label>
+                        <input type="text" id="postalCode" placeholder="54000">
                     </div>
                 </div>
 
-                <button type="submit" class="cta-button" style="width: 100%; margin-top: 20px;">Place Order</button>
+                <div class="form-group">
+                    <label>Country</label>
+                    <select id="country" required>
+                        <option value="PK" selected>Pakistan</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AE">UAE</option>
+                        <option value="SA">Saudi Arabia</option>
+                    </select>
+                </div>
+
+                <h2 style="margin-top: 30px;"><i class="fa-solid fa-credit-card"></i> Payment Details</h2>
+
+                <!-- Stripe Card Element -->
+                <div class="form-group">
+                    <label>Card Information</label>
+                    <div id="card-element"></div>
+                    <div id="card-errors" role="alert"></div>
+                </div>
+
+                <button type="submit" class="pay-btn" id="submit-btn">
+                    <i class="fa-solid fa-lock"></i>
+                    <span id="btn-text">Pay Now</span>
+                </button>
+
+                <div class="powered-by-stripe">
+                    <span>Powered by</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"
+                        alt="Stripe">
+                </div>
             </form>
         </div>
 
         <!-- RIGHT: SUMMARY -->
         <div class="summary-section">
-            <h3>Order Summary</h3>
-            <div id="order-items" style="margin-top: 20px; max-height: 400px; overflow-y: auto;">
-                <!-- dynamic items -->
+            <h3><i class="fa-solid fa-bag-shopping"></i> Order Summary</h3>
+            <div id="order-items">
+                <!-- Populated by JS -->
             </div>
-            <div class="total-row">
-                <span>Total</span>
-                <span id="grand-total">Rs. 0</span>
+            <div class="total-section">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">Rs. 0</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span id="shipping">Rs. 200</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total</span>
+                    <span id="grand-total">Rs. 0</span>
+                </div>
             </div>
-            <p style="margin-top: 15px; font-size: 12px; color: #666;">
-                <i class="fa-solid fa-lock"></i> 100% Secure Payment. Encrypted with SSL.
-            </p>
+            <div class="secure-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Your payment is secure and encrypted</span>
+            </div>
         </div>
     </div>
 
     <script>
-        // Load Cart
-        const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const orderItemsEl = document.getElementById('order-items');
-        const grandTotalEl = document.getElementById('grand-total');
+        // =============================================
+        // STRIPE PAYMENT INTEGRATION
+        // =============================================
 
-        if (cart.length === 0) {
-            window.location.href = "cart.html";
+        // Initialize Stripe with your publishable key
+        // IMPORTANT: Replace with your actual Stripe publishable key
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_PUBLISHABLE_KEY_HERE';
+        const API_BASE_URL = 'https://virtualmall-backend.onrender.com';
+
+        let stripe;
+        let elements;
+        let cardElement;
+
+        // Initialize Stripe
+        function initStripe() {
+            if (STRIPE_PUBLISHABLE_KEY.includes('YOUR_PUBLISHABLE_KEY')) {
+                console.warn('⚠️ Stripe key not configured. Using demo mode.');
+                // Demo mode - allow form submission without real Stripe
+                document.getElementById('payment-form').addEventListener('submit', handleDemoPayment);
+                return;
+            }
+
+            stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+            elements = stripe.elements();
+
+            // Create card element
+            const style = {
+                base: {
+                    fontSize: '16px',
+                    color: '#333',
+                    fontFamily: '"Poppins", sans-serif',
+                    '::placeholder': {
+                        color: '#aab7c4'
+                    }
+                },
+                invalid: {
+                    color: '#ff4444',
+                    iconColor: '#ff4444'
+                }
+            };
+
+            cardElement = elements.create('card', { style: style });
+            cardElement.mount('#card-element');
+
+            // Handle real-time errors
+            cardElement.on('change', function (event) {
+                const displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('payment-form').addEventListener('submit', handleStripePayment);
         }
 
-        let total = 0;
-        cart.forEach(item => {
-            let price = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
-            total += price * item.qty;
-            orderItemsEl.innerHTML += `
-                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <img src="${item.img}" style="width: 50px; height: 50px; object-fit: contain;">
-                    <div>
-                        <p style="font-weight: bold; margin:0;">${item.name}</p>
-                        <p style="font-size: 12px; margin:0;">${item.qty} x ${item.price}</p>
-                    </div>
-                </div>
-            `;
-        });
-        grandTotalEl.innerText = "Rs. " + total.toLocaleString();
-
-        // Payment Toggle
-        let selectedMethod = 'cod';
-        function selectMethod(method) {
-            selectedMethod = method;
-            document.getElementById('btn-cod').classList.toggle('active', method === 'cod');
-            document.getElementById('btn-card').classList.toggle('active', method === 'card');
-            document.getElementById('card-details').style.display = method === 'card' ? 'block' : 'none';
-        }
-
-        // Handle Submit
-        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+        // Handle Stripe Payment
+        async function handleStripePayment(e) {
             e.preventDefault();
-            // Simulate API Call
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = "Processing...";
-            btn.disabled = true;
 
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            btnText.innerHTML = '<div class="spinner"></div> Processing...';
+
+            try {
+                // 1. Create PaymentIntent on backend
+                const response = await fetch(`${API_BASE_URL}/api/create-payment-intent`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: calculateTotal() * 100, // Stripe uses cents
+                        currency: 'pkr',
+                        shipping: {
+                            name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                            address: document.getElementById('address').value,
+                            city: document.getElementById('city').value,
+                            postalCode: document.getElementById('postalCode').value,
+                            country: document.getElementById('country').value
+                        }
+                    })
+                });
+
+                const { clientSecret } = await response.json();
+
+                // 2. Confirm payment with Stripe
+                const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value
+                        }
+                    }
+                });
+
+                if (error) {
+                    throw new Error(error.message);
+                }
+
+                if (paymentIntent.status === 'succeeded') {
+                    // Payment successful!
+                    handlePaymentSuccess(paymentIntent.id);
+                }
+
+            } catch (error) {
+                console.error('Payment error:', error);
+                document.getElementById('card-errors').textContent = error.message;
+                submitBtn.disabled = false;
+                btnText.innerHTML = '<i class="fa-solid fa-lock"></i> Pay Now';
+            }
+        }
+
+        // Demo Payment (when Stripe key not configured)
+        function handleDemoPayment(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+
+            submitBtn.disabled = true;
+            btnText.innerHTML = '<div class="spinner"></div> Processing...';
+
+            // Simulate payment processing
             setTimeout(() => {
-                alert("✅ Order Placed Successfully! \n\nTracking ID: VMM-" + Math.floor(Math.random() * 100000));
-                localStorage.removeItem('cartItems');
-                window.location.href = "index.html";
+                handlePaymentSuccess('DEMO-' + Math.floor(Math.random() * 1000000));
             }, 2000);
+        }
+
+        // Handle successful payment
+        function handlePaymentSuccess(paymentId) {
+            // Clear cart
+            localStorage.removeItem('cartItems');
+
+            // Show success message and redirect
+            alert(`✅ Payment Successful!\n\nOrder ID: VMM-${Date.now()}\nPayment ID: ${paymentId}\n\nThank you for shopping with us!`);
+            window.location.href = 'index.html';
+        }
+
+        // Calculate total
+        function calculateTotal() {
+            const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let subtotal = 0;
+            cart.forEach(item => {
+                const price = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
+                subtotal += price * item.qty;
+            });
+            return subtotal + 200; // Add shipping
+        }
+
+        // Load cart items
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const orderItemsEl = document.getElementById('order-items');
+
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            let subtotal = 0;
+            const shipping = 200;
+
+            orderItemsEl.innerHTML = '';
+
+            cart.forEach(item => {
+                const price = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
+                const lineTotal = price * item.qty;
+                subtotal += lineTotal;
+
+                orderItemsEl.innerHTML += `
+                    <div class="order-item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="order-item-details">
+                            <h4>${item.name}</h4>
+                            <p>${item.brand} • Qty: ${item.qty}</p>
+                        </div>
+                        <div class="order-item-price">Rs. ${lineTotal.toLocaleString()}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('subtotal').textContent = 'Rs. ' + subtotal.toLocaleString();
+            document.getElementById('shipping').textContent = 'Rs. ' + shipping.toLocaleString();
+            document.getElementById('grand-total').textContent = 'Rs. ' + (subtotal + shipping).toLocaleString();
+
+            // Update pay button text
+            document.getElementById('btn-text').innerHTML = `<i class="fa-solid fa-lock"></i> Pay Rs. ${(subtotal + shipping).toLocaleString()}`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrderSummary();
+            initStripe();
         });
     </script>
 
 </body>
 
 </html>
+</CodeContent>
+<parameter name="Complexity">6

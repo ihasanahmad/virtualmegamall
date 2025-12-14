@@ -49,18 +49,21 @@ function checkAuthState() {
    2. CART LOGIC
    ========================================= */
 let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
-const cartNav = document.getElementById('cart-nav-btn');
 
 function updateCartDisplay() {
     const totalQty = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
-    if (cartNav) {
-        cartNav.innerText = `Cart (${totalQty})`;
+    // Update cart badge (new icon design)
+    const cartBadge = document.getElementById('cart-badge');
+    if (cartBadge) {
+        cartBadge.innerText = totalQty;
         if (totalQty > 0) {
-            cartNav.style.color = "#8E7C68";
-            cartNav.style.borderColor = "#8E7C68"; // Hazel
+            cartBadge.classList.remove('hidden');
+        } else {
+            cartBadge.classList.add('hidden');
         }
     }
+
     // Automatically render if on cart page
     if (window.location.pathname.includes("cart.html")) {
         renderCartPage();
