@@ -1163,17 +1163,40 @@
             renderProducts(products);
         }
 
-        // Sample products (replace with API call)
+        // Sample products with real images
         function getSampleProducts(brand) {
             const allProducts = [
-                { id: 1, name: 'Air Max 270', category: 'Shoes', price: 'Rs. 24,000', img: 'https://via.placeholder.com/400/111/fff?text=Air+Max', brand: 'Nike', rating: 4.5 },
-                { id: 2, name: 'Tech Fleece Hoodie', category: 'Clothing', price: 'Rs. 15,000', img: 'https://via.placeholder.com/400/111/fff?text=Hoodie', brand: 'Nike', rating: 4.8 },
-                { id: 3, name: 'Dri-FIT T-Shirt', category: 'Clothing', price: 'Rs. 5,500', img: 'https://via.placeholder.com/400/111/fff?text=T-Shirt', brand: 'Nike', rating: 4.3 },
-                { id: 4, name: 'Air Force 1', category: 'Shoes', price: 'Rs. 18,000', img: 'https://via.placeholder.com/400/111/fff?text=AF1', brand: 'Nike', rating: 4.9 },
-                { id: 5, name: 'Summer Lawn 3pc', category: 'Clothing', price: 'Rs. 6,500', img: 'https://via.placeholder.com/400/8E7C68/fff?text=Lawn', brand: 'Khaadi', rating: 4.6 },
-                { id: 6, name: 'Embroidered Kurta', category: 'Clothing', price: 'Rs. 8,000', img: 'https://via.placeholder.com/400/8E7C68/fff?text=Kurta', brand: 'Khaadi', rating: 4.4 },
-                { id: 7, name: 'Galaxy S24 Ultra', category: 'Electronics', price: 'Rs. 450,000', img: 'https://via.placeholder.com/400/1428a0/fff?text=S24', brand: 'Samsung', rating: 4.7 },
-                { id: 8, name: 'Galaxy Buds3 Pro', category: 'Electronics', price: 'Rs. 45,000', img: 'https://via.placeholder.com/400/1428a0/fff?text=Buds', brand: 'Samsung', rating: 4.5 },
+                // Nike Products
+                { id: 1, name: 'Air Max 270', category: 'Shoes', price: 'Rs. 24,000', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80', brand: 'Nike', rating: 4.5 },
+                { id: 2, name: 'Tech Fleece Hoodie', category: 'Clothing', price: 'Rs. 15,000', img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80', brand: 'Nike', rating: 4.8 },
+                { id: 3, name: 'Dri-FIT T-Shirt', category: 'Clothing', price: 'Rs. 5,500', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80', brand: 'Nike', rating: 4.3 },
+                { id: 4, name: 'Air Force 1', category: 'Shoes', price: 'Rs. 18,000', img: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=400&q=80', brand: 'Nike', rating: 4.9 },
+                // Khaadi Products
+                { id: 5, name: 'Summer Lawn 3pc', category: 'Clothing', price: 'Rs. 6,500', img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&q=80', brand: 'Khaadi', rating: 4.6 },
+                { id: 6, name: 'Embroidered Kurta', category: 'Clothing', price: 'Rs. 8,000', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', brand: 'Khaadi', rating: 4.4 },
+                { id: 7, name: 'Printed Dupatta', category: 'Accessories', price: 'Rs. 2,500', img: 'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400&q=80', brand: 'Khaadi', rating: 4.2 },
+                { id: 8, name: 'Festive Collection', category: 'Clothing', price: 'Rs. 12,000', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80', brand: 'Khaadi', rating: 4.7 },
+                // Samsung Products
+                { id: 9, name: 'Galaxy S24 Ultra', category: 'Electronics', price: 'Rs. 450,000', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&q=80', brand: 'Samsung', rating: 4.7 },
+                { id: 10, name: 'Galaxy Buds3 Pro', category: 'Electronics', price: 'Rs. 45,000', img: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&q=80', brand: 'Samsung', rating: 4.5 },
+                { id: 11, name: 'Galaxy Watch 6', category: 'Electronics', price: 'Rs. 85,000', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80', brand: 'Samsung', rating: 4.6 },
+                { id: 12, name: 'Galaxy Tab S9', category: 'Electronics', price: 'Rs. 180,000', img: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&q=80', brand: 'Samsung', rating: 4.4 },
+                // Gucci Products
+                { id: 13, name: 'GG Marmont Bag', category: 'Bags', price: 'Rs. 350,000', img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80', brand: 'Gucci', rating: 4.9 },
+                { id: 14, name: 'Ace Sneakers', category: 'Shoes', price: 'Rs. 180,000', img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&q=80', brand: 'Gucci', rating: 4.7 },
+                // Sapphire Products
+                { id: 15, name: 'Ready to Wear', category: 'Clothing', price: 'Rs. 5,500', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80', brand: 'Sapphire', rating: 4.5 },
+                { id: 16, name: 'Unstitched 3pc', category: 'Clothing', price: 'Rs. 4,200', img: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80', brand: 'Sapphire', rating: 4.3 },
+                // J. Products
+                { id: 17, name: 'Kurta Shalwar', category: 'Clothing', price: 'Rs. 7,500', img: 'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400&q=80', brand: 'J.', rating: 4.6 },
+                { id: 18, name: 'Festive Kurta', category: 'Clothing', price: 'Rs. 9,000', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', brand: 'J.', rating: 4.4 },
+                // Apple Products
+                { id: 19, name: 'iPhone 15 Pro', category: 'Electronics', price: 'Rs. 480,000', img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&q=80', brand: 'Apple', rating: 4.8 },
+                { id: 20, name: 'MacBook Air', category: 'Electronics', price: 'Rs. 350,000', img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80', brand: 'Apple', rating: 4.9 },
+                // Adidas Products
+                { id: 21, name: 'Ultraboost', category: 'Shoes', price: 'Rs. 28,000', img: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400&q=80', brand: 'Adidas', rating: 4.7 },
+                // Rolex Products
+                { id: 22, name: 'Submariner', category: 'Watches', price: 'Rs. 1,875,000', img: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80', brand: 'Rolex', rating: 4.9 },
             ];
 
             return allProducts.filter(p => p.brand === brand || brand === 'All');
