@@ -119,6 +119,75 @@ body {
     flex-shrink: 0;
 }
 
+/* NAV ICONS (Right Side) */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.nav-icon {
+    position: relative;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.nav-icon:hover {
+    color: var(--hazel-gold);
+    transform: scale(1.1);
+}
+
+/* Compare Icon - More Attractive */
+.compare-icon {
+    background: linear-gradient(135deg, rgba(197, 160, 101, 0.2), rgba(142, 124, 104, 0.2));
+    border: 1px solid rgba(197, 160, 101, 0.3);
+}
+
+.compare-icon:hover {
+    background: linear-gradient(135deg, var(--hazel-gold), var(--primary-hazel));
+    color: #111;
+    box-shadow: 0 0 20px rgba(197, 160, 101, 0.5);
+}
+
+/* Cart Icon */
+.cart-icon {
+    background: linear-gradient(135deg, rgba(197, 160, 101, 0.15), transparent);
+}
+
+.cart-icon:hover {
+    background: var(--hazel-gold);
+    color: #111;
+}
+
+/* Badges */
+.cart-badge,
+.compare-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+}
+
+.compare-badge {
+    background: linear-gradient(135deg, var(--hazel-gold), var(--primary-hazel));
+    box-shadow: 0 2px 8px rgba(197, 160, 101, 0.5);
+}
+
 /* SEARCH BAR STYLES */
 .search-container {
     display: flex;
