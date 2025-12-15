@@ -24,9 +24,90 @@ document.addEventListener('DOMContentLoaded', () => {
     initWishlist();
     initSearchAutocomplete();
     updateCartDisplay();
+    initNewsletterPopup();
+    initAppBanner();
     // Render Functions triggered if container exists
     if (document.getElementById('clothing-container')) renderBrands();
 });
+
+/* =========================================
+   NEWSLETTER POPUP
+   ========================================= */
+function initNewsletterPopup() {
+    // Show popup after 5 seconds if not already shown in session
+    if (!sessionStorage.getItem('newsletter-popup-shown')) {
+        setTimeout(() => {
+            const popup = document.getElementById('newsletter-popup');
+            if (popup) {
+                popup.classList.add('active');
+            }
+        }, 5000);
+    }
+}
+
+function closeNewsletterPopup() {
+    const popup = document.getElementById('newsletter-popup');
+    if (popup) {
+        popup.classList.remove('active');
+        sessionStorage.setItem('newsletter-popup-shown', 'true');
+    }
+}
+
+function submitPopupNewsletter(e) {
+    e.preventDefault();
+    const email = document.getElementById('popup-email').value;
+
+    // Store subscription
+    const subscribers = JSON.parse(localStorage.getItem('newsletter-subscribers')) || [];
+    subscribers.push({ email, date: new Date().toISOString(), source: 'popup' });
+    localStorage.setItem('newsletter-subscribers', JSON.stringify(subscribers));
+
+    showToast('Thanks for subscribing! 🎉 10% off coming your way!');
+    closeNewsletterPopup();
+}
+
+window.closeNewsletterPopup = closeNewsletterPopup;
+window.submitPopupNewsletter = submitPopupNewsletter;
+
+/* =========================================
+   MOBILE APP BANNER
+   ========================================= */
+function initAppBanner() {
+    // Hide if already dismissed in session
+    if (sessionStorage.getItem('app-banner-closed')) {
+        const banner = document.getElementById('app-banner');
+        if (banner) banner.style.display = 'none';
+    }
+}
+
+function closeAppBanner() {
+    const banner = document.getElementById('app-banner');
+    if (banner) {
+        banner.style.display = 'none';
+        sessionStorage.setItem('app-banner-closed', 'true');
+    }
+}
+
+window.closeAppBanner = closeAppBanner;
+
+/* =========================================
+   CURRENCY & LANGUAGE SELECTORS
+   ========================================= */
+function changeCurrency(currency) {
+    localStorage.setItem('selected-currency', currency);
+    showToast(`Currency changed to ${currency}`);
+    // In production, this would trigger price recalculation
+}
+
+function changeLanguage(lang) {
+    localStorage.setItem('selected-language', lang);
+    const langNames = { en: 'English', ur: 'اردو', ar: 'العربية' };
+    showToast(`Language: ${langNames[lang] || lang}`);
+    // In production, this would reload page with translation
+}
+
+window.changeCurrency = changeCurrency;
+window.changeLanguage = changeLanguage;
 
 // Category Ad Sliders - Auto rotate every 4 seconds
 function initCategorySliders() {

@@ -13,6 +13,35 @@
 
 <body>
 
+    <!-- Mobile App Banner (Walmart/Shein style) -->
+    <div class="app-banner" id="app-banner">
+        <div class="app-banner-content">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <span>Get the App for exclusive deals!</span>
+            <a href="#" class="app-banner-btn">Download</a>
+        </div>
+        <button class="app-banner-close" onclick="closeAppBanner()"><i class="fa-solid fa-times"></i></button>
+    </div>
+
+    <!-- Newsletter Popup Modal -->
+    <div class="newsletter-popup" id="newsletter-popup">
+        <div class="newsletter-popup-content">
+            <button class="popup-close" onclick="closeNewsletterPopup()"><i class="fa-solid fa-times"></i></button>
+            <div class="popup-image">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80" alt="Shopping">
+            </div>
+            <div class="popup-form">
+                <h2>Get 10% Off</h2>
+                <p>Subscribe to our newsletter for exclusive deals, new arrivals, and insider-only discounts.</p>
+                <form onsubmit="submitPopupNewsletter(event)">
+                    <input type="email" id="popup-email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="popup-privacy">By subscribing, you agree to our <a href="help.html">Privacy Policy</a></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="chat.js" defer></script>
     <script src="search_logic.js" defer></script>
@@ -106,8 +135,26 @@
             </div>
         </div>
 
-        <!-- Right Side Icons (Compare → Login → Cart) -->
+        <!-- Right Side: Selectors + Icons -->
         <div class="nav-icons">
+            <!-- Currency Selector -->
+            <div class="nav-selector">
+                <select id="currency-selector" onchange="changeCurrency(this.value)">
+                    <option value="PKR">🇵🇰 PKR</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="AED">🇦🇪 AED</option>
+                </select>
+            </div>
+            <!-- Language Selector -->
+            <div class="nav-selector">
+                <select id="language-selector" onchange="changeLanguage(this.value)">
+                    <option value="en">EN</option>
+                    <option value="ur">اردو</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
             <a href="comparison.html" class="nav-icon" title="Compare Products">
                 <i class="fa-solid fa-code-compare"></i>
             </a>
