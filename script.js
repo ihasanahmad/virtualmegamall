@@ -106,6 +106,136 @@ function initWishlist() {
 }
 
 /* =========================================
+   CART FUNCTIONALITY - Global Functions
+   ========================================= */
+
+// Get cart from localStorage
+function getCart() {
+    return JSON.parse(localStorage.getItem('cartItems')) || [];
+}
+
+// Save cart to localStorage
+function saveCart(cart) {
+    localStorage.setItem('cartItems', JSON.stringify(cart));
+    updateCartDisplay();
+}
+
+// Add to Cart - Called from product buttons
+function addToCart(name, price, brand, img) {
+    const cart = getCart();
+
+    // Check if item already exists
+    const existingIndex = cart.findIndex(item => item.name === name && item.brand === brand);
+
+    if (existingIndex > -1) {
+        // Increase quantity
+        cart[existingIndex].qty += 1;
+        showToast(`${name} quantity updated! (${cart[existingIndex].qty})`);
+    } else {
+        // Add new item
+        cart.push({
+            name: name,
+            price: price,
+            brand: brand,
+            img: img || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100',
+            qty: 1
+        });
+        showToast(`${name} added to cart! 🛒`);
+    }
+
+    saveCart(cart);
+}
+
+// Remove from Cart
+function removeFromCart(index) {
+    const cart = getCart();
+    const removed = cart.splice(index, 1);
+    saveCart(cart);
+    showToast(`${removed[0]?.name || 'Item'} removed from cart`);
+}
+
+// Change quantity (+/-)
+function changeQty(index, delta) {
+    const cart = getCart();
+    if (cart[index]) {
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+        }
+        saveCart(cart);
+    }
+}
+
+// Update cart badge display
+function updateCartDisplay() {
+    const cart = getCart();
+    const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+
+    // Update all cart badges on page
+    document.querySelectorAll('.cart-count, #cart-count').forEach(badge => {
+        badge.textContent = totalItems;
+        badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    });
+}
+
+// Show toast notification
+function showToast(message) {
+    // Remove existing toast
+    const existingToast = document.querySelector('.cart-toast');
+    if (existingToast) existingToast.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'cart-toast';
+    toast.innerHTML = `<i class="fa-solid fa-check-circle"></i> ${message}`;
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, var(--primary-hazel, #8E7C68), var(--hazel-gold, #C5A065));
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 10000;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        animation: slideUp 0.3s ease, fadeOut 0.3s ease 2.5s forwards;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    `;
+
+    // Add animation keyframes if not exists
+    if (!document.getElementById('toast-styles')) {
+        const style = document.createElement('style');
+        style.id = 'toast-styles';
+        style.textContent = `
+            @keyframes slideUp {
+                from { transform: translateX(-50%) translateY(50px); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    document.body.appendChild(toast);
+
+    // Remove after animation
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// Make functions globally available
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.changeQty = changeQty;
+window.updateCartDisplay = updateCartDisplay;
+window.showToast = showToast;
+
+/* =========================================
    PHASE 1: SEARCH AUTOCOMPLETE
    ========================================= */
 function initSearchAutocomplete() {

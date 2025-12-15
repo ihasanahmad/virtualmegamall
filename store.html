@@ -1294,7 +1294,7 @@
                         <div class="luxury-product-name">${p.name}</div>
                         <div class="luxury-product-price">${p.price}</div>
                         <div class="luxury-product-actions">
-                            <button class="luxury-btn primary" onclick="addToCart('${p.name}', '${p.price}', '${brandName}', '${p.img}')">Add to Bag</button>
+                            <button class="luxury-btn primary" onclick="addToCart('${p.name}', '${p.price}', '${brandName}', '${p.img}')">Add to Cart</button>
                             <button class="luxury-btn">View Details</button>
                         </div>
                     </div>
@@ -1397,6 +1397,9 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', initBrandPage);
     </script>
+
+    <!-- Global Scripts for Cart, etc. -->
+    <script src="script.js"></script>
 
 </body>
 
