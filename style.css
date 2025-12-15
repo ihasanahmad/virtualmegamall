@@ -1493,6 +1493,64 @@ footer {
     font-size: 14px;
 }
 
+/* Footer Newsletter Column */
+.newsletter-col {
+    min-width: 250px;
+}
+
+.newsletter-col h4 {
+    color: var(--hazel-gold) !important;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+.newsletter-col p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.newsletter-col p a {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-newsletter-form {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 8px;
+}
+
+.footer-newsletter-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 8px 0;
+    outline: none;
+}
+
+.footer-newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-newsletter-form button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s;
+}
+
+.footer-newsletter-form button:hover {
+    color: var(--hazel-gold);
+    transform: translateX(3px);
+}
+
 /* --- NOTIFY ME BUTTON (For Out of Stock) --- */
 .notify-btn {
     background: transparent;

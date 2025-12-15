@@ -109,7 +109,7 @@
         <!-- Right Side Icons (Compare → Login → Cart) -->
         <div class="nav-icons">
             <a href="comparison.html" class="nav-icon compare-icon" title="Compare Products">
-                <i class="fa-solid fa-scale-balanced"></i>
+                <i class="fa-solid fa-code-compare"></i>
                 <span class="compare-badge" id="compare-badge">0</span>
             </a>
             <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account">
@@ -435,24 +435,8 @@
             </div>
         </div>
     </section>
-
     <!-- FOOTER -->
     <footer>
-        <!-- Newsletter Signup (Gucci Style) -->
-        <div class="newsletter-section">
-            <h4 class="newsletter-title">SIGN UP FOR MEGA MALL UPDATES</h4>
-            <p class="newsletter-text">By entering your email address below, you consent to receiving our newsletter
-                with access to our latest collections, exclusive deals and new arrivals. More details in our <a
-                    href="help.html">Privacy Policy</a></p>
-            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-                <input type="email" id="newsletter-email" placeholder="Email" required>
-                <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
-            </form>
-            <div id="newsletter-success" class="newsletter-success" style="display:none;">
-                <i class="fa-solid fa-check-circle"></i> Thank you for subscribing!
-            </div>
-        </div>
-
         <div class="footer-content">
             <div class="footer-col">
                 <h4>Virtual Mega Mall</h4>
@@ -494,6 +478,20 @@
                     <li><a href="index.html#clothing-container">Fashion Category</a></li>
                     <li><a href="index.html#tech-container">Tech Category</a></li>
                 </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-col newsletter-col">
+                <h4>SIGN UP FOR UPDATES</h4>
+                <p>Get access to our latest collections, exclusive deals and new arrivals. <a href="help.html">Privacy
+                        Policy</a></p>
+                <form class="footer-newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" id="newsletter-email" placeholder="Email" required>
+                    <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+                <div id="newsletter-success" class="newsletter-success" style="display:none;">
+                    <i class="fa-solid fa-check-circle"></i> Subscribed!
+                </div>
             </div>
         </div>
         <div class="copyright">
