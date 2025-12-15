@@ -236,6 +236,96 @@ window.updateCartDisplay = updateCartDisplay;
 window.showToast = showToast;
 
 /* =========================================
+   NEWSLETTER SUBSCRIPTION
+   ========================================= */
+function subscribeNewsletter(e) {
+    e.preventDefault();
+    const email = document.getElementById('newsletter-email').value;
+
+    // In production, send to backend/API
+    console.log('Newsletter subscription:', email);
+
+    // Show success message
+    document.querySelector('.newsletter-form').style.display = 'none';
+    document.getElementById('newsletter-success').style.display = 'flex';
+
+    // Store in localStorage for demo
+    const subscribers = JSON.parse(localStorage.getItem('newsletter-subscribers')) || [];
+    subscribers.push({ email, date: new Date().toISOString() });
+    localStorage.setItem('newsletter-subscribers', JSON.stringify(subscribers));
+
+    showToast('Thanks for subscribing! 📧');
+}
+
+window.subscribeNewsletter = subscribeNewsletter;
+
+/* =========================================
+   NOTIFY ME WHEN AVAILABLE
+   ========================================= */
+let currentNotifyProduct = null;
+
+function openNotifyModal(productName, productImg) {
+    currentNotifyProduct = productName;
+
+    // Create modal if doesn't exist
+    if (!document.getElementById('notify-modal')) {
+        const modal = document.createElement('div');
+        modal.id = 'notify-modal';
+        modal.className = 'notify-modal';
+        modal.innerHTML = `
+            <div class="notify-modal-content">
+                <h3><i class="fa-solid fa-bell"></i> Get Notified</h3>
+                <p id="notify-product-name">We'll email you when this item is back in stock</p>
+                <input type="email" id="notify-email" placeholder="Your email address" required>
+                <button onclick="submitNotifyForm()">Notify Me</button>
+                <p style="margin-top:15px; font-size:12px; color:#999; cursor:pointer;" onclick="closeNotifyModal()">Cancel</p>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    document.getElementById('notify-product-name').textContent = `We'll notify you when "${productName}" is back in stock`;
+    document.getElementById('notify-modal').classList.add('active');
+}
+
+function closeNotifyModal() {
+    document.getElementById('notify-modal').classList.remove('active');
+}
+
+function submitNotifyForm() {
+    const email = document.getElementById('notify-email').value;
+
+    if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+    }
+
+    // Store notification request
+    const notifications = JSON.parse(localStorage.getItem('product-notifications')) || [];
+    notifications.push({
+        product: currentNotifyProduct,
+        email: email,
+        date: new Date().toISOString()
+    });
+    localStorage.setItem('product-notifications', JSON.stringify(notifications));
+
+    closeNotifyModal();
+    showToast(`We'll notify you when ${currentNotifyProduct} is available! 📧`);
+}
+
+// Close modal on outside click
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('notify-modal');
+    if (modal && e.target === modal) {
+        closeNotifyModal();
+    }
+});
+
+window.openNotifyModal = openNotifyModal;
+window.closeNotifyModal = closeNotifyModal;
+window.submitNotifyForm = submitNotifyForm;
+
+/* =========================================
    PHASE 1: SEARCH AUTOCOMPLETE
    ========================================= */
 function initSearchAutocomplete() {
