@@ -395,6 +395,54 @@
         let stripe;
         let elements;
         let cardElement;
+        let cartTotal = 0;
+
+        // Load cart and render order summary
+        function loadOrderSummary() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const orderItemsContainer = document.getElementById('order-items');
+            const subtotalEl = document.getElementById('subtotal');
+            const grandTotalEl = document.getElementById('grand-total');
+            const shippingEl = document.getElementById('shipping');
+
+            if (cartItems.length === 0) {
+                orderItemsContainer.innerHTML = '<p style="color:#666; text-align:center; padding:20px;">Your cart is empty</p>';
+                return;
+            }
+
+            let subtotal = 0;
+
+            orderItemsContainer.innerHTML = cartItems.map(item => {
+                const price = parseInt(item.price.replace(/[^0-9]/g, ''));
+                const itemTotal = price * item.qty;
+                subtotal += itemTotal;
+
+                return `
+                    <div class="order-item">
+                        <img src="${item.img}" alt="${item.name}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;">
+                        <div style="flex:1;">
+                            <div style="font-weight:600; color:#333;">${item.name}</div>
+                            <div style="font-size:12px; color:#666;">${item.brand} × ${item.qty}</div>
+                        </div>
+                        <div style="font-weight:600; color:var(--primary-hazel);">Rs. ${itemTotal.toLocaleString()}</div>
+                    </div>
+                `;
+            }).join('');
+
+            const shipping = subtotal > 5000 ? 0 : 200;
+            cartTotal = subtotal + shipping;
+
+            subtotalEl.textContent = 'Rs. ' + subtotal.toLocaleString();
+            shippingEl.textContent = shipping === 0 ? 'FREE' : 'Rs. ' + shipping;
+            shippingEl.style.color = shipping === 0 ? 'green' : '#333';
+            grandTotalEl.textContent = 'Rs. ' + cartTotal.toLocaleString();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrderSummary();
+            initStripe();
+        });
 
         // Initialize Stripe
         function initStripe() {
