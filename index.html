@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Mega Mall | Premium Shopping</title>
+    <meta name="description"
+        content="Virtual Mega Mall - Pakistan's Premium Online Shopping Destination. Shop fashion, tech, home decor, and more with fast delivery.">
+    <meta name="keywords" content="online shopping pakistan, luxury brands, fashion, electronics, virtual mall">
+    <meta property="og:title" content="Virtual Mega Mall | Premium Shopping Experience">
+    <meta property="og:description"
+        content="Shop premium brands with a 3D glassmorphism experience. Secure payments and fast delivery across Pakistan.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="chat.css"> <!-- Live Chat Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,14 +22,7 @@
 <body>
 
     <!-- Mobile App Banner (Walmart/Shein style) -->
-    <div class="app-banner" id="app-banner">
-        <div class="app-banner-content">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            <span>Get the App for exclusive deals!</span>
-            <a href="#" class="app-banner-btn">Download</a>
-        </div>
-        <button class="app-banner-close" onclick="closeAppBanner()"><i class="fa-solid fa-times"></i></button>
-    </div>
+    <!-- Mobile App Banner - Removed for cleaner premium look -->
 
     <!-- Newsletter Popup Modal -->
     <div class="newsletter-popup" id="newsletter-popup">
@@ -49,7 +50,8 @@
 
     <nav class="navbar">
         <!-- Logo -->
-        <a href="index.html" class="logo" style="text-decoration:none;">MEGA MALL</a>
+        <a href="index.html" class="logo" style="text-decoration:none;" aria-label="Virtual Mega Mall Homepage">MEGA
+            MALL</a>
 
         <!-- Categories Dropdown Button + Search Bar -->
         <div class="search-container">
@@ -74,9 +76,10 @@
             <div style="width:1px; height:20px; background:#ddd; margin:0 10px;"></div>
             <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
             <div class="search-icons">
+                <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search" id="voice-btn"></i>
                 <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
                 <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
-                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
             <!-- Search Autocomplete Dropdown -->
@@ -161,41 +164,52 @@
             <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account">
                 <i class="fa-regular fa-user"></i>
             </a>
-            <a href="cart.html" class="nav-icon cart-icon" id="cart-icon" title="Shopping Cart">
+            <a href="cart.html" class="nav-icon cart-icon" id="cart-icon" title="Shopping Cart"
+                onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-badge" id="cart-badge">0</span>
+                <!-- Cart Preview Popup -->
+                <div class="cart-preview" id="cart-preview">
+                    <div class="cart-preview-header">Shopping Bag</div>
+                    <div class="cart-preview-items" id="cart-preview-items"></div>
+                    <div class="cart-preview-footer">
+                        <a href="cart.html" class="view-cart-btn">View Cart</a>
+                    </div>
+                </div>
             </a>
         </div>
     </nav>
-    <div class="slider-container" style="position: relative; height: 80vh; overflow: hidden;">
 
-        <div class="slide active-slide"
-            style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600');">
-            <div class="hero-content">
-                <h1>Welcome to Virtual Mega Mall</h1>
-                <p>Pakistan's First Premium 3D Shopping Experience</p>
-                <a href="#brands" class="cta-button">Shop Now</a>
+    <!-- NEW HORIZONTAL CATEGORY MENU -->
+    <div class="horizontal-menu">
+        <a href="brands.html" class="h-menu-link">Brands</a>
+        <a href="category.html?type=clothing" class="h-menu-link">Men</a>
+        <a href="category.html?type=clothing" class="h-menu-link">Women</a>
+        <a href="category.html?type=tech" class="h-menu-link">Electronics</a>
+        <a href="category.html?type=home" class="h-menu-link">Home</a>
+        <a href="category.html?type=beauty" class="h-menu-link">Beauty</a>
+        <!-- The Core 3D Experience CTA -->
+        <a href="#" class="h-menu-link special-3d"
+            onclick="alert('Entering 3D Mall Experience... (Demo)'); return false;">
+            <i class="fa-solid fa-cube"></i> 3D MALL
+        </a>
+    </div>
+    <!-- PREMIUM HERO SECTION -->
+    <div class="hero"
+        style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1537726235470-8504e3beef77?q=80&w=2000'); background-attachment: fixed;">
+        <div class="hero-content">
+            <h1 class="fadeInUp">Pakistan's First <span style="color:var(--hazel-gold); font-style:italic;">3D
+                    Shopping</span> Experience</h1>
+            <p style="font-size:18px; max-width:600px; margin:0 auto 30px; opacity:0.9;">Step into the future of retail.
+                Explore premium brands in an immersive 3D environment from the comfort of your home.</p>
+            <div style="display:flex; justify-content:center; gap:20px;">
+                <a href="#" class="cta-button" style="background: white; color: black; border: 2px solid white;">Shop
+                    Collections</a>
+                <a href="#" class="cta-button" onclick="alert('Launching 3D World...'); return false;">
+                    <i class="fa-solid fa-cube"></i> ENTER 3D MALL
+                </a>
             </div>
         </div>
-
-        <div class="slide"
-            style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1600');">
-            <div class="hero-content">
-                <h1>New Winter Collection</h1>
-                <p>Flat 30% Off on Top Clothing Brands</p>
-                <a href="#brands" class="cta-button">View Offers</a>
-            </div>
-        </div>
-
-        <div class="slide"
-            style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=1600');">
-            <div class="hero-content">
-                <h1>Latest Tech Gadgets</h1>
-                <p>Upgrade your lifestyle with Samsung & Apple</p>
-                <a href="#brands" class="cta-button">Buy Electronics</a>
-            </div>
-        </div>
-
     </div>
 
     <!-- FLASH SALE SECTION -->
@@ -291,7 +305,7 @@
             <div class="ad-content">
                 <span class="ad-label">Sponsored</span>
                 <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=200&fit=crop&q=80"
-                    alt="Premium Shopping Experience"
+                    alt="Premium Shopping Experience" loading="lazy"
                     style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
             </div>
         </a>
@@ -385,7 +399,8 @@
             <span class="ad-label">Featured Brand</span>
             <a href="store.html?brand=Khaadi">
                 <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=250&fit=crop&q=80"
-                    alt="Featured Brand" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px;">
+                    alt="Featured Brand" loading="lazy"
+                    style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px;">
             </a>
         </div>
     </section>
@@ -452,7 +467,7 @@
             <a href="store.html?brand=Khaadi" class="ad-banner third-width">
                 <span class="ad-label">Ad</span>
                 <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=380&h=200&fit=crop&q=80"
-                    alt="Khaadi" style="border-radius: 10px;">
+                    alt="Khaadi" loading="lazy" style="border-radius: 10px;">
             </a>
         </div>
     </section>
@@ -481,8 +496,85 @@
             </div>
         </div>
     </section>
+    <!-- TRUST STRIP -->
+    <!-- TRUST STRIP - Upgraded Visibility -->
+    <div class="trust-strip"
+        style="background: linear-gradient(to right, #1a1a2e, #16213e); border-top: 1px solid var(--hazel-gold); border-bottom: 1px solid var(--hazel-gold);">
+        <div class="container trust-container">
+            <div class="trust-item">
+                <i class="fa-solid fa-cube" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">Immersive 3D</h4>
+                    <p style="color:#aaa;">Virtual Store Experience</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-certificate" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">100% Authentic</h4>
+                    <p style="color:#aaa;">Direct from Brands</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-shield-halved" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">Secure Payment</h4>
+                    <p style="color:#aaa;">Bank & Card Protected</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-rotate-left" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">Easy Returns</h4>
+                    <p style="color:#aaa;">7-Day No Questions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="container testimonials-section">
+        <div class="section-header">
+            <h3><i class="fa-regular fa-comments"></i> What Our Customers Say</h3>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Customer">
+                    <div>
+                        <h4>Ahmed Khan</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"Amazing quality and fast delivery! The product was exactly as described. Will definitely shop
+                    again."</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Customer">
+                    <div>
+                        <h4>Sara Ali</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"I love the variety of brands available. The customer support was also very helpful with my query."
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Customer">
+                    <div>
+                        <h4>Bilal Ahmed</h4>
+                        <div class="stars">★★★★☆</div>
+                    </div>
+                </div>
+                <p>"Great experience overall. The packaging was secure and premium. Highly recommended!"</p>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-col">
                 <h4>Virtual Mega Mall</h4>
@@ -544,6 +636,41 @@
             &copy; 2025 Virtual Mega Mall. All Rights Reserved.
         </div>
     </footer>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quick-view-modal">
+        <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
+        <div class="quick-view-content">
+            <div class="quick-view-image">
+                <img src="" alt="Product" id="qv-image">
+            </div>
+            <div class="quick-view-details">
+                <div class="brand" id="qv-brand">Brand</div>
+                <h2 id="qv-name">Product Name</h2>
+                <div class="price" id="qv-price">Rs. 0</div>
+                <p class="description" id="qv-desc">Premium quality product with exceptional craftsmanship.</p>
+                <div class="quick-view-actions">
+                    <button class="add-btn" id="qv-add-btn"><i class="fa-solid fa-bag-shopping"></i> Add to
+                        Cart</button>
+                    <button class="view-btn" id="qv-view-btn">View Full Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Notification -->
+    <div id="social-proof-toast" class="social-proof-toast">
+        <div class="proof-content">
+            <img id="proof-img" src="" alt="Product">
+            <div class="proof-text">
+                <span id="proof-name" class="proof-name">Someone</span> from <span id="proof-city">Karachi</span>
+                <br>purchased <span id="proof-product" class="proof-product">Product Name</span>
+                <br><small id="proof-time">Just now</small>
+            </div>
+            <button class="proof-close" onclick="closeSocialProof()">&times;</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 

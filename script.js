@@ -26,9 +26,203 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartDisplay();
     initNewsletterPopup();
     initAppBanner();
+    initCartPreview();
     // Render Functions triggered if container exists
     if (document.getElementById('clothing-container')) renderBrands();
 });
+
+/* =========================================
+   VOICE SEARCH (Web Speech API)
+   ========================================= */
+function startVoiceSearch() {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        showToast('Voice search not supported in this browser');
+        return;
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    const voiceBtn = document.getElementById('voice-btn');
+    const searchInput = document.getElementById('global-search');
+
+    recognition.lang = 'en-US';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    voiceBtn.classList.add('listening');
+    showToast('🎤 Listening...');
+
+    recognition.start();
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        searchInput.value = transcript;
+        voiceBtn.classList.remove('listening');
+        showToast(`Searching for: ${transcript}`);
+        searchFor(transcript);
+    };
+
+    recognition.onerror = (event) => {
+        voiceBtn.classList.remove('listening');
+        showToast('Voice search error. Try again.');
+    };
+
+    recognition.onend = () => {
+        voiceBtn.classList.remove('listening');
+    };
+}
+
+window.startVoiceSearch = startVoiceSearch;
+
+/* =========================================
+   CART PREVIEW ON HOVER
+   ========================================= */
+function initCartPreview() {
+    updateCartPreview();
+}
+
+function showCartPreview() {
+    updateCartPreview();
+}
+
+function hideCartPreview() {
+    // Preview hides via CSS on mouse leave
+}
+
+function updateCartPreview() {
+    const container = document.getElementById('cart-preview-items');
+    if (!container) return;
+
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    if (cartItems.length === 0) {
+        container.innerHTML = '<div class="cart-preview-empty"><i class="fa-solid fa-bag-shopping" style="font-size:30px;color:#444;margin-bottom:10px;display:block"></i>Your cart is empty</div>';
+        return;
+    }
+
+    container.innerHTML = cartItems.slice(0, 3).map(item => `
+        <div class="cart-preview-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="item-info">
+                <h5>${item.name}</h5>
+                <span>${item.price} × ${item.qty}</span>
+            </div>
+        </div>
+    `).join('');
+
+    if (cartItems.length > 3) {
+        container.innerHTML += `<div style="text-align:center;color:#888;font-size:12px;padding:10px;">+${cartItems.length - 3} more items</div>`;
+    }
+}
+
+window.showCartPreview = showCartPreview;
+window.hideCartPreview = hideCartPreview;
+window.updateCartPreview = updateCartPreview;
+
+/* =========================================
+   QUICK VIEW MODAL
+   ========================================= */
+let currentQuickViewProduct = null;
+
+function openQuickView(name, price, brand, img) {
+    currentQuickViewProduct = { name, price, brand, img };
+
+    document.getElementById('qv-name').textContent = name;
+    document.getElementById('qv-price').textContent = price;
+    document.getElementById('qv-brand').textContent = brand;
+    document.getElementById('qv-image').src = img;
+    document.getElementById('qv-desc').textContent = 'Premium quality product with exceptional craftsmanship. Made with the finest materials for lasting comfort and style.';
+
+    document.getElementById('quick-view-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Set up add to cart button
+    document.getElementById('qv-add-btn').onclick = () => {
+        addToCart(name, price, brand, img);
+        closeQuickView();
+    };
+
+    // Set up view details button
+    document.getElementById('qv-view-btn').onclick = () => {
+        window.location.href = `product.html?name=${encodeURIComponent(name)}`;
+    };
+}
+
+function closeQuickView() {
+    document.getElementById('quick-view-modal').classList.remove('active');
+    document.body.style.overflow = '';
+    currentQuickViewProduct = null;
+}
+
+// Close modal on outside click
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('quick-view-modal');
+    if (e.target === modal) {
+        closeQuickView();
+    }
+});
+
+// Close modal on ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeQuickView();
+    }
+});
+
+window.openQuickView = openQuickView;
+window.closeQuickView = closeQuickView;
+
+/* =========================================
+   SOCIAL PROOF NOTIFICATIONS
+   ========================================= */
+const fakeProofData = [
+    { name: 'Sara', city: 'Lahore', product: 'Khaadi Lawn 3pc' },
+    { name: 'Ali', city: 'Karachi', product: 'Nike Air Max' },
+    { name: 'Fatima', city: 'Islamabad', product: 'Samsung S24 Ultra' },
+    { name: 'Omer', city: 'Faisalabad', product: 'Men\'s Kurta' },
+    { name: 'Zainab', city: 'Multan', product: 'Gold Plated Watch' }
+];
+
+const productImages = [
+    'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=50',
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=50',
+    'https://images.unsplash.com/photo-1598327773204-7cd3a17e01e5?w=50'
+];
+
+function initSocialProof() {
+    // Show first notification after 10 seconds
+    setTimeout(showProof, 10000);
+}
+
+function showProof() {
+    const toast = document.getElementById('social-proof-toast');
+    if (!toast) return;
+
+    const data = fakeProofData[Math.floor(Math.random() * fakeProofData.length)];
+    const img = productImages[Math.floor(Math.random() * productImages.length)];
+
+    document.getElementById('proof-name').textContent = data.name;
+    document.getElementById('proof-city').textContent = data.city;
+    document.getElementById('proof-product').textContent = data.product;
+    document.getElementById('proof-img').src = img;
+    document.getElementById('proof-time').textContent = Math.floor(Math.random() * 59) + ' mins ago';
+
+    toast.classList.add('active');
+
+    // Hide after 5 seconds
+    setTimeout(() => {
+        toast.classList.remove('active');
+        // Schedule next notification (random 15-45s)
+        const nextTime = Math.random() * 30000 + 15000;
+        setTimeout(showProof, nextTime);
+    }, 5000);
+}
+
+function closeSocialProof() {
+    document.getElementById('social-proof-toast').classList.remove('active');
+}
+
+window.closeSocialProof = closeSocialProof;
 
 /* =========================================
    NEWSLETTER POPUP
@@ -39,9 +233,12 @@ function initNewsletterPopup() {
         setTimeout(() => {
             const popup = document.getElementById('newsletter-popup');
             if (popup) {
+                initSocialProof(); // Start social proof after newsletter
                 popup.classList.add('active');
             }
         }, 5000);
+    } else {
+        initSocialProof(); // Start immediately if newsletter already shown
     }
 }
 
