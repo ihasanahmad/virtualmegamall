@@ -878,6 +878,17 @@ const brandData = [
     { name: "Hanif", category: "jewelry", slogan: "Timeless Elegance", img: "https://via.placeholder.com/150", link: "store.html?brand=Hanif" },
     { name: "Damas", category: "jewelry", slogan: "Art of Beauty", img: "https://via.placeholder.com/150", link: "store.html?brand=Damas" },
     { name: "Solitaire", category: "jewelry", slogan: "Precious Moments", img: "https://via.placeholder.com/150", link: "store.html?brand=Solitaire" },
+
+    // Beauty
+    { name: "L'Oreal", category: "beauty", slogan: "Because You're Worth It", img: "https://via.placeholder.com/150", link: "store.html?brand=LOreal" },
+    { name: "Maybelline", category: "beauty", slogan: "Maybe She's Born With It", img: "https://via.placeholder.com/150", link: "store.html?brand=Maybelline" },
+    { name: "The Body Shop", category: "beauty", slogan: "Enrich Not Exploit", img: "https://via.placeholder.com/150", link: "store.html?brand=The Body Shop" },
+    { name: "Mac", category: "beauty", slogan: "All Ages, All Races, All Genders", img: "https://via.placeholder.com/150", link: "store.html?brand=Mac" },
+
+    // Home
+    { name: "Habitt", category: "home", slogan: "Dil Ki Habbit", img: "https://via.placeholder.com/150", link: "store.html?brand=Habitt" },
+    { name: "Interwood", category: "home", slogan: "Trusted Since 1974", img: "https://via.placeholder.com/150", link: "store.html?brand=Interwood" },
+    { name: "Dolce Vita", category: "home", slogan: "Sleep Well, Live Well", img: "https://via.placeholder.com/150", link: "store.html?brand=Dolce Vita" }
 ];
 
 // Mock Products
@@ -892,7 +903,18 @@ const mockProducts = [
     { name: "Gold Plated Set", brand: "Tesoro", price: "Rs. 5,500", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80" },
     { name: "Luxury Watch", brand: "Rolex", price: "Rs. 150,000", img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80" },
     { name: "Sport Sneakers", brand: "Adidas", price: "Rs. 8,500", img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=300&q=80" },
-    { name: "Earbuds Pro", brand: "Samsung", price: "Rs. 25,000", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300&q=80" }
+    { name: "Earbuds Pro", brand: "Samsung", price: "Rs. 25,000", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300&q=80" },
+
+    // Beauty Products
+    { name: "Revitalift Serum", brand: "L'Oreal", price: "Rs. 3,500", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300&q=80" },
+    { name: "Matte Lipstick", brand: "Mac", price: "Rs. 4,200", img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=300&q=80" },
+    { name: "Fit Me Foundation", brand: "Maybelline", price: "Rs. 2,100", img: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=300&q=80" },
+    { name: "Tea Tree Oil", brand: "The Body Shop", price: "Rs. 1,800", img: "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=300&q=80" },
+
+    // Home Products
+    { name: "Luxury Bed Set", brand: "Habitt", price: "Rs. 85,000", img: "https://images.unsplash.com/photo-1505693416388-33406375881d?w=300&q=80" },
+    { name: "Modern Sofa", brand: "Interwood", price: "Rs. 120,000", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" },
+    { name: "Orthopedic Mattress", brand: "Dolce Vita", price: "Rs. 45,000", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=300&q=80" }
 ];
 
 /* =========================================
@@ -1017,7 +1039,9 @@ function renderCategoryPage() {
             'clothing': "Clothing & Fashion",
             'shoes': "Shoes & Footwear",
             'tech': "Electronics & Tech",
-            'jewelry': "Watches & Jewelry"
+            'jewelry': "Watches & Jewelry",
+            'beauty': "Beauty & Cosmetics",
+            'home': "Home & Living"
         };
         title.innerText = typeMap[type] || "Collection";
     }
