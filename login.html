@@ -272,7 +272,17 @@
             color: #4CAF50;
         }
     </style>
-    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config & Auth Utilities -->
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+
+    <script src="cookie-consent.js" defer"></script> <!-- Cookie Consent Script -->
 </head>
 
 <body>
@@ -354,6 +364,16 @@
         let isLogin = true;
         let currentRole = 'user';
 
+        // Check if already logged in
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // User is already logged in, redirect
+                const params = new URLSearchParams(window.location.search);
+                const returnUrl = params.get('return') || 'index.html';
+                window.location.href = returnUrl;
+            }
+        });
+
         function switchTab(role) {
             currentRole = role;
             const tabUser = document.getElementById('tab-user');
@@ -396,29 +416,39 @@
             }
         }
 
-        function socialLogin(provider) {
-            // Simulate social login
-            const providerName = provider.charAt(0).toUpperCase() + provider.slice(1);
+        // Social Login with Firebase
+        async function socialLogin(provider) {
+            if (provider !== 'google') {
+                showAuthToast('Only Google Sign-In is available in this demo', 'error');
+                return;
+            }
 
-            // Show loading state
             const btns = document.querySelectorAll('.social-btn');
             btns.forEach(b => b.style.opacity = '0.6');
 
-            setTimeout(() => {
-                // Simulate successful login
-                localStorage.setItem('user', JSON.stringify({
-                    name: 'User',
-                    email: `user@${provider}.com`,
-                    provider: provider,
-                    role: currentRole
-                }));
-                localStorage.setItem('isLoggedIn', 'true');
+            const result = await signInWithGoogle();
 
-                alert(`Successfully signed in with ${providerName}!`);
-                window.location.href = currentRole === 'vendor' ? 'admin.html' : 'index.html';
-            }, 1500);
+            btns.forEach(b => b.style.opacity = '1');
+
+            if (result.success) {
+                // Add role to Firestore
+                await db.collection('users').doc(result.user.uid).update({
+                    role: currentRole
+                });
+
+                showAuthToast('Signed in successfully!', 'success');
+
+                setTimeout(() => {
+                    const params = new URLSearchParams(window.location.search);
+                    const returnUrl = params.get('return') || (currentRole === 'vendor' ? 'admin.html' : 'index.html');
+                    window.location.href = returnUrl;
+                }, 1000);
+            } else {
+                showAuthToast(result.error, 'error');
+            }
         }
 
+        // Email/Password Form Handler
         document.getElementById('auth-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
@@ -428,39 +458,60 @@
             btn.innerText = isLogin ? "Signing In..." : "Creating Account...";
             btn.disabled = true;
 
-            const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+            let result;
+            if (isLogin) {
+                // Login
+                result = await signIn(email, password);
 
-            try {
-                const res = await fetch(`https://virtualmall-backend.onrender.com${endpoint}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password, role: currentRole })
-                });
+                if (result.success) {
+                    showAuthToast('Welcome back!', 'success');
 
-                const data = await res.json();
-
-                if (res.ok) {
-                    if (isLogin) {
-                        localStorage.setItem('token', data.token);
-                        localStorage.setItem('user', JSON.stringify(data.user));
-                        localStorage.setItem('isLoggedIn', 'true');
-                        window.location.href = currentRole === 'vendor' ? 'admin.html' : 'index.html';
-                    } else {
-                        alert("Account created successfully! Please sign in.");
-                        toggleMode();
-                    }
+                    setTimeout(() => {
+                        const params = new URLSearchParams(window.location.search);
+                        const returnUrl = params.get('return') || (currentRole === 'vendor' ? 'admin.html' : 'index.html');
+                        window.location.href = returnUrl;
+                    }, 1000);
                 } else {
-                    alert(data.message || "Error occurred");
+                    showAuthToast(result.error, 'error');
                 }
-            } catch (err) {
-                // Fallback for demo without backend
-                localStorage.setItem('user', JSON.stringify({ email, role: currentRole }));
-                localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = currentRole === 'vendor' ? 'admin.html' : 'index.html';
+            } else {
+                // Sign Up
+                const displayName = email.split('@')[0]; // Use email prefix as display name
+                result = await signUp(email, password, displayName);
+
+                if (result.success) {
+                    // Add role to user document
+                    await db.collection('users').doc(result.user.uid).update({
+                        role: currentRole
+                    });
+
+                    showAuthToast('Account created successfully!', 'success');
+                    toggleMode(); // Switch to login mode
+                } else {
+                    showAuthToast(result.error, 'error');
+                }
             }
 
             btn.innerText = isLogin ? "Sign In" : "Create Account";
             btn.disabled = false;
+        });
+
+        // Forgot Password
+        document.querySelector('.forgot-password a').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+
+            if (!email) {
+                showAuthToast('Please enter your email first', 'error');
+                return;
+            }
+
+            const result = await resetPassword(email);
+            if (result.success) {
+                showAuthToast(result.message, 'success');
+            } else {
+                showAuthToast(result.error, 'error');
+            }
         });
     </script>
 
