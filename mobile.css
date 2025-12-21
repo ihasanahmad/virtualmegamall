@@ -23,7 +23,8 @@
     }
 
     .nav-icons {
-        gap: 10px;
+        gap: 20px;
+        /* Increased from 10px to prevent icon merging */
     }
 
     .nav-selector select {
@@ -40,6 +41,11 @@
     .nav-icon {
         min-width: 44px;
         min-height: 44px;
+    }
+
+    /* Light theme visibility on mobile */
+    [data-theme="light"] .nav-icon {
+        color: #1a1a1a !important;
     }
 
     button,

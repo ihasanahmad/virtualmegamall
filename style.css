@@ -88,6 +88,35 @@ h4,
     }
 }
 
+/* --- ANTI-GRAVITY FLOATING ANIMATION --- */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.anti-gravity-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.anti-gravity-float:nth-child(odd) {
+    animation-duration: 7s;
+    animation-delay: 0.5s;
+}
+
+.anti-gravity-float:nth-child(even) {
+    animation-duration: 6.5s;
+    animation-delay: 0.3s;
+}
+
 @keyframes prismGlow {
 
     0%,
@@ -197,6 +226,39 @@ h4,
     --premium-gradient: linear-gradient(135deg, #d4af37 0%, #8E7C68 100%);
 }
 
+/* LIGHT THEME OVERRIDE */
+[data-theme="light"] {
+    /* Light Mode - Elegant White & Gold */
+    --bg-color: #ffffff;
+    --surface-color: #f8f8f8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --accent-color: #d4af37;
+
+    /* Light Mode Backgrounds */
+    --dark-bg: #f5f5f5;
+    --dark-text: #1a1a1a;
+    --cream-bg: #fafafa;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f8f8;
+
+    /* Glass Morphism Layers (Light Theme) */
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-primary: rgba(255, 255, 255, 0.7);
+    --glass-secondary: rgba(255, 255, 255, 0.85);
+    --glass-highlight: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(212, 175, 55, 0.2);
+    --glass-border-gold: rgba(212, 175, 55, 0.3);
+
+    /* Shadow Depths (Light Mode) */
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.2);
+    --shadow-glow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
@@ -262,6 +324,32 @@ body {
     animation: floatUp 3s ease-in-out infinite;
 }
 
+/* --- GLASSMORPHISM PANELS (ANTI-GRAVITY) --- */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 16px;
+}
+
+/* --- MAGNETIC HOVER EFFECTS --- */
+.hover-lift {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- 3D TILT ELEMENT --- */
+.tilt-element {
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
 
 /* --- NAVIGATION BAR - Luxury Dark Mode --- */
 .navbar {
@@ -279,6 +367,42 @@ body {
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     gap: 20px;
+}
+
+/* LIGHT THEME - NAVBAR OVERRIDES */
+[data-theme="light"] .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .logo {
+    color: var(--accent-color);
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="light"] .nav-icon,
+[data-theme="light"] #theme-toggle {
+    color: #1a1a1a !important;
+}
+
+[data-theme="light"] .nav-icon:hover,
+[data-theme="light"] #theme-toggle:hover {
+    color: var(--primary-hazel) !important;
+    background: rgba(142, 124, 104, 0.1);
+}
+
+[data-theme="light"] .search-container {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .search-container input {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .search-container input::placeholder {
+    color: #666666;
 }
 
 .logo {
@@ -345,7 +469,8 @@ body {
 .nav-icons {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
+    /* Increased gap to prevent icon merging */
     flex-shrink: 0;
 }
 
@@ -605,7 +730,17 @@ body {
 .nav-icons {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
+}
+
+/* Light Theme - Make icons visible */
+[data-theme="light"] .nav-icon {
+    color: #1a1a1a !important;
+}
+
+[data-theme="light"] .nav-icon:hover {
+    color: var(--primary-hazel) !important;
+    background: rgba(142, 124, 104, 0.1);
 }
 
 .nav-icon {

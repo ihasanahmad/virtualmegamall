@@ -46,10 +46,51 @@
         </div>
     </div>
 
+    <!-- Theme Switcher (Must load first) -->
+    <script src="theme-switcher.js"></script>
+
     <!-- Scripts -->
     <script src="chat.js" defer></script>
     <script src="search_logic.js" defer></script>
     <script src="script.js" defer></script>
+
+    <!-- Smooth Scroll Library (Lenis) -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- Anti-Gravity Effects -->
+    <script>
+        // Initialize Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        // 3D Tilt Effect
+        document.addEventListener('mousemove', (e) => {
+            const targets = document.querySelectorAll('.tilt-element');
+
+            targets.forEach(target => {
+                const speed = target.getAttribute('data-speed') || 2;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+
+                target.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+    </script>
 
     <nav class="navbar">
         <!-- Logo -->
@@ -161,6 +202,11 @@
                     <option value="ar">العربية</option>
                 </select>
             </div>
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="nav-icon" onclick="cycleTheme()" title="Toggle Theme"
+                style="background: none; border: none; cursor: pointer; font-size: 20px;">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
             <a href="comparison.html" class="nav-icon" title="Compare Products">
                 <i class="fa-solid fa-code-compare"></i>
             </a>
@@ -197,18 +243,19 @@
         </a>
     </div>
     <!-- PREMIUM HERO SECTION -->
-    <div class="hero"
+    <div class="hero glass-panel"
         style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1537726235470-8504e3beef77?q=80&w=2000'); background-attachment: fixed;">
         <div class="hero-content">
-            <h1 class="fadeInUp">Pakistan's First <span style="color:var(--hazel-gold); font-style:italic;">3D
+            <h1 class="fadeInUp anti-gravity-float">Pakistan's First <span
+                    style="color:var(--hazel-gold); font-style:italic;">3D
                     Shopping</span> Experience</h1>
             <p style="font-size:18px; max-width:600px; margin:0 auto 30px; opacity:0.9;">Step into the future of retail.
                 Explore premium brands in an immersive 3D environment from the comfort of your home.</p>
             <div style="display:flex; justify-content:center; gap:20px;">
-                <a href="#brands" class="cta-button"
+                <a href="#brands" class="cta-button hover-lift"
                     style="background: white; color: black; border: 2px solid white;">Shop
                     Collections</a>
-                <a href="3d-mall.html" class="cta-button">
+                <a href="3d-mall.html" class="cta-button hover-lift">
                     <i class="fa-solid fa-cube"></i> ENTER 3D MALL
                 </a>
             </div>
@@ -226,7 +273,7 @@
         </div>
         <div class="product-grid" id="flash-sale-container">
             <!-- Flash sale products with Phase 1 features -->
-            <div class="product-card sale-card">
+            <div class="product-card sale-card anti-gravity-float hover-lift">
                 <span class="sale-badge">-50%</span>
                 <button class="wishlist-btn" onclick="toggleWishlist(this, 'nike-air-max')"><i
                         class="fa-regular fa-heart"></i></button>
@@ -240,7 +287,7 @@
                 </div>
                 <span class="stock-status low-stock">🔥 Only 3 left!</span>
                 <p class="price"><del style="color:#999;">Rs. 24,000</del> Rs. 12,000</p>
-                <button
+                <button class="hover-lift"
                     onclick="addToCart('Nike Air Max', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400')">Add
                     to Cart</button>
             </div>
