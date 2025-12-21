@@ -1,0 +1,405 @@
+/* 
+ * PRISM INTERFACE DESIGN SYSTEM
+ * Enhanced glassmorphism and iridescent effects for Virtual Mega Mall
+ */
+
+/* === PRISM CARD COMPONENTS === */
+.prism-card {
+    background: var(--glass-primary);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--prism-border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.prism-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.prism-card:hover::before {
+    left: 100%;
+}
+
+.prism-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+    border-color: var(--glass-border-gold);
+}
+
+/* Product Card Enhancement */
+.prism-product-card {
+    background: var(--glass-secondary);
+    backdrop-filter: blur(25px) saturate(190%);
+    -webkit-backdrop-filter: blur(25px) saturate(190%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--prism-border-radius);
+    padding: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.prism-product-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.prism-product-card:hover::after {
+    opacity: 1;
+}
+
+.prism-product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 0 30px rgba(102, 126, 234, 0.4),
+        0 20px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+.prism-product-card img {
+    border-radius: var(--prism-border-radius-sm);
+    transition: transform 0.4s ease;
+}
+
+.prism-product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* === PRISM BUTTONS === */
+.prism-btn {
+    background: var(--prism-gold);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.prism-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.prism-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.prism-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-gold), var(--shadow-md);
+}
+
+.prism-btn-primary {
+    background: var(--prism-primary);
+}
+
+.prism-btn-secondary {
+    background: var(--prism-secondary);
+}
+
+.prism-btn-outline {
+    background: transparent;
+    border: 2px solid var(--glass-border-gold);
+    color: var(--hazel-gold);
+}
+
+.prism-btn-outline:hover {
+    background: var(--prism-gold);
+    color: white;
+    border-color: transparent;
+}
+
+/* === PRISM NAVIGATION === */
+.prism-nav {
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-bottom: 1px solid var(--glass-border-gold);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.prism-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--prism-gold);
+    opacity: 0.3;
+}
+
+.prism-nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.prism-nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--prism-gold);
+    transition: width 0.3s ease;
+}
+
+.prism-nav-link:hover {
+    color: white;
+    background: var(--glass-highlight);
+}
+
+.prism-nav-link:hover::before {
+    width: 80%;
+}
+
+.prism-nav-link.active {
+    color: var(--hazel-gold);
+    background: var(--glass-highlight);
+}
+
+/* === PRISM INPUT FIELDS === */
+.prism-input {
+    background: var(--glass-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--prism-border-radius-sm);
+    padding: 12px 20px;
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.prism-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.prism-input:focus {
+    outline: none;
+    border-color: var(--glass-border-gold);
+    background: var(--glass-secondary);
+    box-shadow: var(--shadow-glow);
+}
+
+/* === PRISM BADGES === */
+.prism-badge {
+    background: var(--prism-primary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: var(--shadow-sm);
+}
+
+.prism-badge-gold {
+    background: var(--prism-gold);
+}
+
+.prism-badge-secondary {
+    background: var(--prism-secondary);
+}
+
+.prism-badge-accent {
+    background: var(--prism-accent);
+}
+
+/* === PRISM MODAL/POPUP === */
+.prism-modal {
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid var(--glass-border-gold);
+    border-radius: var(--prism-border-radius-lg);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    padding: 30px;
+}
+
+/* === PRISM HOVER GLOW === */
+.prism-glow-hover {
+    transition: all 0.3s ease;
+}
+
+.prism-glow-hover:hover {
+    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.6));
+}
+
+/* === PRISM SECTION DIVIDER === */
+.prism-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border-gold), transparent);
+    margin: 40px 0;
+    position: relative;
+}
+
+.prism-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--prism-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+/* === PRISM LOADING SPINNER === */
+.prism-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--glass-border);
+    border-top-color: var(--hazel-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* === PRISM SECTION HEADER === */
+.prism-section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.prism-section-header h2 {
+    font-size: 2.5rem;
+    background: var(--prism-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.prism-section-header p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+/* === PRISM FOOTER === */
+.prism-footer {
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-top: 1px solid var(--glass-border-gold);
+    padding: 50px 0 20px;
+    position: relative;
+}
+
+.prism-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--prism-gold);
+    opacity: 0.3;
+}
+
+/* === PRISM TOOLTIP === */
+.prism-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.prism-tooltip .prism-tooltip-text {
+    visibility: hidden;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: white;
+    text-align: center;
+    border-radius: var(--prism-border-radius-sm);
+    padding: 8px 15px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.prism-tooltip:hover .prism-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* === RESPONSIVE PRISM GRID === */
+.prism-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* === PRISM TEXT GRADIENT === */
+.prism-text-gradient {
+    background: var(--prism-glow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: prismShift 5s ease-in-out infinite;
+}
+
+/* === PRISM SHADOW LAYERS === */
+.prism-shadow-deep {
+    box-shadow:
+        0 0 20px rgba(102, 126, 234, 0.2),
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
