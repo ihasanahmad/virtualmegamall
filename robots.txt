@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/backend testing pages
+Disallow: /backend/
+Disallow: /test/
+
+# Sitemap
+Sitemap: https://virtualmegamall.vercel.app/sitemap.xml
