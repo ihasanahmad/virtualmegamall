@@ -431,8 +431,9 @@
                 <div class="summary-row discount" id="discount-row" style="display:none;"><span>Discount</span><span
                         id="discount">-Rs. 0</span></div>
                 <div class="summary-row total"><span>Total</span><span id="total">Rs. 0</span></div>
-                <a href="payment.html"><button class="checkout-btn"><i class="fa-solid fa-lock"></i> Proceed to
-                        Checkout</button></a>
+                <button class="checkout-btn" onclick="proceedToStripeCheckout()" id="checkout-btn">
+                    <i class="fa-solid fa-lock"></i> Proceed to Checkout
+                </button>
                 <div class="secure-note"><i class="fa-solid fa-shield-halved"></i>Secure checkout powered by Stripe
                 </div>
             </div>
@@ -585,6 +586,69 @@
                 <img src="${p.img}"><h4>${p.name}</h4><div class="price">${p.price}</div>
             </div>
         `).join('');
+    </script>
+
+    <!-- Stripe Checkout Integration -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Initialize Stripe (replace with your publishable key after deployment)
+        const stripe = Stripe('pk_test_51QXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXmY');
+
+        async function proceedToStripeCheckout() {
+            const user = firebase.auth().currentUser;
+
+            // Check if user is logged in
+            if (!user) {
+                window.location.href = 'login.html?return=cart.html';
+                return;
+            }
+
+            // Check if cart has items
+            if (currentCartItems.length === 0) {
+                showToast('Your cart is empty');
+                return;
+            }
+
+            const btn = document.getElementById('checkout-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading Checkout...';
+
+            try {
+                // Create checkout session
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        items: currentCartItems,
+                        userId: user.uid,
+                        userEmail: user.email
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create checkout session');
+                }
+
+                const { sessionId } = await response.json();
+
+                // Redirect to Stripe Checkout
+                const { error } = await stripe.redirectToCheckout({ sessionId });
+
+                if (error) {
+                    console.error('Stripe redirect error:', error);
+                    showToast(error.message);
+                }
+
+            } catch (error) {
+                console.error('Checkout error:', error);
+                showToast('Failed to start checkout. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-lock"></i> Proceed to Checkout';
+            }
+        }
     </script>
 </body>
 

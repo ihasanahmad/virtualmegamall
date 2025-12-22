@@ -1,11 +1,26 @@
 {
     "name": "virtual-mega-mall",
     "version": "1.0.0",
-    "description": "Virtual Mega Mall - E-commerce Project",
+    "description": "Pakistan's first 3D virtual shopping mall",
+    "main": "index.html",
     "scripts": {
-        "start": "npx -y serve ."
+        "dev": "vercel dev",
+        "build": "echo 'No build step required'",
+        "deploy": "vercel --prod"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC"
+    "dependencies": {
+        "stripe": "^14.10.0",
+        "firebase-admin": "^12.0.0"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "keywords": [
+        "ecommerce",
+        "3d-mall",
+        "shopping",
+        "pakistan"
+    ],
+    "author": "Virtual Mega Mall",
+    "license": "MIT"
 }
