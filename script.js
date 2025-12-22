@@ -398,30 +398,36 @@ function saveCart(cart) {
     updateCartDisplay();
 }
 
-// Add to Cart - Called from product buttons
-function addToCart(name, price, brand, img) {
-    const cart = getCart();
+// Add to Cart - Now using Firestore
+async function addToCart(name, price, brand, img) {
+    const user = firebase.auth().currentUser;
 
-    // Check if item already exists
-    const existingIndex = cart.findIndex(item => item.name === name && item.brand === brand);
-
-    if (existingIndex > -1) {
-        // Increase quantity
-        cart[existingIndex].qty += 1;
-        showToast(`${name} quantity updated! (${cart[existingIndex].qty})`);
-    } else {
-        // Add new item
-        cart.push({
-            name: name,
-            price: price,
-            brand: brand,
-            img: img || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100',
-            qty: 1
-        });
-        showToast(`${name} added to cart! 🛒`);
+    // Check if user is logged in
+    if (!user) {
+        const returnUrl = window.location.pathname + window.location.search;
+        window.location.href = `login.html?return=${encodeURIComponent(returnUrl)}`;
+        return;
     }
 
-    saveCart(cart);
+    // Create product object
+    const product = {
+        id: name.replace(/\s+/g, '-').toLowerCase(),
+        name: name,
+        price: price,
+        brand: brand,
+        img: img || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100',
+        qty: 1
+    };
+
+    // Add to Firestore
+    const result = await addToCartFirestore(product);
+
+    if (result.success) {
+        showToast(`${name} added to cart! 🛒`);
+        updateCartBadge();
+    } else {
+        showToast('Failed to add to cart. Please try again.', 'fa-exclamation-circle');
+    }
 }
 
 // Remove from Cart

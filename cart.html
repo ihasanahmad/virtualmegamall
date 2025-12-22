@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart | Virtual Mega Mall</title>
     <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -439,13 +439,36 @@
         </div>
     </div>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart-firestore.js"></script>
     <script src="script.js"></script>
     <script>
         let promoDiscount = 0;
         const promoCodes = { 'SAVE10': 10, 'MEGA20': 20, 'FIRST15': 15 };
+        let cartUnsubscribe = null;
+        let currentCartItems = [];
 
-        function renderCart() {
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        // Check auth and load cart
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                // Not logged in, redirect to login
+                window.location.href = 'login.html?return=cart.html';
+                return;
+            }
+
+            // User logged in, load cart with real-time sync
+            cartUnsubscribe = getCartItemsLive(items => {
+                currentCartItems = items;
+                renderCart(items);
+            });
+        });
+
+        function renderCart(cartItems) {
             const container = document.getElementById('cart-items');
 
             if (cartItems.length === 0) {
@@ -455,30 +478,50 @@
             }
 
             let subtotal = 0;
-            container.innerHTML = cartItems.map((item, i) => {
+            container.innerHTML = cartItems.map((item) => {
                 const price = parseInt(item.price.replace(/[^0-9]/g, ''));
-                subtotal += price * item.qty;
+                subtotal += price * item.quantity;
                 return `
                 <div class="cart-item">
-                    <img src="${item.img}" alt="${item.name}">
+                    <img src="${item.imageUrl}" alt="${item.name}">
                     <div class="item-details">
                         <h4>${item.name}</h4>
                         <div class="brand">${item.brand}</div>
                         <div class="price">${item.price}</div>
                         <div class="item-delivery"><i class="fa-solid fa-truck"></i>Delivery by Dec 20</div>
                         <div class="qty-controls">
-                            <button class="qty-btn" onclick="changeQty(${i}, -1); renderCart();">-</button>
-                            <span>${item.qty}</span>
-                            <button class="qty-btn" onclick="changeQty(${i}, 1); renderCart();">+</button>
+                            <button class="qty-btn" onclick="decreaseQty('${item.id}')">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-btn" onclick="increaseQty('${item.id}')">+</button>
                         </div>
                         <div class="item-actions">
-                            <button class="action-btn" onclick="saveForLater(${i})"><i class="fa-regular fa-bookmark"></i>Save for later</button>
-                            <button class="action-btn remove" onclick="removeFromCart(${i}); renderCart();"><i class="fa-solid fa-trash"></i>Remove</button>
+                            <button class="action-btn remove" onclick="removeItem('${item.id}')"><i class="fa-solid fa-trash"></i>Remove</button>
                         </div>
                     </div>
                 </div>`;
             }).join('');
             updateSummary(subtotal);
+        }
+
+        async function increaseQty(productId) {
+            const item = currentCartItems.find(i => i.id === productId);
+            if (item) {
+                await updateCartQuantity(productId, item.quantity + 1);
+            }
+        }
+
+        async function decreaseQty(productId) {
+            const item = currentCartItems.find(i => i.id === productId);
+            if (item) {
+                await updateCartQuantity(productId, item.quantity - 1);
+            }
+        }
+
+        async function removeItem(productId) {
+            if (confirm('Remove this item from cart?')) {
+                await removeFromCart(productId);
+                showToast('Item removed from cart');
+            }
         }
 
         function updateSummary(subtotal) {
@@ -500,46 +543,34 @@
                 promoDiscount = promoCodes[code];
                 document.getElementById('promo-applied').style.display = 'flex';
                 document.getElementById('promo-msg').textContent = `${code} applied! ${promoDiscount}% off`;
-                renderCart();
+                renderCart(currentCartItems);
             } else {
                 alert('Invalid promo code');
             }
         }
 
-        function saveForLater(index) {
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            const savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
-            savedItems.push(cartItems.splice(index, 1)[0]);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            localStorage.setItem('savedItems', JSON.stringify(savedItems));
-            renderCart();
-            renderSaved();
-        }
+        function showToast(message) {
+            const existingToast = document.querySelector('.cart-toast');
+            if (existingToast) existingToast.remove();
 
-        function moveToCart(index) {
-            const savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            cartItems.push(savedItems.splice(index, 1)[0]);
-            localStorage.setItem('savedItems', JSON.stringify(savedItems));
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            renderCart();
-            renderSaved();
-        }
-
-        function renderSaved() {
-            const savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
-            const section = document.getElementById('saved-section');
-            const container = document.getElementById('saved-items');
-
-            if (savedItems.length === 0) { section.style.display = 'none'; return; }
-            section.style.display = 'block';
-            container.innerHTML = savedItems.map((item, i) => `
-                <div class="saved-item">
-                    <img src="${item.img}">
-                    <div style="flex:1"><h4>${item.name}</h4><div style="color:var(--hazel-gold)">${item.price}</div></div>
-                    <button class="move-btn" onclick="moveToCart(${i})">Move to Cart</button>
-                </div>
-            `).join('');
+            const toast = document.createElement('div');
+            toast.className = 'cart-toast';
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #8E7C68, #C5A065);
+                color: white;
+                padding: 15px 30px;
+                border-radius: 50px;
+                z-index: 10000;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                animation: slideUp 0.3s ease, fadeOut 0.3s ease 2.5s forwards;
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
         }
 
         // Recommendations
@@ -554,8 +585,6 @@
                 <img src="${p.img}"><h4>${p.name}</h4><div class="price">${p.price}</div>
             </div>
         `).join('');
-
-        document.addEventListener('DOMContentLoaded', () => { renderCart(); renderSaved(); updateCartDisplay(); });
     </script>
 </body>
 
