@@ -10,14 +10,14 @@
  * 5. Copy the firebaseConfig object and replace the placeholder below
  */
 
-// TODO: Replace with your Firebase config from Firebase Console
+// Firebase Configuration - Virtual Mega Mall
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY_HERE",
-    authDomain: "virtualmegamall.firebaseapp.com",
-    projectId: "virtualmegamall",
-    storageBucket: "virtualmegamall.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyA8jD3BgvXhn7L06pEFzPEsHqErZYP6Lrs",
+    authDomain: "virtual-mega-mall.firebaseapp.com",
+    projectId: "virtual-mega-mall",
+    storageBucket: "virtual-mega-mall.firebasestorage.app",
+    messagingSenderId: "1054738442654",
+    appId: "1:1054738442654:web:3fc66e363952313bb18e8f"
 };
 
 // Initialize Firebase
