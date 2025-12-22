@@ -407,11 +407,13 @@ body {
 
 .logo {
     color: var(--hazel-gold);
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     flex-shrink: 0;
     text-shadow: 0 2px 10px rgba(197, 160, 101, 0.3);
+    white-space: nowrap;
+    min-width: fit-content;
 }
 
 .nav-links {
