@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+    <script src="chat.js" defer></script>
+
+    <nav class="navbar">
+        <div class="logo">CONTACT US</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+        <div style="flex: 1; min-width: 300px; text-align: left;">
+            <h2>Get in Touch</h2>
+            <p>Have a query? Fill out the form or visit us.</p>
+
+            <div style="margin-top: 30px;">
+                <p><i class="fa-solid fa-envelope" style="color: var(--primary-hazel); width: 25px;"></i>
+                    support@megamall.pk</p>
+                <p><i class="fa-solid fa-phone" style="color: var(--primary-hazel); width: 25px;"></i> +92 300 1234567
+                </p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary-hazel); width: 25px;"></i> Liberty
+                    Market, Lahore, Pakistan</p>
+            </div>
+        </div>
+
+        <div class="glass-effect" style="flex: 1; min-width: 300px; padding: 40px;">
+            <form onsubmit="event.preventDefault(); showToast('Message Sent! We will contact you shortly.');">
+                <input type="text" placeholder="Your Name"
+                    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd;"
+                    required>
+                <input type="email" placeholder="Email Address"
+                    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd;"
+                    required>
+                <textarea placeholder="Message" rows="5"
+                    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ddd;"
+                    required></textarea>
+                <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script> <!-- For showToast -->
+</body>
+
+</html>

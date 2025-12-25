@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Special Styles for Comparison Table */
+        .comparison-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            /* Will look like glass if you add .glass-effect class below */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+            width: 20%;
+            /* First column width */
+        }
+
+        .product-col {
+            width: 40%;
+        }
+
+        .comp-img {
+            width: 150px;
+            height: 150px;
+            background-color: #eee;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        /* Green Text for 'Winner' features */
+        .highlight {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo" style="text-decoration:none;">VIRTUAL MEGA MALL</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="brands.html">Brands</a>
+        </div>
+    </nav>
+
+    <section class="container" style="min-height: 80vh;">
+        <h1 style="text-align: center; margin-bottom: 40px;">Compare Products</h1>
+
+        <!-- Comparison Grid -->
+        <div class="glass-effect" style="padding: 30px;">
+            <div id="comparison-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <!-- Product Columns Injected Here -->
+                <div style="text-align:center; padding:50px; color:#888; grid-column: 1 / -1;">
+                    <i class="fa-solid fa-scale-balanced" style="font-size: 50px; margin-bottom: 20px;"></i>
+                    <h3>Your Comparison List is Empty</h3>
+                    <p>Go to the store and click "Add to Compare" on products.</p>
+                    <a href="index.html" class="cta-button" style="display:inline-block; margin-top:20px;">Browse
+                        Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="copyright">&copy; 2025 Virtual Mega Mall</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Inline Comparison Render Logic Upgrade
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('comparison-grid');
+            const compareList = JSON.parse(localStorage.getItem('compareList')) || [];
+
+            if (compareList.length > 0) {
+                container.innerHTML = ""; // Clear empty state
+
+                // We want to verify these fields exist, if rudimentary mock data, fill gaps
+                compareList.forEach(p => {
+                    const priceVal = parseInt(p.price.replace(/[^0-9]/g, '')) || 0;
+
+                    container.innerHTML += `
+                        <div class="product-card" style="box-shadow: none; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.5);">
+                            <img src="${p.img}" style="width:100%; height:200px; object-fit:contain; margin-bottom:20px;">
+                            <h3>${p.name}</h3>
+                            <p style="color:#666; margin-bottom:10px;">${p.brand}</p>
+                            <h4 style="color:var(--primary-hazel); margin-bottom:20px;">${p.price}</h4>
+                            
+                            <ul style="list-style:none; text-align:left; padding:0; margin-bottom:20px;">
+                                <li style="padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.05);">
+                                    <strong>Category:</strong> ${p.category || 'N/A'}
+                                </li>
+                                <li style="padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.05);">
+                                    <strong>Stock:</strong> Available
+                                </li>
+                            </ul>
+                            
+                            <button onclick="removeFromCompare('${p.name}')" style="background:#ff4d4d;">Remove</button>
+                        </div>
+                    `;
+                });
+            }
+        });
+
+        function removeFromCompare(name) {
+            let list = JSON.parse(localStorage.getItem('compareList')) || [];
+            list = list.filter(p => p.name !== name);
+            localStorage.setItem('compareList', JSON.stringify(list));
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>

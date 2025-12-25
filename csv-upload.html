@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Product Upload | Virtual Mega Mall Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-hazel: #8E7C68;
+            --hazel-gold: #C5A065;
+            --glass-bg: rgba(30, 30, 35, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--hazel-gold);
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--hazel-gold);
+            text-decoration: none;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Upload Zone */
+        .upload-zone {
+            background: var(--glass-bg);
+            border: 2px dashed var(--primary-hazel);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--hazel-gold);
+            background: rgba(142, 124, 104, 0.1);
+        }
+
+        .upload-zone i {
+            font-size: 60px;
+            color: var(--primary-hazel);
+            margin-bottom: 20px;
+        }
+
+        .upload-zone h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .upload-zone p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        /* Template Section */
+        .template-section {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .template-section h3 {
+            color: var(--hazel-gold);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .template-section pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-hazel);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: var(--hazel-gold);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--primary-hazel);
+        }
+
+        /* Preview Table */
+        .preview-section {
+            display: none;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .preview-section.active {
+            display: block;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .preview-header h3 {
+            color: var(--hazel-gold);
+        }
+
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .preview-table th {
+            background: rgba(142, 124, 104, 0.3);
+            padding: 12px;
+            text-align: left;
+            color: var(--hazel-gold);
+        }
+
+        .preview-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .preview-table img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Status Messages */
+        .status {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .status.success {
+            display: block;
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            color: #28a745;
+        }
+
+        .status.error {
+            display: block;
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+        }
+
+        /* Progress */
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .progress-bar.active {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-hazel), var(--hazel-gold));
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+    <div class="container">
+        <a href="admin.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Admin</a>
+
+        <h1><i class="fa-solid fa-file-csv"></i> CSV Product Upload</h1>
+        <p class="subtitle">Bulk upload products using a CSV file</p>
+
+        <div id="status" class="status"></div>
+
+        <!-- Upload Zone -->
+        <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <h3>Drop your CSV file here</h3>
+            <p>or click to browse files</p>
+            <input type="file" id="file-input" accept=".csv" onchange="handleFile(this.files[0])">
+        </div>
+
+        <!-- CSV Template -->
+        <div class="template-section">
+            <h3><i class="fa-solid fa-table"></i> CSV Format Template</h3>
+            <pre>name,brand,category,price,image_url,description
+Air Max 270,Nike,Shoes,24000,https://example.com/image.jpg,Premium running shoes
+Summer Lawn 3pc,Khaadi,Clothing,6500,https://example.com/lawn.jpg,Beautiful lawn collection
+Galaxy S24 Ultra,Samsung,Electronics,450000,https://example.com/phone.jpg,Latest flagship phone</pre>
+            <button class="btn btn-secondary" onclick="downloadTemplate()">
+                <i class="fa-solid fa-download"></i> Download Template
+            </button>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-section" id="preview-section">
+            <div class="preview-header">
+                <h3><i class="fa-solid fa-eye"></i> Preview (<span id="product-count">0</span> products)</h3>
+                <div>
+                    <button class="btn btn-secondary" onclick="clearPreview()">Cancel</button>
+                    <button class="btn" onclick="uploadProducts()">
+                        <i class="fa-solid fa-upload"></i> Upload Products
+                    </button>
+                </div>
+            </div>
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <table class="preview-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="preview-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let productsToUpload = [];
+
+        // Drag and Drop
+        const uploadZone = document.getElementById('upload-zone');
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.csv')) {
+                handleFile(file);
+            } else {
+                showStatus('Please upload a CSV file', 'error');
+            }
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const text = e.target.result;
+                parseCSV(text);
+            };
+            reader.readAsText(file);
+        }
+
+        function parseCSV(text) {
+            const lines = text.trim().split('\n');
+            if (lines.length < 2) {
+                showStatus('CSV file is empty or has no data rows', 'error');
+                return;
+            }
+
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            productsToUpload = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i]);
+                if (values.length >= 4) {
+                    const product = {};
+                    headers.forEach((header, index) => {
+                        product[header] = values[index] || '';
+                    });
+                    // Ensure required fields
+                    if (product.name && product.brand && product.price) {
+                        productsToUpload.push({
+                            name: product.name,
+                            brand: product.brand,
+                            category: product.category || 'General',
+                            price: product.price.toString().replace(/[^\d]/g, ''),
+                            imageUrl: product.image_url || product.imageurl || product.img || '',
+                            description: product.description || ''
+                        });
+                    }
+                }
+            }
+
+            if (productsToUpload.length === 0) {
+                showStatus('No valid products found in CSV', 'error');
+                return;
+            }
+
+            showPreview();
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        }
+
+        function showPreview() {
+            const previewSection = document.getElementById('preview-section');
+            const previewBody = document.getElementById('preview-body');
+            const productCount = document.getElementById('product-count');
+
+            previewBody.innerHTML = '';
+            productCount.textContent = productsToUpload.length;
+
+            productsToUpload.slice(0, 20).forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><img src="${product.imageUrl || 'https://via.placeholder.com/50/8E7C68/fff?text=?'}" onerror="this.src='https://via.placeholder.com/50/8E7C68/fff?text=?'"></td>
+                    <td>${product.name}</td>
+                    <td>${product.brand}</td>
+                    <td>${product.category}</td>
+                    <td>Rs. ${parseInt(product.price).toLocaleString()}</td>
+                `;
+                previewBody.appendChild(row);
+            });
+
+            if (productsToUpload.length > 20) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td colspan="5" style="text-align:center; color: var(--hazel-gold);">... and ${productsToUpload.length - 20} more products</td>`;
+                previewBody.appendChild(row);
+            }
+
+            previewSection.classList.add('active');
+        }
+
+        function clearPreview() {
+            document.getElementById('preview-section').classList.remove('active');
+            productsToUpload = [];
+        }
+
+        async function uploadProducts() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressFill = document.getElementById('progress-fill');
+
+            progressBar.classList.add('active');
+            let uploaded = 0;
+
+            for (const product of productsToUpload) {
+                try {
+                    await fetch('https://virtualmall-backend.onrender.com/api/products', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(product)
+                    });
+                    uploaded++;
+                    progressFill.style.width = `${(uploaded / productsToUpload.length) * 100}%`;
+                } catch (err) {
+                    console.error('Upload error:', err);
+                }
+            }
+
+            progressBar.classList.remove('active');
+            showStatus(`Successfully uploaded ${uploaded} products!`, 'success');
+            clearPreview();
+        }
+
+        function downloadTemplate() {
+            const template = 
+ame,brand,category,price,image_url,description
+Air Max 270,Nike,Shoes,24000,https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400,Premium running shoes
+Summer Lawn 3pc,Khaadi,Clothing,6500,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400,Beautiful lawn collection
+Galaxy S24 Ultra,Samsung,Electronics,450000,https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400,Latest flagship phone
+Gold Necklace Set,Tesoro,Jewelry,15000,https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400,Premium gold jewelry`;
+
+            const blob = new Blob([template], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'product_template.csv';
+            a.click();
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            setTimeout(() => {
+                status.className = 'status';
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>

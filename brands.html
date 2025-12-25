@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Brands | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+    <script src="chat.js" defer></script>
+
+    <nav class="navbar">
+        <div class="logo">BRAND DIRECTORY</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Our Official Partners</h2>
+        <div class="brand-grid" id="all-brands-container">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('all-brands-container');
+            // Assuming brandData is globally available from script.js
+            // We need to wait for script.js to run or access it. 
+            // script.js defines brandData. Let's assume it handles this if we add a hook or just inline the logic here for robustness.
+
+            // To ensure we get the data, we might need a small timeout or just duplicate the render logic slightly if script.js is module locked (it's not).
+
+            // Actually, script.js runs on DOMContentLoaded. Let's hook into that.
+            setTimeout(() => {
+                if (typeof brandData !== 'undefined') {
+                    // Since script.js mainly renders to specific IDs, we can manually render here
+                    container.innerHTML = "";
+                    brandData.forEach(brand => {
+                        const brandHTML = `
+                            <a href="${brand.link}" style="text-decoration: none; color: inherit;">
+                                <div class="brand-box">
+                                    <h3>${brand.name}</h3>
+                                    <p style="color:#888; font-size:12px;">Official Store</p>
+                                </div>
+                            </a>
+                        `;
+                        container.innerHTML += brandHTML;
+                    });
+                } else {
+                    container.innerHTML = "<p>Loading brands...</p>";
+                }
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

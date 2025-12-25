@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Categories | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+    <script src="chat.js" defer></script>
+    <script src="search_logic.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo" style="text-decoration:none;">VIRTUAL MEGA MALL</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="brands.html">Brands</a>
+        </div>
+
+        <!-- Reuse Search (Simplified) -->
+        <div class="search-container" style="margin:0 20px; width:300px;">
+            <input type="text" id="global-search" placeholder="Search in category...">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <!-- Right Side Icons -->
+        <div class="nav-icons">
+            <a href="comparison.html" class="nav-icon" title="Compare Products">
+                <i class="fa-solid fa-code-compare"></i>
+            </a>
+            <a href="cart.html" class="nav-icon" id="cart-icon" title="Cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="cart-badge">0</span>
+            </a>
+            <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="hero"
+        style="height: 40vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x600/8E7C68/FFFFFF?text=Category');">
+        <div>
+            <h1 id="category-title" style="font-size: 40px; color: white;">Category Name</h1>
+            <p style="color: #eee;">Explore our premium collection</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-grid" id="category-products">
+            <!-- Populated by JS -->
+            <p>Loading products...</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

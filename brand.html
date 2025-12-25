@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Brand | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="chat.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* LUXURY BRAND PAGE STYLES */
+        body {
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        /* Override navbar max-width for brand page */
+        .navbar {
+            max-width: 100% !important;
+            width: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        /* Premium Navbar */
+        .brand-navbar {
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .brand-navbar.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 60px;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .brand-nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .brand-nav-links a:hover {
+            color: white;
+        }
+
+        .brand-nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .brand-nav-icons a {
+            color: white;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .brand-nav-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Video/Image Section */
+        .brand-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .brand-hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .brand-hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 400;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        .brand-hero-content p {
+            font-size: 16px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .brand-hero-cta {
+            display: inline-block;
+            padding: 15px 50px;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .brand-hero-cta:hover {
+            background: white;
+            color: black;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Category Navigation */
+        .brand-categories {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px 20px;
+            background: #0a0a0a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-category {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .brand-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .brand-category-icon {
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+            transition: all 0.3s;
+        }
+
+        .brand-category:hover .brand-category-icon {
+            border-color: white;
+            background: white;
+            color: black;
+        }
+
+        .brand-category span {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Product Section */
+        .brand-section {
+            padding: 80px 60px;
+            background: #0a0a0a;
+        }
+
+        .brand-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .brand-section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .brand-section-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* Luxury Product Grid */
+        .luxury-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .luxury-product-card {
+            background: #111;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .luxury-product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .luxury-product-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .luxury-product-card:hover .luxury-product-img {
+            transform: scale(1.05);
+        }
+
+        .luxury-product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        }
+
+        .luxury-product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .luxury-product-category {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+        }
+
+        .luxury-product-price {
+            font-size: 16px;
+            color: #C5A065;
+            letter-spacing: 1px;
+        }
+
+        .luxury-product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .luxury-product-card:hover .luxury-product-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .luxury-btn {
+            padding: 10px 20px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .luxury-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        .luxury-btn.primary {
+            background: white;
+            color: black;
+        }
+
+        .luxury-btn.primary:hover {
+            background: #C5A065;
+            border-color: #C5A065;
+            color: white;
+        }
+
+        /* Wishlist on luxury card */
+        .luxury-wishlist {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .luxury-product-card:hover .luxury-wishlist {
+            opacity: 1;
+        }
+
+        .luxury-wishlist i {
+            color: white;
+            font-size: 16px;
+        }
+
+        .luxury-wishlist.active i {
+            color: #ff4757;
+        }
+
+        /* Brand Story Section */
+        .brand-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+            background: #0a0a0a;
+        }
+
+        .brand-story-image {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .brand-story-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+        }
+
+        .brand-story-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+
+        .brand-story-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .brand-footer {
+            background: #050505;
+            padding: 80px 60px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand-footer h4 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .brand-footer ul {
+            list-style: none;
+        }
+
+        .brand-footer ul li {
+            margin-bottom: 12px;
+        }
+
+        .brand-footer ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .brand-footer ul li a:hover {
+            color: white;
+        }
+
+        .brand-footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        /* Back to Mall Link */
+        .back-to-mall {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: black;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-mall:hover {
+            transform: scale(1.05);
+        }
+
+        /* Search Modal */
+        .brand-search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 100px;
+        }
+
+        .brand-search-modal.active {
+            display: flex;
+        }
+
+        .brand-search-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .brand-search-input {
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid white;
+            color: white;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        .brand-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .brand-search-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .brand-hero-content h1 {
+                font-size: 36px;
+                letter-spacing: 5px;
+            }
+
+            .brand-categories {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .brand-story {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-story-image {
+                height: 300px;
+            }
+
+            .brand-footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+    <script src="chat.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <!-- Main Site Navbar (Same as index.html) -->
+    <nav class="navbar" id="brand-navbar"
+        style="position: fixed; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);">
+        <a href="index.html" class="logo" id="brand-name-nav"
+            style="color: white; font-family: 'Playfair Display', serif; letter-spacing: 3px;">BRAND</a>
+
+        <div class="search-container"
+            style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+            <div class="categories-dropdown">
+                <button class="categories-btn" onclick="toggleCategoriesMenu()"
+                    style="color: white; border-color: rgba(255,255,255,0.3);">
+                    <i class="fa-solid fa-bars"></i> Categories
+                </button>
+                <div class="categories-menu" id="categories-menu">
+                    <a href="category.html?type=clothing"><i class="fa-solid fa-shirt"></i> Clothing & Fashion</a>
+                    <a href="category.html?type=shoes"><i class="fa-solid fa-shoe-prints"></i> Shoes & Footwear</a>
+                    <a href="category.html?type=tech"><i class="fa-solid fa-mobile-screen"></i> Electronics & Tech</a>
+                    <a href="category.html?type=jewelry"><i class="fa-solid fa-gem"></i> Watches & Jewelry</a>
+                    <a href="category.html?type=beauty"><i class="fa-solid fa-spa"></i> Beauty & Skincare</a>
+                    <a href="category.html?type=home"><i class="fa-solid fa-couch"></i> Home & Living</a>
+                </div>
+            </div>
+            <div style="width:1px; height:20px; background:rgba(255,255,255,0.2); margin:0 10px;"></div>
+            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off"
+                style="color: white; background: transparent;">
+            <div class="search-icons">
+                <button class="search-btn" style="background: var(--primary-hazel);"><i
+                        class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <!-- Search Autocomplete Dropdown -->
+            <div class="search-suggestions" id="search-suggestions">
+                <div class="suggestion-section" id="trending-section">
+                    <div class="suggestion-title">🔥 Trending Searches</div>
+                    <div class="suggestion-item" onclick="searchFor('Nike Air Max')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Nike Air Max</span>
+                    </div>
+                    <div class="suggestion-item" onclick="searchFor('Khaadi Lawn')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Khaadi Lawn 2024</span>
+                    </div>
+                </div>
+                <div class="suggestion-section">
+                    <div class="suggestion-title">📁 Categories</div>
+                    <div class="suggestion-item" onclick="window.location='category.html?type=clothing'">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span>Clothing & Fashion</span>
+                    </div>
+                    <div class="suggestion-item" onclick="window.location='category.html?type=tech'">
+                        <i class="fa-solid fa-mobile"></i>
+                        <span>Electronics & Tech</span>
+                    </div>
+                </div>
+                <div class="suggestion-section" id="product-suggestions" style="display:none;">
+                    <div class="suggestion-title">🛍️ Products</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Icons -->
+        <div class="nav-icons">
+            <a href="comparison.html" class="nav-icon" title="Compare Products" style="color: white;">
+                <i class="fa-solid fa-code-compare"></i>
+            </a>
+            <a href="cart.html" class="nav-icon" id="cart-icon" title="Cart" style="color: white;">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="cart-badge">0</span>
+            </a>
+            <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account" style="color: white;">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="brand-hero">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600" alt="Brand Hero"
+            class="brand-hero-bg" id="brand-hero-img">
+        <div class="brand-hero-content">
+            <h1 id="brand-name-hero">BRAND NAME</h1>
+            <p id="brand-tagline">Discover the Collection</p>
+            <a href="#products" class="brand-hero-cta">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Category Icons -->
+    <section class="brand-categories">
+        <div class="brand-category" onclick="filterProducts('all')">
+            <div class="brand-category-icon"><i class="fa-solid fa-border-all"></i></div>
+            <span>All</span>
+        </div>
+        <div class="brand-category" onclick="filterProducts('new')">
+            <div class="brand-category-icon"><i class="fa-solid fa-sparkles"></i></div>
+            <span>New In</span>
+        </div>
+        <div class="brand-category" onclick="filterProducts('clothing')">
+            <div class="brand-category-icon"><i class="fa-solid fa-shirt"></i></div>
+            <span>Clothing</span>
+        </div>
+        <div class="brand-category" onclick="filterProducts('accessories')">
+            <div class="brand-category-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+            <span>Accessories</span>
+        </div>
+        <div class="brand-category" onclick="filterProducts('shoes')">
+            <div class="brand-category-icon"><i class="fa-solid fa-shoe-prints"></i></div>
+            <span>Shoes</span>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="brand-section" id="products">
+        <div class="brand-section-header">
+            <h2 id="section-title">The Collection</h2>
+            <p>Explore our exclusive range</p>
+        </div>
+        <div class="luxury-product-grid" id="brand-products">
+            <!-- Products loaded by JS -->
+            <p style="text-align: center; color: rgba(255,255,255,0.5);">Loading products...</p>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="brand-story" id="about">
+        <div class="brand-story-image" id="brand-story-img"
+            style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800');">
+        </div>
+        <div class="brand-story-content">
+            <h3 id="brand-story-title">The Heritage</h3>
+            <p id="brand-story-text">Every piece tells a story of craftsmanship and dedication to excellence. Our
+                tradition of quality spans generations, combining timeless design with modern innovation.</p>
+            <p>Discover a world where luxury meets authenticity.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="brand-footer">
+        <div class="brand-footer-content">
+            <div>
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="help.html">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Our Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Virtual Mega Mall</h4>
+                <ul>
+                    <li><a href="index.html">Back to Mall</a></li>
+                    <li><a href="brands.html">All Brands</a></li>
+                    <li><a href="comparison.html">Compare Products</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="brand-footer-bottom">
+            &copy; 2025 Virtual Mega Mall. Official Brand Partner.
+        </div>
+    </footer>
+
+    <!-- Back to Mall Button -->
+    <a href="index.html" class="back-to-mall">
+        <i class="fa-solid fa-arrow-left"></i> Back to Mall
+    </a>
+
+    <!-- Search Modal -->
+    <div class="brand-search-modal" id="brand-search-modal">
+        <span class="brand-search-close" onclick="closeBrandSearch()">&times;</span>
+        <div class="brand-search-container">
+            <input type="text" class="brand-search-input" id="brand-search-input" placeholder="Search products..."
+                onkeyup="searchBrandProducts(this.value)">
+            <div id="brand-search-results" style="margin-top: 30px;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get brand from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const brandName = urlParams.get('brand') || 'Nike';
+
+        // Brand configurations
+        const brandConfigs = {
+            'Nike': {
+                name: 'NIKE',
+                tagline: 'Just Do It',
+                hero: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1600',
+                story: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?q=80&w=800',
+                storyTitle: 'Innovation Meets Style',
+                storyText: 'Nike brings inspiration and innovation to every athlete in the world. Our mission is to bring inspiration and innovation to every athlete.',
+                color: '#111'
+            },
+            'Khaadi': {
+                name: 'KHAADI',
+                tagline: 'Weaving Dreams Into Reality',
+                hero: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1600',
+                story: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=800',
+                storyTitle: 'Celebrating Pakistani Heritage',
+                storyText: 'Khaadi represents the soul of Eastern fashion, blending traditional craftsmanship with contemporary design.',
+                color: '#2d3748'
+            },
+            'Samsung': {
+                name: 'SAMSUNG',
+                tagline: 'Do What You Cant',
+                hero: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1600',
+                story: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800',
+                storyTitle: 'Technology For Tomorrow',
+                storyText: 'Samsung is dedicated to developing innovative technologies that unlock new possibilities for people everywhere.',
+                color: '#1428a0'
+            },
+            'Gucci': {
+                name: 'GUCCI',
+                tagline: 'Modern Luxury Since 1921',
+                hero: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600',
+                story: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800',
+                storyTitle: 'Italian Craftsmanship',
+                storyText: 'Founded in Florence in 1921, Gucci is one of the worlds leading luxury fashion brands, with a renowned reputation for creativity, innovation.',
+                color: '#1a1a1a'
+            }
+        };
+
+        // Initialize brand page
+        function initBrandPage() {
+            // Use config if exists, otherwise create dynamic config from URL brand name
+            const config = brandConfigs[brandName] || {
+                name: brandName.toUpperCase(),
+                tagline: 'Official Store at Virtual Mega Mall',
+                hero: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600',
+                story: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800',
+                storyTitle: `About ${brandName}`,
+                storyText: `Welcome to the official ${brandName} store. Discover our exclusive collection of premium products.`,
+                color: '#1a1a1a'
+            };
+
+            document.title = `${config.name} | Virtual Mega Mall`;
+            document.getElementById('brand-name-nav').textContent = config.name;
+            document.getElementById('brand-name-hero').textContent = config.name;
+            document.getElementById('brand-tagline').textContent = config.tagline;
+            document.getElementById('brand-hero-img').src = config.hero;
+            document.getElementById('brand-story-img').style.backgroundImage = `url('${config.story}')`;
+            document.getElementById('brand-story-title').textContent = config.storyTitle;
+            document.getElementById('brand-story-text').textContent = config.storyText;
+
+            loadBrandProducts();
+        }
+
+        // Load products for this brand
+        function loadBrandProducts() {
+            const products = getSampleProducts(brandName);
+            renderProducts(products);
+        }
+
+        // Sample products (replace with API call)
+        function getSampleProducts(brand) {
+            const allProducts = [
+                { id: 1, name: 'Air Max 270', category: 'Shoes', price: 'Rs. 24,000', img: 'https://via.placeholder.com/400/111/fff?text=Air+Max', brand: 'Nike', rating: 4.5 },
+                { id: 2, name: 'Tech Fleece Hoodie', category: 'Clothing', price: 'Rs. 15,000', img: 'https://via.placeholder.com/400/111/fff?text=Hoodie', brand: 'Nike', rating: 4.8 },
+                { id: 3, name: 'Dri-FIT T-Shirt', category: 'Clothing', price: 'Rs. 5,500', img: 'https://via.placeholder.com/400/111/fff?text=T-Shirt', brand: 'Nike', rating: 4.3 },
+                { id: 4, name: 'Air Force 1', category: 'Shoes', price: 'Rs. 18,000', img: 'https://via.placeholder.com/400/111/fff?text=AF1', brand: 'Nike', rating: 4.9 },
+                { id: 5, name: 'Summer Lawn 3pc', category: 'Clothing', price: 'Rs. 6,500', img: 'https://via.placeholder.com/400/8E7C68/fff?text=Lawn', brand: 'Khaadi', rating: 4.6 },
+                { id: 6, name: 'Embroidered Kurta', category: 'Clothing', price: 'Rs. 8,000', img: 'https://via.placeholder.com/400/8E7C68/fff?text=Kurta', brand: 'Khaadi', rating: 4.4 },
+                { id: 7, name: 'Galaxy S24 Ultra', category: 'Electronics', price: 'Rs. 450,000', img: 'https://via.placeholder.com/400/1428a0/fff?text=S24', brand: 'Samsung', rating: 4.7 },
+                { id: 8, name: 'Galaxy Buds3 Pro', category: 'Electronics', price: 'Rs. 45,000', img: 'https://via.placeholder.com/400/1428a0/fff?text=Buds', brand: 'Samsung', rating: 4.5 },
+            ];
+
+            return allProducts.filter(p => p.brand === brand || brand === 'All');
+        }
+
+        // Render products
+        function renderProducts(products) {
+            const container = document.getElementById('brand-products');
+
+            if (products.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.5); grid-column: 1/-1;">No products found</p>';
+                return;
+            }
+
+            container.innerHTML = products.map(p => `
+                <div class="luxury-product-card">
+                    <button class="luxury-wishlist" onclick="toggleWishlist(this, '${p.id}')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <img src="${p.img}" alt="${p.name}" class="luxury-product-img">
+                    <div class="luxury-product-overlay">
+                        <div class="luxury-product-category">${p.category}</div>
+                        <div class="luxury-product-name">${p.name}</div>
+                        <div class="luxury-product-price">${p.price}</div>
+                        <div class="luxury-product-actions">
+                            <button class="luxury-btn primary" onclick="addToCart('${p.name}', '${p.price}', '${brandName}', '${p.img}')">Add to Bag</button>
+                            <button class="luxury-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            const products = getSampleProducts(brandName);
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                renderProducts(products.filter(p => p.category.toLowerCase().includes(category)));
+            }
+        }
+
+        // Search functions
+        function openBrandSearch() {
+            document.getElementById('brand-search-modal').classList.add('active');
+            document.getElementById('brand-search-input').focus();
+        }
+
+        function closeBrandSearch() {
+            document.getElementById('brand-search-modal').classList.remove('active');
+        }
+
+        function searchBrandProducts(query) {
+            if (query.length < 2) {
+                document.getElementById('brand-search-results').innerHTML = '';
+                return;
+            }
+
+            const products = getSampleProducts(brandName);
+            const results = products.filter(p =>
+                p.name.toLowerCase().includes(query.toLowerCase()) ||
+                p.category.toLowerCase().includes(query.toLowerCase())
+            );
+
+            const container = document.getElementById('brand-search-results');
+            container.innerHTML = results.map(p => `
+                <div style="display: flex; gap: 20px; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+                    <img src="${p.img}" style="width: 60px; height: 60px; object-fit: cover;">
+                    <div>
+                        <div style="color: white; font-size: 16px;">${p.name}</div>
+                        <div style="color: rgba(255,255,255,0.5); font-size: 12px;">${p.category}</div>
+                        <div style="color: #C5A065; font-size: 14px;">${p.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('brand-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initBrandPage);
+    </script>
+
+</body>
+
+</html>

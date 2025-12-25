@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center | Virtual Mega Mall</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+    <script src="chat.js" defer></script>
+
+    <nav class="navbar">
+        <div class="logo">HELP CENTER</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+        <h2>How can we help you?</h2>
+        <div class="search-container" style="margin: 20px auto; width: 100%;">
+            <input type="text" placeholder="Search for help (e.g. returns, payment)...">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div style="text-align: left; margin-top: 40px;">
+            <div class="glass-effect" style="padding: 20px; margin-bottom: 20px; cursor: pointer;">
+                <h4>📦 Where is my order?</h4>
+                <p>You can track your order live in the "My Account" section under Order History.</p>
+            </div>
+            <div class="glass-effect" style="padding: 20px; margin-bottom: 20px; cursor: pointer;">
+                <h4>💳 What payment methods do you accept?</h4>
+                <p>We accept all major Credit/Debit cards (Visa, Mastercard) and Cash on Delivery (COD).</p>
+            </div>
+            <div class="glass-effect" style="padding: 20px; margin-bottom: 20px; cursor: pointer;">
+                <h4>↩️ Return Policy</h4>
+                <p>We offer a 7-day no-questions-asked return policy for all "Official Brand" items. Visit your profile
+                    to initiate a return.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>Still need help?</h3>
+            <button class="cta-button" onclick="toggleChat()">Chat with Support</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,3 +12,755 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Mega Mall | Pakistan's First 3D Shopping Experience</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Experience Pakistan's first 3D virtual shopping mall. Shop premium brands including Nike, Adidas, Khaadi, and more with immersive 3D browsing, secure payments, and fast delivery.">
+    <meta name="keywords"
+        content="virtual mall, 3D shopping, online shopping Pakistan, Nike Pakistan, premium brands, e-commerce, luxury shopping">
+    <meta name="author" content="Virtual Mega Mall">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://virtualmegamall.vercel.app/">
+    <meta property="og:title" content="Virtual Mega Mall - Pakistan's First 3D Shopping Experience">
+    <meta property="og:description"
+        content="Explore premium brands in an immersive 3D environment. Shop Nike, Adidas, Khaadi, and more with secure payments and fast delivery across Pakistan.">
+    <meta property="og:image" content="https://virtualmegamall.vercel.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://virtualmegamall.vercel.app/">
+    <meta name="twitter:title" content="Virtual Mega Mall - 3D Shopping Experience">
+    <meta name="twitter:description"
+        content="Pakistan's first 3D virtual shopping mall. Shop premium brands with immersive browsing experience.">
+    <meta name="twitter:image" content="https://virtualmegamall.vercel.app/assets/og-image.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="chat.css"> <!-- Live Chat Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
+</head>
+
+<body>
+
+    <!-- Mobile App Banner (Walmart/Shein style) -->
+    <!-- Mobile App Banner - Removed for cleaner premium look -->
+
+    <!-- Newsletter Popup Modal -->
+    <div class="newsletter-popup" id="newsletter-popup">
+        <div class="newsletter-popup-content">
+            <button class="popup-close" onclick="closeNewsletterPopup()"><i class="fa-solid fa-times"></i></button>
+            <div class="popup-image">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80" alt="Shopping">
+            </div>
+            <div class="popup-form">
+                <h2>Get 10% Off</h2>
+                <p>Subscribe to our newsletter for exclusive deals, new arrivals, and insider-only discounts.</p>
+                <form onsubmit="submitPopupNewsletter(event)">
+                    <input type="email" id="popup-email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="popup-privacy">By subscribing, you agree to our <a href="help.html">Privacy Policy</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Switcher (Must load first) -->
+    <script src="theme-switcher.js"></script>
+
+    <!-- Scripts -->
+    <script src="chat.js" defer></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart-firestore.js" defer></script> <!-- New cart management -->
+    <script src="search_logic.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <!-- Smooth Scroll Library (Lenis) -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- Anti-Gravity Effects -->
+    <script>
+        // Initialize Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        // 3D Tilt Effect
+        document.addEventListener('mousemove', (e) => {
+            const targets = document.querySelectorAll('.tilt-element');
+
+            targets.forEach(target => {
+                const speed = target.getAttribute('data-speed') || 2;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+
+                target.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+    </script>
+
+    <nav class="navbar">
+        <!-- Logo -->
+        <a href="index.html" class="logo" style="text-decoration:none;" aria-label="Virtual Mega Mall Homepage">VIRTUAL
+            MEGA MALL</a>
+
+        <!-- Categories Dropdown Button + Search Bar -->
+        <div class="search-container">
+            <!-- Categories Dropdown -->
+            <div class="categories-dropdown">
+                <button class="categories-btn" onclick="toggleCategoriesMenu()">
+                    Categories <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div id="categories-menu" class="categories-menu">
+                    <a href="brands.html"><i class="fa-solid fa-bag-shopping"></i> Shop All Brands</a>
+                    <a href="category.html?type=clothing"><i class="fa-solid fa-shirt"></i> Clothing & Fashion</a>
+                    <a href="category.html?type=shoes"><i class="fa-solid fa-shoe-prints"></i> Shoes & Footwear</a>
+                    <a href="category.html?type=tech"><i class="fa-solid fa-mobile-screen"></i> Electronics & Tech</a>
+                    <a href="category.html?type=jewelry"><i class="fa-solid fa-gem"></i> Watches & Jewelry</a>
+                    <a href="category.html?type=beauty"><i class="fa-solid fa-spa"></i> Beauty & Skincare</a>
+                    <a href="category.html?type=home"><i class="fa-solid fa-couch"></i> Home & Living</a>
+                    <a href="category.html?type=sports"><i class="fa-solid fa-dumbbell"></i> Sports & Fitness</a>
+                    <a href="category.html?type=kids"><i class="fa-solid fa-child"></i> Kids & Toys</a>
+                </div>
+            </div>
+
+            <div style="width:1px; height:20px; background:#ddd; margin:0 10px;"></div>
+            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
+            <div class="search-icons">
+                <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search" id="voice-btn"></i>
+                <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
+                <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
+                <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <!-- Search Autocomplete Dropdown -->
+            <div class="search-suggestions" id="search-suggestions">
+                <div class="suggestion-section" id="trending-section">
+                    <div class="suggestion-title">🔥 Trending Searches</div>
+                    <div class="suggestion-item" onclick="searchFor('Nike Air Max')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Nike Air Max</span>
+                    </div>
+                    <div class="suggestion-item" onclick="searchFor('Khaadi Lawn')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Khaadi Lawn 2024</span>
+                    </div>
+                    <div class="suggestion-item" onclick="searchFor('iPhone 15')">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>iPhone 15 Pro</span>
+                    </div>
+                </div>
+                <div class="suggestion-section">
+                    <div class="suggestion-title">📁 Categories</div>
+                    <div class="suggestion-item" onclick="window.location='category.html?type=clothing'">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span>Clothing & Fashion</span>
+                    </div>
+                    <div class="suggestion-item" onclick="window.location='category.html?type=tech'">
+                        <i class="fa-solid fa-mobile"></i>
+                        <span>Electronics & Tech</span>
+                    </div>
+                </div>
+                <div class="suggestion-section" id="product-suggestions" style="display:none;">
+                    <div class="suggestion-title">🛍️ Products</div>
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Scanner Modal -->
+        <div id="scanner-modal"
+            style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2000; justify-content:center; align-items:center;">
+            <div
+                style="background:white; padding:20px; border-radius:10px; text-align:center; position:relative; width:90%; max-width:500px;">
+                <span onclick="closeScanner()"
+                    style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+                <h3 id="scanner-title">Scan Barcode</h3>
+                <div
+                    style="margin:20px 0; background:#000; height:300px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:5px;">
+                    <video id="scanner-video" style="width:100%; height:100%; object-fit:cover;" autoplay
+                        playsinline></video>
+                </div>
+                <p id="scanner-status" style="color:var(--primary-hazel); font-weight:bold;">Align code within frame</p>
+                <button onclick="captureScan()"
+                    style="background:var(--primary-hazel); color:white; border:none; padding:10px 30px; border-radius:5px; margin-top:10px; cursor:pointer;">
+                    <i class="fa-solid fa-camera"></i> SCAN NOW
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Side: Selectors + Icons -->
+        <div class="nav-icons">
+            <!-- Currency Selector -->
+            <div class="nav-selector">
+                <select id="currency-selector" onchange="changeCurrency(this.value)">
+                    <option value="PKR">🇵🇰 PKR</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="AED">🇦🇪 AED</option>
+                </select>
+            </div>
+            <!-- Language Selector -->
+            <div class="nav-selector">
+                <select id="language-selector" onchange="changeLanguage(this.value)">
+                    <option value="en">EN</option>
+                    <option value="ur">اردو</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="nav-icon" onclick="cycleTheme()" title="Toggle Theme"
+                style="background: none; border: none; cursor: pointer; font-size: 20px;">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+            <a href="comparison.html" class="nav-icon" title="Compare Products">
+                <i class="fa-solid fa-code-compare"></i>
+            </a>
+            <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account">
+                <i class="fa-regular fa-user"></i>
+            </a>
+            <a href="cart.html" class="nav-icon cart-icon" id="cart-icon" title="Shopping Cart"
+                onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="cart-badge">0</span>
+                <!-- Cart Preview Popup -->
+                <div class="cart-preview" id="cart-preview">
+                    <div class="cart-preview-header">Shopping Bag</div>
+                    <div class="cart-preview-items" id="cart-preview-items"></div>
+                    <div class="cart-preview-footer">
+                        <a href="cart.html" class="view-cart-btn">View Cart</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <!-- NEW HORIZONTAL CATEGORY MENU -->
+    <div class="horizontal-menu">
+        <a href="brands.html" class="h-menu-link">Brands</a>
+        <a href="category.html?type=clothing" class="h-menu-link">Men</a>
+        <a href="category.html?type=clothing" class="h-menu-link">Women</a>
+        <a href="category.html?type=tech" class="h-menu-link">Electronics</a>
+        <a href="category.html?type=home" class="h-menu-link">Home</a>
+        <a href="category.html?type=beauty" class="h-menu-link">Beauty</a>
+        <!-- The Core 3D Experience CTA -->
+        <a href="3d-mall.html" class="h-menu-link special-3d">
+            <i class="fa-solid fa-cube"></i> 3D MALL
+        </a>
+    </div>
+    <!-- PREMIUM HERO SECTION -->
+    <div class="hero glass-panel"
+        style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1537726235470-8504e3beef77?q=80&w=2000'); background-attachment: fixed;">
+        <div class="hero-content">
+            <h1 class="fadeInUp anti-gravity-float">Pakistan's First <span
+                    style="color:var(--hazel-gold); font-style:italic;">3D
+                    Shopping</span> Experience</h1>
+            <p style="font-size:18px; max-width:600px; margin:0 auto 30px; opacity:0.9;">Step into the future of retail.
+                Explore premium brands in an immersive 3D environment from the comfort of your home.</p>
+            <div style="display:flex; justify-content:center; gap:20px;">
+                <a href="#brands" class="cta-button hover-lift"
+                    style="background: white; color: black; border: 2px solid white;">Shop
+                    Collections</a>
+                <a href="3d-mall.html" class="cta-button hover-lift">
+                    <i class="fa-solid fa-cube"></i> ENTER 3D MALL
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLASH SALE SECTION -->
+    <section class="container flash-sale-section">
+        <div class="section-header" style="border-bottom-color: #ff6b6b;">
+            <h3 style="color: #ff6b6b;"><i class="fa-solid fa-bolt"></i> Flash Sale - Up to 50% Off!</h3>
+            <div class="sale-timer">
+                <span>Ends in:</span>
+                <div class="timer-box">12</div>:<div class="timer-box">45</div>:<div class="timer-box">30</div>
+            </div>
+        </div>
+        <div class="product-grid" id="flash-sale-container">
+            <!-- Flash sale products with Phase 1 features -->
+            <div class="product-card sale-card anti-gravity-float hover-lift">
+                <span class="sale-badge">-50%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'nike-air-max')"><i
+                        class="fa-regular fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Nike Air Max</h4>
+                <p class="brand-name">Nike Store</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★<span class="empty">★</span></span>
+                    <span class="rating-count">(128)</span>
+                </div>
+                <span class="stock-status low-stock">🔥 Only 3 left!</span>
+                <p class="price"><del style="color:#999;">Rs. 24,000</del> Rs. 12,000</p>
+                <button class="hover-lift"
+                    onclick="addToCart('Nike Air Max', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card sale-card">
+                <span class="sale-badge">-40%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'galaxy-buds')"><i
+                        class="fa-regular fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Galaxy Buds Pro</h4>
+                <p class="brand-name">Samsung</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-count">(256)</span>
+                </div>
+                <span class="stock-status in-stock">✓ In Stock</span>
+                <p class="price"><del style="color:#999;">Rs. 35,000</del> Rs. 21,000</p>
+                <button
+                    onclick="addToCart('Galaxy Buds Pro', 'Rs. 21,000', 'Samsung', 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card sale-card">
+                <span class="sale-badge">-30%</span>
+                <span class="new-badge">New</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'khaadi-lawn')"><i
+                        class="fa-regular fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Khaadi Lawn 3pc</h4>
+                <p class="brand-name">Khaadi</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★<span class="empty">★</span></span>
+                    <span class="rating-count">(89)</span>
+                </div>
+                <span class="stock-status low-stock">🔥 Only 5 left!</span>
+                <p class="price"><del style="color:#999;">Rs. 6,500</del> Rs. 4,550</p>
+                <button
+                    onclick="addToCart('Khaadi Lawn 3pc', 'Rs. 4,550', 'Khaadi', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card sale-card">
+                <span class="sale-badge">-25%</span>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'rolex-watch')"><i
+                        class="fa-regular fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Rolex Submariner</h4>
+                <p class="brand-name">Rolex Official</p>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-count">(42)</span>
+                </div>
+                <span class="stock-status low-stock">🔥 Only 2 left!</span>
+                <p class="price"><del style="color:#999;">Rs. 2,500,000</del> Rs. 1,875,000</p>
+                <button
+                    onclick="addToCart('Rolex Submariner', 'Rs. 1,875,000', 'Rolex Official', 'https://via.placeholder.com/300/C5A065/FFF?text=Rolex+Watch')">Add
+                    to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AD BANNER 1: Full Width Sponsored Banner -->
+    <section class="ad-banner-section">
+        <a href="advertise.html" class="ad-banner full-width">
+            <div class="ad-content">
+                <span class="ad-label">Sponsored</span>
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=200&fit=crop&q=80"
+                    alt="Premium Shopping Experience" loading="lazy"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+            </div>
+        </a>
+    </section>
+
+    <section id="brands" class="container">
+        <h2>Official Brand Stores</h2>
+
+        <div class="section-header">
+            <h3>Clothing & Fashion</h3>
+            <a href="category.html?type=clothing" class="view-all-btn">View All <i
+                    class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <!-- Clothing Category Slider -->
+        <div class="category-ad-slider" id="clothing-slider">
+            <div class="cat-slide active"><a href="store.html?brand=Khaadi"><img
+                        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1100&h=180&fit=crop&q=80"
+                        alt="Khaadi Collection" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Gul Ahmed"><img
+                        src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1100&h=180&fit=crop&q=80"
+                        alt="Fashion Ad" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=J."><img
+                        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1100&h=180&fit=crop&q=80"
+                        alt="Fashion Ad" style="border-radius: 10px;"></a></div>
+        </div>
+        <div class="brand-grid" id="clothing-container">
+        </div>
+
+        <div class="section-header">
+            <h3>Shoes & Footwear</h3>
+            <a href="category.html?type=shoes" class="view-all-btn">View All <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <!-- Shoes Category Slider -->
+        <div class="category-ad-slider" id="shoes-slider">
+            <div class="cat-slide active"><a href="store.html?brand=Nike"><img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1100&h=180&fit=crop&q=80"
+                        alt="Nike Shoes" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Adidas"><img
+                        src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1100&h=180&fit=crop&q=80"
+                        alt="Adidas Shoes" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Bata"><img
+                        src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=1100&h=180&fit=crop&q=80"
+                        alt="Footwear" style="border-radius: 10px;"></a></div>
+        </div>
+        <div class="brand-grid" id="shoes-container">
+        </div>
+
+        <div class="section-header">
+            <h3>Electronics & Tech</h3>
+            <a href="category.html?type=tech" class="view-all-btn">View All <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <!-- Tech Category Slider -->
+        <div class="category-ad-slider" id="tech-slider">
+            <div class="cat-slide active"><a href="store.html?brand=Samsung"><img
+                        src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=1100&h=180&fit=crop&q=80"
+                        alt="Samsung" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Apple"><img
+                        src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1100&h=180&fit=crop&q=80"
+                        alt="Apple" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Sony"><img
+                        src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=1100&h=180&fit=crop&q=80"
+                        alt="Gaming" style="border-radius: 10px;"></a></div>
+        </div>
+        <div class="brand-grid" id="tech-container">
+        </div>
+
+        <div class="section-header">
+            <h3>Watches & Jewelry</h3>
+            <a href="category.html?type=jewelry" class="view-all-btn">View All <i
+                    class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <!-- Watches Category Slider -->
+        <div class="category-ad-slider" id="watches-slider">
+            <div class="cat-slide active"><a href="store.html?brand=Rolex"><img
+                        src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1100&h=180&fit=crop&q=80"
+                        alt="Rolex" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Tissot"><img
+                        src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1100&h=180&fit=crop&q=80"
+                        alt="Watches" style="border-radius: 10px;"></a></div>
+            <div class="cat-slide"><a href="store.html?brand=Casio"><img
+                        src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=1100&h=180&fit=crop&q=80"
+                        alt="Watches" style="border-radius: 10px;"></a></div>
+        </div>
+        <div class="brand-grid" id="watch-container">
+        </div>
+    </section>
+
+    <!-- AD BANNER 3: Featured Brand Spotlight -->
+    <section class="ad-banner-section">
+        <div class="ad-banner featured">
+            <span class="ad-label">Featured Brand</span>
+            <a href="store.html?brand=Khaadi">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=250&fit=crop&q=80"
+                    alt="Featured Brand" loading="lazy"
+                    style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px;">
+            </a>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>Trending Now</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Running Shoes</h4>
+                <p class="brand-name">Nike Store</p>
+                <p class="price">Rs. 12,000</p>
+                <button
+                    onclick="addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Galaxy S24</h4>
+                <p class="brand-name">Samsung Official</p>
+                <p class="price">Rs. 350,000</p>
+                <button
+                    onclick="addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Summer Kurta</h4>
+                <p class="brand-name">J. (Junaid Jamshed)</p>
+                <p class="price">Rs. 4,500</p>
+                <button
+                    onclick="addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
+                    to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80" class="product-img"
+                    style="object-fit: cover; width: 100%; height: 200px;">
+                <h4>Luxury Watch</h4>
+                <p class="brand-name">Rolex Official</p>
+                <p class="price">Rs. 1,875,000</p>
+                <button
+                    onclick="addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
+                    to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AD BANNER 4: Bottom Banner before footer -->
+    <section class="ad-banner-section">
+        <div class="ad-banner-row triple">
+            <a href="store.html?brand=Nike" class="ad-banner third-width">
+                <span class="ad-label">Ad</span>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=380&h=200&fit=crop&q=80"
+                    alt="Nike" style="border-radius: 10px;">
+            </a>
+            <a href="store.html?brand=Samsung" class="ad-banner third-width">
+                <span class="ad-label">Ad</span>
+                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=380&h=200&fit=crop&q=80"
+                    alt="Samsung" style="border-radius: 10px;">
+            </a>
+            <a href="store.html?brand=Khaadi" class="ad-banner third-width">
+                <span class="ad-label">Ad</span>
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=380&h=200&fit=crop&q=80"
+                    alt="Khaadi" loading="lazy" style="border-radius: 10px;">
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Strip (above footer) -->
+    <section class="services-strip">
+        <div class="service-item">
+            <i class="fa-solid fa-credit-card"></i>
+            <div>
+                <strong>Bank Discount</strong>
+                <span>10% Off with HBL Cards</span>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+                <strong>Free Delivery</strong>
+                <span>On orders over Rs. 5000</span>
+            </div>
+        </div>
+        <div class="service-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+                <strong>Secure Payment</strong>
+                <span>100% Protected</span>
+            </div>
+        </div>
+    </section>
+    <!-- TRUST STRIP -->
+    <!-- TRUST STRIP - Upgraded Visibility -->
+    <div class="trust-strip"
+        style="background: linear-gradient(to right, #1a1a2e, #16213e); border-top: 1px solid var(--hazel-gold); border-bottom: 1px solid var(--hazel-gold);">
+        <div class="container trust-container">
+            <div class="trust-item">
+                <i class="fa-solid fa-cube" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">Immersive 3D</h4>
+                    <p style="color:#aaa;">Virtual Store Experience</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-certificate" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">100% Authentic</h4>
+                    <p style="color:#aaa;">Direct from Brands</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-shield-halved" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">Secure Payment</h4>
+                    <p style="color:#aaa;">Bank & Card Protected</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-rotate-left" style="color:var(--hazel-gold);"></i>
+                <div class="trust-text">
+                    <h4 style="color:white;">Easy Returns</h4>
+                    <p style="color:#aaa;">7-Day No Questions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="container testimonials-section">
+        <div class="section-header">
+            <h3><i class="fa-regular fa-comments"></i> What Our Customers Say</h3>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Customer">
+                    <div>
+                        <h4>Ahmed Khan</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"Amazing quality and fast delivery! The product was exactly as described. Will definitely shop
+                    again."</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Customer">
+                    <div>
+                        <h4>Sara Ali</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"I love the variety of brands available. The customer support was also very helpful with my query."
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Customer">
+                    <div>
+                        <h4>Bilal Ahmed</h4>
+                        <div class="stars">★★★★☆</div>
+                    </div>
+                </div>
+                <p>"Great experience overall. The packaging was secure and premium. Highly recommended!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Virtual Mega Mall</h4>
+                <p>The premium destination for all your shopping needs. Genuine brands, verified products, and seamless
+                    experience.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="advertise.html">Advertise With Us</a></li>
+                    <li><a href="admin.html">Vendor Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Help</h4>
+                <ul>
+                    <li><a href="help.html">Help Center / FAQs</a></li>
+                    <li><a href="profile.html">Track Order</a></li>
+                    <li><a href="profile.html">Returns & Refunds</a></li>
+                    <li><a href="chat.js" onclick="toggleChat(); return false;">Live Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Discover</h4>
+                <ul>
+                    <li><a href="brands.html">Brand Directory</a></li>
+                    <li><a href="comparison.html">Compare Products</a></li>
+                    <li><a href="index.html#clothing-container">Fashion Category</a></li>
+                    <li><a href="index.html#tech-container">Tech Category</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-col newsletter-col">
+                <h4>SIGN UP FOR UPDATES</h4>
+                <p>Get access to our latest collections, exclusive deals and new arrivals. <a href="help.html">Privacy
+                        Policy</a></p>
+                <form class="footer-newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" id="newsletter-email" placeholder="Email" required>
+                    <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+                <div id="newsletter-success" class="newsletter-success" style="display:none;">
+                    <i class="fa-solid fa-check-circle"></i> Subscribed!
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Virtual Mega Mall. All Rights Reserved. <br>
+            <span style="font-size:12px; color:#666;">Developed by <a href="#"
+                    style="color:var(--hazel-gold); text-decoration:none;">HSN Developers</a></span>
+        </div>
+    </footer>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quick-view-modal">
+        <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
+        <div class="quick-view-content">
+            <div class="quick-view-image">
+                <img src="" alt="Product" id="qv-image">
+            </div>
+            <div class="quick-view-details">
+                <div class="brand" id="qv-brand">Brand</div>
+                <h2 id="qv-name">Product Name</h2>
+                <div class="price" id="qv-price">Rs. 0</div>
+                <p class="description" id="qv-desc">Premium quality product with exceptional craftsmanship.</p>
+                <div class="quick-view-actions">
+                    <button class="add-btn" id="qv-add-btn"><i class="fa-solid fa-bag-shopping"></i> Add to
+                        Cart</button>
+                    <button class="view-btn" id="qv-view-btn">View Full Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Notification -->
+    <div id="social-proof-toast" class="social-proof-toast">
+        <div class="proof-content">
+            <img id="proof-img" src="" alt="Product">
+            <div class="proof-text">
+                <span id="proof-name" class="proof-name">Someone</span> from <span id="proof-city">Karachi</span>
+                <br>purchased <span id="proof-product" class="proof-product">Product Name</span>
+                <br><small id="proof-time">Just now</small>
+            </div>
+            <button class="proof-close" onclick="closeSocialProof()">&times;</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+>>>>>>> d4c053b4dc1615080932e89c73ad83e857d15bb3

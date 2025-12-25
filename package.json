@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "customer-frontend",
   "private": true,
   "version": "0.0.0",
@@ -35,3 +36,30 @@
     "vite": "^7.2.4"
   }
 }
+=======
+    "name": "virtual-mega-mall",
+    "version": "1.0.0",
+    "description": "Pakistan's first 3D virtual shopping mall",
+    "main": "index.html",
+    "scripts": {
+        "dev": "vercel dev",
+        "build": "echo 'No build step required'",
+        "deploy": "vercel --prod"
+    },
+    "dependencies": {
+        "stripe": "^14.10.0",
+        "firebase-admin": "^12.0.0"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "keywords": [
+        "ecommerce",
+        "3d-mall",
+        "shopping",
+        "pakistan"
+    ],
+    "author": "Virtual Mega Mall",
+    "license": "MIT"
+}
+>>>>>>> d4c053b4dc1615080932e89c73ad83e857d15bb3
