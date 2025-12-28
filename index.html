@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
     <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
     <link rel="stylesheet" href="inline-search-icons.css"> <!-- Inline Search Icons -->
+    <link rel="stylesheet" href="product-card-glass.css"> <!-- Glassmorphism Product Cards -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="safari-fixes.css"> <!-- Safari Compatibility -->
@@ -519,46 +520,71 @@
     <section class="container">
         <h2>Trending Now</h2>
         <div class="product-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            <a href="product.html?id=running-shoes" class="product-card-glass">
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" class="product-img"
+                        alt="Running Shoes">
+                </div>
                 <h4>Running Shoes</h4>
                 <p class="brand-name">Nike Store</p>
                 <p class="price">Rs. 12,000</p>
-                <button
-                    onclick="addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
                     to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            </a>
+            <a href="product.html?id=galaxy-s24" class="product-card-glass">
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80"
+                        class="product-img" alt="Galaxy S24">
+                </div>
                 <h4>Galaxy S24</h4>
                 <p class="brand-name">Samsung Official</p>
                 <p class="price">Rs. 350,000</p>
-                <button
-                    onclick="addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
                     to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            </a>
+            <a href="product.html?id=summer-kurta" class="product-card-glass">
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80"
+                        class="product-img" alt="Summer Kurta">
+                </div>
                 <h4>Summer Kurta</h4>
                 <p class="brand-name">J. (Junaid Jamshed)</p>
                 <p class="price">Rs. 4,500</p>
-                <button
-                    onclick="addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
                     to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            </a>
+            <a href="product.html?id=luxury-watch" class="product-card-glass">
+                <span class="badge">Luxury</span>
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80"
+                        class="product-img" alt="Luxury Watch">
+                </div>
                 <h4>Luxury Watch</h4>
                 <p class="brand-name">Rolex Official</p>
                 <p class="price">Rs. 1,875,000</p>
-                <button
-                    onclick="addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
                     to Cart</button>
-            </div>
+            </a>
         </div>
     </section>
 
