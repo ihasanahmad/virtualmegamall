@@ -1568,7 +1568,7 @@ h3 {
     color: #721c24;
 }
 
-/* --- SEARCH AUTOCOMPLETE --- */
+/* --- SEARCH AUTOCOMPLETE - Glass White --- */
 .search-container {
     position: relative;
 }
@@ -1578,9 +1578,12 @@ h3 {
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 10px 30px rgba(100, 149, 237, 0.2);
     max-height: 350px;
     overflow-y: auto;
     z-index: 1000;
@@ -1593,7 +1596,7 @@ h3 {
 
 .suggestion-section {
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.15);
 }
 
 .suggestion-section:last-child {
@@ -1602,7 +1605,7 @@ h3 {
 
 .suggestion-title {
     font-size: 11px;
-    color: #888;
+    color: var(--text-muted);
     text-transform: uppercase;
     padding: 5px 15px;
     font-weight: 600;
@@ -1618,11 +1621,11 @@ h3 {
 }
 
 .suggestion-item:hover {
-    background: #f5f5f5;
+    background: rgba(192, 192, 192, 0.1);
 }
 
 .suggestion-item i {
-    color: var(--primary-hazel);
+    color: var(--text-secondary);
     width: 20px;
     text-align: center;
 }
@@ -1632,7 +1635,7 @@ h3 {
     height: 40px;
     object-fit: contain;
     border-radius: 8px;
-    background: #f5f5f5;
+    background: rgba(192, 192, 192, 0.1);
 }
 
 .suggestion-item .item-info {
@@ -1641,17 +1644,17 @@ h3 {
 
 .suggestion-item .item-name {
     font-size: 14px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .suggestion-item .item-category {
     font-size: 11px;
-    color: #888;
+    color: var(--text-muted);
 }
 
 .suggestion-item .item-price {
     font-weight: 600;
-    color: var(--primary-hazel);
+    color: var(--text-primary);
 }
 
 /* --- NEW BADGE --- */
@@ -1669,31 +1672,32 @@ h3 {
     z-index: 10;
 }
 
-/* --- AD BANNER STYLES --- */
+/* --- AD BANNER STYLES - Glass/Chrome --- */
 .ad-banner-section {
     padding: 30px 60px;
-    background: var(--cream-bg);
+    background: var(--vapor-white);
 }
 
 .ad-banner {
     display: block;
     position: relative;
-    border-radius: 15px;
+    border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
     text-decoration: none;
+    border: 1px solid rgba(192, 192, 192, 0.2);
 }
 
 .ad-banner:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(100, 149, 237, 0.2);
 }
 
 .ad-banner img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 15px;
+    border-radius: 16px;
 }
 
 .ad-label {
