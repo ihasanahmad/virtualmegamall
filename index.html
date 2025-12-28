@@ -146,17 +146,29 @@
                 <a href="category.html?type=kids"><i class="fa-solid fa-child"></i> Kids & Toys</a>
             </div>
 
+
             <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
 
-            <div class="input-icons">
-                <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search" id="voice-btn"></i>
-                <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
-                <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
+            <div class="search-btn-wrapper">
+                <button class="search-btn" onclick="toggleSearchMenu()" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="search-menu" id="search-menu">
+                    <button class="search-menu-item" onclick="performTextSearch()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Text Search
+                    </button>
+                    <button class="search-menu-item" onclick="startVoiceSearch()">
+                        <i class="fa-solid fa-microphone"></i> Voice Search
+                    </button>
+                    <button class="search-menu-item" onclick="openScanner('barcode')">
+                        <i class="fa-solid fa-barcode"></i> Barcode Scan
+                    </button>
+                    <button class="search-menu-item" onclick="openScanner('image')">
+                        <i class="fa-solid fa-camera"></i> Image Search
+                    </button>
+                </div>
             </div>
-
-            <button class="search-btn" aria-label="Search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
 
             <div class="search-suggestions" id="search-suggestions">
                 <div class="suggestion-section" id="trending-section">
