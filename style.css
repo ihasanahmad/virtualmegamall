@@ -1349,12 +1349,13 @@ h3 {
 }
 
 .quick-view-btn:hover {
-    background: var(--hazel-gold);
-    border-color: var(--hazel-gold);
-    color: #111;
+    background: var(--chrome-gradient-1);
+    border-color: transparent;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
-/* --- QUICK VIEW MODAL --- */
+/* --- QUICK VIEW MODAL - Glass White --- */
 .quick-view-modal {
     display: none;
     position: fixed;
@@ -1362,8 +1363,9 @@ h3 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(248, 249, 250, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 3000;
     justify-content: center;
     align-items: center;
@@ -1386,9 +1388,12 @@ h3 {
 }
 
 .quick-view-content {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(100, 149, 237, 0.2);
     max-width: 900px;
     width: 100%;
     max-height: 90vh;
@@ -1414,17 +1419,25 @@ h3 {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: none;
-    border: none;
-    color: white;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    color: var(--text-primary);
     font-size: 28px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     cursor: pointer;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: 0.3s;
 }
 
 .quick-view-close:hover {
     transform: rotate(90deg);
+    background: var(--chrome-gradient-1);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
 .quick-view-image {
@@ -1433,7 +1446,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(192, 192, 192, 0.05);
     padding: 30px;
 }
 
@@ -1449,7 +1462,7 @@ h3 {
 }
 
 .quick-view-details .brand {
-    color: var(--hazel-gold);
+    color: var(--text-secondary);
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 2px;
@@ -1459,18 +1472,18 @@ h3 {
 .quick-view-details h2 {
     font-size: 28px;
     margin-bottom: 15px;
-    color: white;
+    color: var(--text-primary);
 }
 
 .quick-view-details .price {
     font-size: 26px;
     font-weight: 700;
-    color: var(--hazel-gold);
+    color: var(--text-primary);
     margin-bottom: 20px;
 }
 
 .quick-view-details .description {
-    color: #aaa;
+    color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 25px;
     font-size: 14px;
@@ -1492,13 +1505,17 @@ h3 {
 }
 
 .quick-view-actions .add-btn {
-    background: var(--hazel-gold);
-    color: #111;
-    border: none;
+    background: var(--chrome-gradient-1);
+    color: var(--text-primary);
+    border: 1px solid rgba(192, 192, 192, 0.3);
 }
 
 .quick-view-actions .add-btn:hover {
-    background: #d4b076;
+    background: var(--chrome-gradient-2);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.4);
+}
+
+background: #d4b076;
 }
 
 .quick-view-actions .view-btn {
