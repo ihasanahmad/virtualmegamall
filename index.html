@@ -129,42 +129,34 @@
         </div>
 
         <!-- Search Bar with Categories Button -->
-        <div class="search-bar-container">
-            <!-- Categories Dropdown -->
-            <div class="categories-dropdown">
-                <button class="categories-btn" onclick="toggleCategoriesMenu()">
-                    CATEGORIES <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div id="categories-menu" class="categories-menu">
-                    <a href="brands.html"><i class="fa-solid fa-bag-shopping"></i> Shop All Brands</a>
-                    <a href="category.html?type=clothing"><i class="fa-solid fa-shirt"></i> Clothing & Fashion</a>
-                    <a href="category.html?type=shoes"><i class="fa-solid fa-shoe-prints"></i> Shoes & Footwear</a>
-                    <a href="category.html?type=tech"><i class="fa-solid fa-mobile-screen"></i> Electronics & Tech</a>
-                    <a href="category.html?type=jewelry"><i class="fa-solid fa-gem"></i> Watches & Jewelry</a>
-                    <a href="category.html?type=beauty"><i class="fa-solid fa-spa"></i> Beauty & Skincare</a>
-                    <a href="category.html?type=home"><i class="fa-solid fa-couch"></i> Home & Living</a>
-                    <a href="category.html?type=sports"><i class="fa-solid fa-dumbbell"></i> Sports & Fitness</a>
-                    <a href="category.html?type=kids"><i class="fa-solid fa-child"></i> Kids & Toys</a>
-                </div>
+        <div class="unified-search-container">
+            <button class="categories-btn" onclick="toggleCategoriesMenu()">
+                CATEGORIES <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div id="categories-menu" class="categories-menu">
+                <a href="brands.html"><i class="fa-solid fa-bag-shopping"></i> Shop All Brands</a>
+                <a href="category.html?type=clothing"><i class="fa-solid fa-shirt"></i> Clothing & Fashion</a>
+                <a href="category.html?type=shoes"><i class="fa-solid fa-shoe-prints"></i> Shoes & Footwear</a>
+                <a href="category.html?type=tech"><i class="fa-solid fa-mobile-screen"></i> Electronics & Tech</a>
+                <a href="category.html?type=jewelry"><i class="fa-solid fa-gem"></i> Watches & Jewelry</a>
+                <a href="category.html?type=beauty"><i class="fa-solid fa-spa"></i> Beauty & Skincare</a>
+                <a href="category.html?type=home"><i class="fa-solid fa-couch"></i> Home & Living</a>
+                <a href="category.html?type=sports"><i class="fa-solid fa-dumbbell"></i> Sports & Fitness</a>
+                <a href="category.html?type=kids"><i class="fa-solid fa-child"></i> Kids & Toys</a>
             </div>
 
-            <!-- Input Wrapper with Icons Inside -->
-            <div class="input-wrapper">
-                <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
-                <div class="input-icons">
-                    <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search"
-                        id="voice-btn"></i>
-                    <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
-                    <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
-                </div>
+            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
+
+            <div class="input-icons">
+                <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search" id="voice-btn"></i>
+                <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
+                <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
             </div>
 
-            <!-- Search Button -->
             <button class="search-btn" aria-label="Search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
 
-            <!-- Search Autocomplete Dropdown -->
             <div class="search-suggestions" id="search-suggestions">
                 <div class="suggestion-section" id="trending-section">
                     <div class="suggestion-title">🔥 Trending Searches</div>
@@ -220,40 +212,8 @@
             </div>
         </div>
 
-        <!-- Right Side: Selectors + Icons -->
+        <!-- Right Side: Icons -->
         <div class="nav-actions">
-            <!-- Currency Selector -->
-            <div class="dropdown-item">
-                <select id="currency-selector" onchange="changeCurrency(this.value)"
-                    style="background: transparent; border: none; color: inherit; cursor: pointer; outline: none;">
-                    <option value="PKR">PKR</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="GBP">GBP</option>
-                    <option value="AED">AED</option>
-                </select>
-                <i class="fa-solid fa-caret-down"></i>
-            </div>
-
-            <!-- Language Selector -->
-            <div class="dropdown-item">
-                <select id="language-selector" onchange="changeLanguage(this.value)"
-                    style="background: transparent; border: none; color: inherit; cursor: pointer; outline: none;">
-                    <option value="en">EN</option>
-                    <option value="ur">اردو</option>
-                    <option value="ar">العربية</option>
-                </select>
-                <i class="fa-solid fa-caret-down"></i>
-            </div>
-
-            <!-- Theme Toggle -->
-            <div class="icon-item">
-                <button id="theme-toggle" onclick="cycleTheme()" title="Toggle Theme"
-                    style="background: none; border: none; cursor: pointer; font-size: 18px; color: inherit;">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                </button>
-            </div>
-
             <!-- Sync/Compare Icon -->
             <div class="icon-item">
                 <a href="comparison.html" title="Compare Products" style="color: inherit; text-decoration: none;">
@@ -261,12 +221,24 @@
                 </a>
             </div>
 
-            <!-- User Icon -->
-            <div class="icon-item">
-                <a href="login.html" id="user-icon" title="Login / Account"
-                    style="color: inherit; text-decoration: none;">
-                    <i class="fa-regular fa-user"></i>
-                </a>
+            <!-- User Icon with Dropdown -->
+            <div class="icon-item user-menu-wrapper" onclick="toggleUserMenu()">
+                <i class="fa-regular fa-user" title="Account"></i>
+                <div class="user-dropdown" id="user-dropdown">
+                    <a href="login.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </a>
+                    <a href="profile.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-user"></i> My Account
+                    </a>
+                    <a href="profile.html#orders" class="user-dropdown-item">
+                        <i class="fa-solid fa-box"></i> Orders
+                    </a>
+                    <div class="user-dropdown-divider"></div>
+                    <div class="user-dropdown-item" onclick="event.stopPropagation(); cycleTheme();">
+                        <i class="fa-solid fa-circle-half-stroke"></i> Toggle Theme
+                    </div>
+                </div>
             </div>
 
             <!-- Cart Icon with Badge -->
@@ -275,7 +247,6 @@
                     style="color: inherit; text-decoration: none; position: relative;">
                     <i class="fa-solid fa-shopping-bag"></i>
                     <span class="badge" id="cart-badge">0</span>
-                    <!-- Cart Preview Popup -->
                     <div class="cart-preview" id="cart-preview">
                         <div class="cart-preview-header">Shopping Bag</div>
                         <div class="cart-preview-items" id="cart-preview-items"></div>
