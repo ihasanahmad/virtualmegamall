@@ -178,79 +178,69 @@ h4,
 
 :root {
     /* ==================================================
-       METALLIC AIR - FUTURE-MINIMALIST DESIGN SYSTEM
-       Vapor White | Chrome Gradients | Y2K Luxury
+       CLINICAL ART GALLERY - SWISS MEDICAL AESTHETIC
+       Pure White | Jet Black | Ultra-Thin Borders
        ================================================== */
 
-    /* Core Background & Surfaces */
-    --bg-color: #F8F9FA;
-    /* Vapor White */
+    /* Core Background & Surfaces - PURE WHITE ONLY */
+    --bg-color: #FFFFFF;
     --surface-color: #FFFFFF;
-    /* Pure White */
-    --bg-primary: #F8F9FA;
-    --bg-secondary: #FFFFFF --dark-bg: #F8F9FA;
-    /* Override legacy "dark" name */
-    --cream-bg: #FAFBFC;
-    /* Off-White */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FFFFFF;
+    --dark-bg: #FFFFFF;
+    --cream-bg: #FFFFFF;
 
-    /* Text Colors */
-    --text-primary: #111111;
-    /* Sharp Black */
-    --text-secondary: #333333;
-    --dark-text: #111111;
-    /* Override legacy name */
+    /* Text Colors - JET BLACK ONLY */
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --dark-text: #000000;
+    --text-color: #000000;
+    --text-muted: rgba(0, 0, 0, 0.6);
 
-    /* Accent Colors - Chrome/Silver */
-    --accent-color: #C0C0C0;
-    /* Silver */
-    --accent-gold: transparent;
-    /* Remove gold accent */
-    --hazel-gold: transparent;
-    /* Remove hazel gold */
-    --primary-hazel: #E8E8E8;
-    /* Light Silver */
-    --hazel-light: #F5F5F5;
+    /* Borders - ULTRA THIN #E5E5E5 ONLY */
+    --border-color: #E5E5E5;
+    --border-light: #E5E5E5;
 
-    /* Typography */
-    --font-heading: var(--font-primary);
-    /* Use Inter from typography file */
-    --font-body: var(--font-primary);
+    /* NO Gradients - Removed ALL */
+    --primary-gradient: none;
+    --accent-gradient: none;
+    --chrome-gradient-1: none;
+    --chrome-gradient-2: none;
 
-    /* Chrome Gradients (override prism gradients) */
-    --prism-primary: linear-gradient(135deg, #E8E8E8, #FFFFFF);
-    --prism-secondary: linear-gradient(135deg, #C0C0C0, #E8E8E8);
-    --prism-accent: linear-gradient(135deg, #B8B8B8, #FFFFFF);
-    --prism-gold: linear-gradient(135deg, #D3D3D3, #F5F5F5);
-    --prism-glow: linear-gradient(135deg, #E8E8E8 0%, #FFFFFF 50%, #E8E8E8 100%);
-    --premium-gradient: linear-gradient(135deg, #E8E8E8, #FFFFFF);
+    /* NO Accent Colors - Pure White/Black Only */
+    --accent-color: #000000;
+    --primary-hazel: #000000;
+    --accent-gold: #000000;
 
-    /* Glass Morphism - CLEAR/WHITE Glass */
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-primary: rgba(255, 255, 255, 0.7);
-    --glass-secondary: rgba(255, 255, 255, 0.85);
-    --glass-highlight: rgba(255, 255, 255, 0.9);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --glass-border-gold: rgba(192, 192, 192, 0.3);
-    /* Silver border */
+    /* Typography - Helvetica/Courier */
+    --font-heading: 'Helvetica Neue', 'Arial', sans-serif;
+    --font-body: 'Helvetica', 'Arial', sans-serif;
+    --font-mono: 'Courier New', monospace;
 
-    /* Colored Glows (NO BLACK SHADOWS) */
-    --glass-shadow: 0 8px 32px 0 rgba(100, 149, 237, 0.15);
-    /* Blue glow */
-    --shadow-sm: 0 4px 12px rgba(100, 149, 237, 0.3);
-    --shadow-md: 0 8px 24px rgba(100, 149, 237, 0.4);
-    --shadow-lg: 0 12px 40px rgba(100, 149, 237, 0.5);
-    --shadow-glow: 0 0 20px rgba(100, 149, 237, 0.4);
-    --shadow-glow-gold: 0 0 20px rgba(192, 192, 192, 0.5);
-    /* Silver glow */
+    /* Spacing - 2x for Premium Empty Space */
+    --spacing-xs: 10px;
+    --spacing-sm: 20px;
+    --spacing-md: 40px;
+    --spacing-lg: 60px;
+    --spacing-xl: 80px;
 
-    /* Border Radius */
-    --prism-border-radius: 16px;
-    --prism-border-radius-sm: 8px;
-    --prism-border-radius-lg: 24px;
+    /* NO Shadows - Clinical Style */
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+
+    /* NO Glassmorphism */
+    --glass-bg: transparent;
+    --glass-border: transparent;
+
+    /* Border Radius - Minimal */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
 }
 
-/* REMOVED: Light theme override - we only use vapor white now */
-
+/* CLINICAL ART GALLERY - Body Styles */
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
