@@ -172,92 +172,79 @@ h4,
 }
 
 :root {
-    /* LUXURY DARK MODE - Rich Black & Metallic Gold */
-    --bg-color: #0a0a0a;
-    --surface-color: #1c1c1c;
-    --text-primary: #f4f4f4;
-    --text-secondary: #a1a1a1;
-    --accent-color: #d4af37;
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Montserrat', sans-serif;
+    /* ==================================================
+       METALLIC AIR - FUTURE-MINIMALIST DESIGN SYSTEM
+       Vapor White | Chrome Gradients | Y2K Luxury
+       ================================================== */
 
-    /* Legacy Color Variables (Updated for Dark Mode) */
-    --primary-hazel: #8E7C68;
-    --hazel-light: #BCAAA4;
-    --hazel-gold: #d4af37;
-    --accent-gold: #d4af37;
+    /* Core Background & Surfaces */
+    --bg-color: #F8F9FA;
+    /* Vapor White */
+    --surface-color: #FFFFFF;
+    /* Pure White */
+    --bg-primary: #F8F9FA;
+    --bg-secondary: #FFFFFF --dark-bg: #F8F9FA;
+    /* Override legacy "dark" name */
+    --cream-bg: #FAFBFC;
+    /* Off-White */
 
-    /* Prism Gradient Colors (Updated for Dark Theme) */
-    --prism-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --prism-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --prism-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --prism-gold: linear-gradient(135deg, #ffd89b 0%, #d4af37 100%);
-    --prism-glow: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    /* Text Colors */
+    --text-primary: #111111;
+    /* Sharp Black */
+    --text-secondary: #333333;
+    --dark-text: #111111;
+    /* Override legacy name */
 
-    /* Dark Mode Backgrounds */
-    --dark-bg: #0a0a0a;
-    --dark-text: #f4f4f4;
-    --cream-bg: #1c1c1c;
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1c1c1c;
+    /* Accent Colors - Chrome/Silver */
+    --accent-color: #C0C0C0;
+    /* Silver */
+    --accent-gold: transparent;
+    /* Remove gold accent */
+    --hazel-gold: transparent;
+    /* Remove hazel gold */
+    --primary-hazel: #E8E8E8;
+    /* Light Silver */
+    --hazel-light: #F5F5F5;
 
-    /* Glass Morphism Layers (Dark Theme) */
-    --glass-bg: rgba(28, 28, 28, 0.95);
-    --glass-primary: rgba(255, 255, 255, 0.05);
-    --glass-secondary: rgba(255, 255, 255, 0.08);
-    --glass-highlight: rgba(255, 255, 255, 0.12);
-    --glass-border: rgba(51, 51, 51, 1);
-    --glass-border-gold: rgba(212, 175, 55, 0.4);
+    /* Typography */
+    --font-heading: var(--font-primary);
+    /* Use Inter from typography file */
+    --font-body: var(--font-primary);
 
-    /* Shadow Depths (Enhanced for Dark Mode) */
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.7);
-    --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.3);
-    --shadow-glow-gold: 0 0 20px rgba(212, 175, 55, 0.5);
+    /* Chrome Gradients (override prism gradients) */
+    --prism-primary: linear-gradient(135deg, #E8E8E8, #FFFFFF);
+    --prism-secondary: linear-gradient(135deg, #C0C0C0, #E8E8E8);
+    --prism-accent: linear-gradient(135deg, #B8B8B8, #FFFFFF);
+    --prism-gold: linear-gradient(135deg, #D3D3D3, #F5F5F5);
+    --prism-glow: linear-gradient(135deg, #E8E8E8 0%, #FFFFFF 50%, #E8E8E8 100%);
+    --premium-gradient: linear-gradient(135deg, #E8E8E8, #FFFFFF);
 
-    /* Border Radius */
-    --prism-border-radius: 0px;
-    --prism-border-radius-sm: 0px;
-    --prism-border-radius-lg: 0px;
-
-    /* Legacy Support */
-    --premium-gradient: linear-gradient(135deg, #d4af37 0%, #8E7C68 100%);
-}
-
-/* LIGHT THEME OVERRIDE */
-[data-theme="light"] {
-    /* Light Mode - Elegant White & Gold */
-    --bg-color: #ffffff;
-    --surface-color: #f8f8f8;
-    --text-primary: #1a1a1a;
-    --text-secondary: #666666;
-    --accent-color: #d4af37;
-
-    /* Light Mode Backgrounds */
-    --dark-bg: #f5f5f5;
-    --dark-text: #1a1a1a;
-    --cream-bg: #fafafa;
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f8f8;
-
-    /* Glass Morphism Layers (Light Theme) */
-    --glass-bg: rgba(255, 255, 255, 0.95);
+    /* Glass Morphism - CLEAR/WHITE Glass */
+    --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-primary: rgba(255, 255, 255, 0.7);
     --glass-secondary: rgba(255, 255, 255, 0.85);
     --glass-highlight: rgba(255, 255, 255, 0.9);
-    --glass-border: rgba(212, 175, 55, 0.2);
-    --glass-border-gold: rgba(212, 175, 55, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-border-gold: rgba(192, 192, 192, 0.3);
+    /* Silver border */
 
-    /* Shadow Depths (Light Mode) */
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
-    --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.2);
-    --shadow-glow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
+    /* Colored Glows (NO BLACK SHADOWS) */
+    --glass-shadow: 0 8px 32px 0 rgba(100, 149, 237, 0.15);
+    /* Blue glow */
+    --shadow-sm: 0 4px 12px rgba(100, 149, 237, 0.3);
+    --shadow-md: 0 8px 24px rgba(100, 149, 237, 0.4);
+    --shadow-lg: 0 12px 40px rgba(100, 149, 237, 0.5);
+    --shadow-glow: 0 0 20px rgba(100, 149, 237, 0.4);
+    --shadow-glow-gold: 0 0 20px rgba(192, 192, 192, 0.5);
+    /* Silver glow */
+
+    /* Border Radius */
+    --prism-border-radius: 16px;
+    --prism-border-radius-sm: 8px;
+    --prism-border-radius-lg: 24px;
 }
+
+/* REMOVED: Light theme override - we only use vapor white now */
 
 body {
     background-color: var(--bg-color);
