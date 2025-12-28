@@ -665,56 +665,59 @@ body {
     text-align: center;
 }
 
-/* Nav Buttons */
+/* Nav Buttons - Liquid Metal */
 .nav-btn {
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 10px 24px;
+    border-radius: 12px;
     text-decoration: none;
     font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-btn.outlined {
-    border: 1px solid var(--primary-hazel);
-    color: var(--primary-hazel);
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
     background: transparent;
 }
 
 .nav-btn.outlined:hover {
-    background: var(--primary-hazel);
-    color: white;
+    background: var(--text-primary);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
 .nav-btn.filled {
-    background: var(--primary-hazel);
-    color: white;
-    border: none;
+    background: var(--chrome-gradient-1);
+    color: var(--text-primary);
+    border: 1px solid rgba(192, 192, 192, 0.3);
 }
 
 .nav-btn.filled:hover {
-    background: var(--accent-gold);
+    background: var(--chrome-gradient-2);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
 .search-btn {
-    background: var(--primary-hazel) !important;
-    color: white !important;
+    background: var(--chrome-gradient-1) !important;
+    color: var(--text-primary) !important;
     width: 35px !important;
     height: 35px !important;
     padding: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none !important;
+    border: 1px solid rgba(192, 192, 192, 0.3) !important;
     border-radius: 50% !important;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(100, 149, 237, 0.2);
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-btn:hover {
-    background: var(--accent-gold) !important;
+    background: var(--chrome-gradient-2) !important;
     transform: rotate(10deg);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.4);
 }
 
 .nav-group-right {
@@ -723,25 +726,9 @@ body {
     gap: 20px;
 }
 
-/* Minimalist Icon Navigation */
-.nav-icons {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-/* Light Theme - Make icons visible */
-[data-theme="light"] .nav-icon {
-    color: #1a1a1a !important;
-}
-
-[data-theme="light"] .nav-icon:hover {
-    color: var(--primary-hazel) !important;
-    background: rgba(142, 124, 104, 0.1);
-}
-
+/* Nav Icons - Chrome/Glass Theme */
 .nav-icon {
-    color: var(--dark-text);
+    color: var(--text-primary);
     font-size: 22px;
     text-decoration: none;
     position: relative;
@@ -826,8 +813,9 @@ body {
 .cart-preview-header {
     padding: 15px 20px;
     font-weight: 600;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
     font-size: 14px;
+    color: var(--text-primary);
 }
 
 .cart-preview-items {
@@ -845,7 +833,7 @@ body {
 }
 
 .cart-preview-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(192, 192, 192, 0.1);
 }
 
 .cart-preview-item img {
@@ -853,7 +841,7 @@ body {
     height: 50px;
     object-fit: contain;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(192, 192, 192, 0.05);
 }
 
 .cart-preview-item .item-info {
@@ -863,24 +851,25 @@ body {
 .cart-preview-item .item-info h5 {
     font-size: 13px;
     margin-bottom: 4px;
+    color: var(--text-primary);
 }
 
 .cart-preview-item .item-info span {
     font-size: 12px;
-    color: var(--hazel-gold);
+    color: var(--text-secondary);
 }
 
 .cart-preview-footer {
     padding: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(192, 192, 192, 0.2);
 }
 
 .view-cart-btn {
     display: block;
     text-align: center;
     padding: 12px;
-    background: var(--hazel-gold);
-    color: #111;
+    background: var(--chrome-gradient-1);
+    color: var(--text-primary);
     text-decoration: none;
     border-radius: 10px;
     font-weight: 600;
@@ -889,13 +878,14 @@ body {
 }
 
 .view-cart-btn:hover {
-    background: #d4b076;
+    background: var(--chrome-gradient-2);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
 .cart-preview-empty {
     padding: 30px;
     text-align: center;
-    color: #888;
+    color: var(--text-muted);
 }
 
 /* Voice Search Active State */
