@@ -4,15 +4,15 @@
     color: #d4af37;
 }
 
-/* Unified Search Container - Single Cohesive Unit */
+/* Unified Search Container - Simplified */
 .unified-search-container {
     display: flex;
     align-items: center;
     background-color: #2c2c2c;
     border: 1px solid #333;
-    border-radius: 6px;
+    border-radius: 8px;
     flex: 1;
-    max-width: 650px;
+    max-width: 550px;
     overflow: hidden;
     position: relative;
 }
@@ -57,34 +57,13 @@
     color: #777;
 }
 
-/* Icons Inside Input - VISIBLE */
-.unified-search-container .input-icons {
-    display: flex;
-    gap: 10px;
-    color: #aaa;
-    padding: 0 12px;
-    flex-shrink: 0;
-    border-right: 1px solid #444;
-}
-
-.unified-search-container .input-icons i {
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 16px;
-}
-
-.unified-search-container .input-icons i:hover {
-    color: #d4af37;
-    transform: scale(1.1);
-}
-
-/* Search Button - RIGHT EDGE WITH ROUNDED BORDER */
+/* Search Button - Right Edge */
 .unified-search-container .search-btn {
     background-color: #8d7a63;
     color: white;
     border: none;
     padding: 12px 18px;
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 8px 8px 0;
     cursor: pointer;
     flex-shrink: 0;
     transition: 0.3s;
@@ -99,6 +78,37 @@
 
 .unified-search-container .search-btn:hover {
     background-color: #a08968;
+}
+
+/* Search Action Buttons */
+.search-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.action-btn {
+    background-color: #333;
+    color: #aaa;
+    border: 1px solid #444;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn i {
+    font-size: 16px;
+}
+
+.action-btn:hover {
+    background-color: #444;
+    color: #d4af37;
+    border-color: #d4af37;
+    transform: translateY(-2px);
 }
 
 /* Navigation Actions (Right Side) */
@@ -182,45 +192,44 @@
     margin: 8px 0;
 }
 
-/* Cart Icon Wrapper - Badge Only */
+/* Cart Icon Wrapper - Icon with Badge */
 .cart-icon-wrapper {
     background-color: #d4af37;
-    padding: 8px 12px;
-    border-radius: 20px;
-    min-width: 36px;
-    height: 36px;
+    padding: 10px 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: 0.3s;
 }
 
 .cart-icon-wrapper:hover {
     background-color: #e5c054;
+    transform: translateY(-2px);
 }
 
 .cart-icon-wrapper a {
-    font-weight: bold;
     color: #000 !important;
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-/* Hide shopping bag icon, show badge as main element */
 .cart-icon-wrapper i.fa-shopping-bag {
-    display: none;
+    font-size: 16px;
 }
 
-/* Badge for Cart - Main Display */
+/* Badge for Cart */
 .badge {
-    position: static;
-    background-color: transparent;
-    color: #000;
-    font-size: 14px;
+    background-color: #000;
+    color: #d4af37;
+    font-size: 12px;
     font-weight: bold;
-    border-radius: 0;
-    width: auto;
-    height: auto;
-    display: inline;
+    border-radius: 10px;
+    padding: 2px 6px;
+    min-width: 18px;
+    text-align: center;
 }
 
 /* Light Theme Overrides */
@@ -272,4 +281,51 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Categories Dropdown Menu */
+.categories-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 8px;
+    min-width: 250px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.categories-menu.show {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+.categories-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+    border-bottom: 1px solid #333;
+}
+
+.categories-menu a:last-child {
+    border-bottom: none;
+}
+
+.categories-menu a:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
+}
+
+.categories-menu a i {
+    font-size: 14px;
+    width: 20px;
 }
