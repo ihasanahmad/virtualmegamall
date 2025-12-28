@@ -3,15 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    /* Luxury Dark Mode Body Font */
+    font-family: var(--font-body);
+    /* Helvetica */
     scroll-behavior: smooth;
 }
 
-/* PREMIUM FONTS - Luxury Dark Mode */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
-
-/* Luxury Dark Mode - Headings with Premium Serif Font */
+/* Clinical Typography - Helvetica Bold Headings */
 h1,
 h2,
 h3,
@@ -20,13 +17,16 @@ h4,
 .hero h1,
 .section-header h3 {
     font-family: var(--font-heading);
-    color: var(--accent-color);
-    letter-spacing: 1px;
+    /* Helvetica Neue */
+    color: var(--text-primary);
+    /* #000000 */
+    letter-spacing: -0.02em;
+    /* Tight tracking */
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 700;
 }
 
-/* PREMIUM ANIMATIONS */
+/* MINIMAL ANIMATIONS - No Colored Glows */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -36,96 +36,6 @@ h4,
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes pulseGlow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(197, 160, 101, 0.4);
-    }
-
-    70% {
-        box-shadow: 0 0 0 10px rgba(197, 160, 101, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(197, 160, 101, 0);
-    }
-}
-
-/* PRISM ANIMATIONS */
-@keyframes prismShift {
-
-    0%,
-    100% {
-        filter: hue-rotate(0deg) brightness(1);
-    }
-
-    50% {
-        filter: hue-rotate(15deg) brightness(1.1);
-    }
-}
-
-@keyframes glassShimmer {
-    0% {
-        background-position: -200% center;
-    }
-
-    100% {
-        background-position: 200% center;
-    }
-}
-
-@keyframes floatUp {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* --- ANTI-GRAVITY FLOATING ANIMATION --- */
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.anti-gravity-float {
-    animation: float 6s ease-in-out infinite;
-}
-
-.anti-gravity-float:nth-child(odd) {
-    animation-duration: 7s;
-    animation-delay: 0.5s;
-}
-
-.anti-gravity-float:nth-child(even) {
-    animation-duration: 6.5s;
-    animation-delay: 0.3s;
-}
-
-@keyframes prismGlow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3), 0 0 40px rgba(118, 75, 162, 0.2);
-    }
-
-    50% {
-        box-shadow: 0 0 30px rgba(102, 126, 234, 0.5), 0 0 60px rgba(118, 75, 162, 0.3);
     }
 }
 
@@ -141,29 +51,27 @@ h4,
     }
 }
 
-/* TOAST NOTIFICATION - Metallic Air */
+/* TOAST NOTIFICATION - Clinical White */
 .toast {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: rgba(255, 255, 255, 0.9);
-    /* Glass white */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    color: var(--text-primary);
-    /* Black text */
+    background: #FFFFFF;
+    color: #000000;
     padding: 14px 28px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(100, 149, 237, 0.3);
-    /* Blue glow */
+    border-radius: 0;
+    border: 2px solid #000000;
     display: flex;
     align-items: center;
     gap: 12px;
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.3s ease;
     z-index: 10000;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
 }
 
 .toast.show {
@@ -172,8 +80,7 @@ h4,
 }
 
 .toast i {
-    color: #6495ED;
-    /* Cornflower blue for icons */
+    color: #000000;
 }
 
 :root {
