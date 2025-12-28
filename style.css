@@ -1154,7 +1154,10 @@ h3 {
 
 .sale-card {
     position: relative;
-    border: 2px solid #ff6b6b !important;
+    /* Removed red border - using glassmorphism glow instead */
+    border: 1px solid rgba(255, 107, 107, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.15),
+        0 2px 8px rgba(100, 149, 237, 0.1) !important;
 }
 
 .sale-badge {
