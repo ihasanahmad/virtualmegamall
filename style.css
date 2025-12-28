@@ -316,13 +316,13 @@ body {
     animation: floatUp 3s ease-in-out infinite;
 }
 
-/* --- GLASSMORPHISM PANELS (ANTI-GRAVITY) --- */
+/* --- GLASSMORPHISM PANELS (METALLIC AIR) --- */
 .glass-panel {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(100, 149, 237, 0.2);
     border-radius: 16px;
 }
 
@@ -333,7 +333,7 @@ body {
 
 .hover-lift:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(100, 149, 237, 0.5);
 }
 
 /* --- 3D TILT ELEMENT --- */
@@ -343,12 +343,12 @@ body {
 }
 
 
-/* --- NAVIGATION BAR - Luxury Dark Mode --- */
+/* --- NAVIGATION BAR - Metallic Air Glass --- */
 .navbar {
-    background: #1a1a1a;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid #333;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
     padding: 15px 40px;
     display: flex;
     flex-direction: row;
@@ -357,57 +357,27 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px rgba(100, 149, 237, 0.15);
     gap: 20px;
 }
 
-/* LIGHT THEME - NAVBAR OVERRIDES */
-[data-theme="light"] .navbar {
-    background: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="light"] .logo {
-    color: var(--accent-color);
-    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
-}
-
-[data-theme="light"] .nav-icon,
-[data-theme="light"] #theme-toggle {
-    color: #1a1a1a !important;
-}
-
-[data-theme="light"] .nav-icon:hover,
-[data-theme="light"] #theme-toggle:hover {
-    color: var(--primary-hazel) !important;
-    background: rgba(142, 124, 104, 0.1);
-}
-
-[data-theme="light"] .search-container {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="light"] .search-container input {
-    color: #1a1a1a;
-}
-
-[data-theme="light"] .search-container input::placeholder {
-    color: #666666;
-}
+/* REMOVED: Light theme overrides - single theme only */
 
 .logo {
-    color: #d4af37;
-    font-family: 'Times New Roman', serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     flex-shrink: 0;
-    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    text-shadow: none;
     white-space: nowrap;
     min-width: fit-content;
     text-transform: uppercase;
+    background: var(--chrome-gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .nav-links {
@@ -417,22 +387,21 @@ body {
     flex-shrink: 0;
 }
 
-/* HORIZONTAL MENU (New) */
+/* HORIZONTAL MENU - Metallic Air */
 .horizontal-menu {
     display: flex;
     justify-content: center;
-    background: var(--glass-bg);
-    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
     padding: 10px 0;
     position: sticky;
     top: 80px;
-    /* Below Navbar */
     z-index: 900;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
 }
 
 .h-menu-link {
-    color: #ccc;
+    color: var(--text-secondary);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -444,22 +413,22 @@ body {
 
 .h-menu-link:hover,
 .h-menu-link.active {
-    color: var(--hazel-gold);
-    background: rgba(212, 175, 55, 0.05);
+    color: var(--text-primary);
+    background: rgba(192, 192, 192, 0.15);
 }
 
 .h-menu-link.special-3d {
-    color: var(--hazel-gold);
+    color: var(--text-primary);
     font-weight: 700;
-    border: 1px solid var(--hazel-gold);
+    border: 1px solid var(--text-primary);
     margin-left: 20px;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 10px rgba(100, 149, 237, 0.3);
 }
 
 .h-menu-link.special-3d:hover {
-    background: var(--hazel-gold);
-    color: #000;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    background: var(--text-primary);
+    color: #FFFFFF;
+    box-shadow: 0 0 20px rgba(100, 149, 237, 0.6);
 }
 
 .nav-icons {
@@ -472,7 +441,7 @@ body {
 
 .nav-icon {
     position: relative;
-    color: white;
+    color: var(--text-primary);
     font-size: 20px;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -480,9 +449,39 @@ body {
     border-radius: 50%;
 }
 
-.nav-icon:hover {
-    color: var(--hazel-gold);
-    transform: scale(1.1);
+/* Compare Icon - Chrome Style */
+.compare-icon {
+    background: transparent;
+    border: none;
+}
+
+.compare-icon:hover {
+    background: rgba(192, 192, 192, 0.15);
+}
+
+/* Cart Icon - Chrome Accent */
+.cart-icon {
+    background: var(--chrome-gradient-1);
+    border-radius: 8px;
+}
+
+.cart-icon:hover {
+    background: var(--chrome-gradient-2);
+    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--text-primary);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
 }
 
 /* Compare Icon - Simple Style */
@@ -563,7 +562,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: var(--primary-hazel);
+    color: var(--text-secondary);
 }
 
 .search-icons i {
@@ -574,7 +573,7 @@ body {
 }
 
 .search-icons i:hover {
-    color: var(--accent-gold);
+    color: var(--text-primary);
     transform: scale(1.1);
 }
 
@@ -589,16 +588,16 @@ body {
     padding: 5px;
 }
 
-/* Categories Dropdown Button & Menu */
+/* Categories Dropdown Button & Menu - Metallic Air */
 .categories-dropdown {
     position: relative;
     display: inline-block;
 }
 
 .categories-btn {
-    background: linear-gradient(135deg, var(--primary-hazel) 0%, #6B5E50 100%);
-    border: none;
-    color: white;
+    background: var(--chrome-gradient-1);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    color: var(--text-primary);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -606,14 +605,13 @@ body {
     align-items: center;
     gap: 8px;
     padding: 12px 20px;
-    border-radius: 25px;
+    border-radius: 12px;
     transition: 0.3s;
 }
 
 .categories-btn:hover {
-    background: linear-gradient(135deg, var(--hazel-gold) 0%, var(--primary-hazel) 100%);
-    color: white;
-    box-shadow: 0 5px 20px rgba(142, 124, 104, 0.4);
+    background: var(--chrome-gradient-2);
+    box-shadow: 0 5px 20px rgba(100, 149, 237, 0.3);
 }
 
 .categories-btn i {
@@ -626,10 +624,13 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: linear-gradient(180deg, #2D3748 0%, #1A202C 100%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     min-width: 260px;
-    border-radius: 15px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    box-shadow: 0 15px 50px rgba(100, 149, 237, 0.2);
     z-index: 1000;
     padding: 15px 0;
     margin-top: 10px;
@@ -645,20 +646,20 @@ body {
     align-items: center;
     gap: 15px;
     padding: 14px 25px;
-    color: #E2E8F0;
+    color: var(--text-secondary);
     text-decoration: none;
     font-size: 15px;
     transition: all 0.2s ease;
 }
 
 .categories-menu a:hover {
-    background: rgba(80, 200, 200, 0.1);
-    color: #50C8C8;
+    background: rgba(192, 192, 192, 0.15);
+    color: var(--text-primary);
     padding-left: 30px;
 }
 
 .categories-menu a i {
-    color: #50C8C8;
+    color: var(--text-primary);
     font-size: 18px;
     width: 25px;
     text-align: center;
