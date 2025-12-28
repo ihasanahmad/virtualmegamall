@@ -1,0 +1,143 @@
+/* =========================================
+   INLINE SEARCH ICONS - Metallic Air Style
+   Voice, Barcode, Image Search Icons
+   ========================================= */
+
+.unified-search-container {
+    position: relative;
+}
+
+/* Inline Search Icons Container */
+.inline-search-icons {
+    position: absolute;
+    right: 50px;
+    /* Space for search button */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+}
+
+/* Individual Icon Button */
+.inline-icon-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.inline-icon-btn i {
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.inline-icon-btn:hover {
+    background: rgba(192, 192, 192, 0.15);
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.inline-icon-btn:active {
+    transform: scale(0.95);
+}
+
+/* Tooltip on Hover */
+.inline-icon-btn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: rgba(17, 17, 17, 0.95);
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.inline-icon-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(17, 17, 17, 0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.inline-icon-btn:hover::before,
+.inline-icon-btn:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Active State (when recording/scanning) */
+.inline-icon-btn.active {
+    background: rgba(255, 69, 87, 0.15);
+    color: #ff4757;
+    animation: pulseIcon 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseIcon {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 87, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(255, 69, 87, 0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .inline-search-icons {
+        right: 45px;
+        gap: 2px;
+    }
+
+    .inline-icon-btn {
+        width: 28px;
+        height: 28px;
+    }
+
+    .inline-icon-btn i {
+        font-size: 14px;
+    }
+
+    /* Hide tooltips on mobile */
+    .inline-icon-btn::before,
+    .inline-icon-btn::after {
+        display: none;
+    }
+}
+
+/* Adjust search input padding to accommodate icons */
+#global-search {
+    padding-right: 140px !important;
+    /* Space for 3 icons + search button */
+}

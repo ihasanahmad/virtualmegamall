@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
     <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
+    <link rel="stylesheet" href="inline-search-icons.css"> <!-- Inline Search Icons -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="safari-fixes.css"> <!-- Safari Compatibility -->
@@ -151,6 +152,22 @@
 
 
             <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
+
+            <!-- Inline Search Icons (Voice, Barcode, Image) -->
+            <div class="inline-search-icons">
+                <button class="inline-icon-btn" onclick="startVoiceSearch()" aria-label="Voice Search"
+                    data-tooltip="Voice Search">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <button class="inline-icon-btn" onclick="openScanner('barcode')" aria-label="Barcode Scanner"
+                    data-tooltip="Scan Barcode">
+                    <i class="fa-solid fa-barcode"></i>
+                </button>
+                <button class="inline-icon-btn" onclick="openScanner('image')" aria-label="Image Search"
+                    data-tooltip="Image Search">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+            </div>
 
             <div class="search-btn-wrapper">
                 <button class="search-btn" onclick="toggleSearchMenu()" aria-label="Search">
