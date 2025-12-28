@@ -1170,12 +1170,16 @@ h3 {
     z-index: 10;
 }
 
-/* --- SERVICES STRIP (Above Footer) --- */
+/* --- SERVICES STRIP - Glass White --- */
 .services-strip {
     display: flex;
     justify-content: center;
     gap: 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(192, 192, 192, 0.2);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
     padding: 0;
     margin-top: 60px;
 }
@@ -1184,9 +1188,9 @@ h3 {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 20px 40px;
-    color: white;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px 40px;
+    color: var(--text-primary);
+    border-right: 1px solid rgba(192, 192, 192, 0.2);
     transition: all 0.3s ease;
 }
 
@@ -1195,12 +1199,12 @@ h3 {
 }
 
 .service-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(192, 192, 192, 0.1);
 }
 
 .service-item i {
     font-size: 24px;
-    color: var(--accent-gold);
+    color: var(--text-primary);
 }
 
 .service-item div {
@@ -1211,11 +1215,12 @@ h3 {
 .service-item strong {
     font-size: 14px;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .service-item span {
     font-size: 12px;
-    color: #aaa;
+    color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {
@@ -1227,7 +1232,7 @@ h3 {
         flex: 1 1 100%;
         justify-content: center;
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(192, 192, 192, 0.2);
     }
 }
 
@@ -1245,27 +1250,29 @@ h3 {
 }
 
 .stars {
-    color: #ffc107;
+    color: #FFA500;
     font-size: 14px;
     letter-spacing: 2px;
 }
 
 .stars .empty {
-    color: #ddd;
+    color: #D3D3D3;
 }
 
 .rating-count {
     font-size: 12px;
-    color: #888;
+    color: var(--text-muted);
 }
 
-/* --- WISHLIST HEART ICON --- */
+/* --- WISHLIST HEART ICON - Chrome Style --- */
 .wishlist-btn {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: white;
-    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(192, 192, 192, 0.3);
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -1273,19 +1280,19 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(100, 149, 237, 0.15);
     transition: all 0.3s ease;
     z-index: 20;
 }
 
 .wishlist-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(100, 149, 237, 0.3);
 }
 
 .wishlist-btn i {
     font-size: 16px;
-    color: #ccc;
+    color: var(--text-secondary);
     transition: all 0.3s ease;
 }
 
