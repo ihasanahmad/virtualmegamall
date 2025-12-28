@@ -1,0 +1,234 @@
+/* =========================================
+   METALLIC AIR DESIGN TOKENS
+   Future-Minimalist Y2K Luxury Design System
+   ========================================= */
+
+:root {
+    /* ===== COLOR PALETTE ===== */
+    /* Vapor White - Base Background */
+    --vapor-white: #F8F9FA;
+    --pure-white: #FFFFFF;
+    --off-white: #FAFBFC;
+
+    /* Text Colors */
+    --text-primary: #111111;
+    --text-secondary: #333333;
+    --text-muted: #666666;
+
+    /* Liquid Silver / Chrome Gradients */
+    --chrome-gradient-1: linear-gradient(135deg, #E8E8E8, #FFFFFF, #E8E8E8);
+    --chrome-gradient-2: linear-gradient(135deg, #C0C0C0, #E8E8E8, #FFFFFF);
+    --chrome-gradient-3: linear-gradient(90deg, #B8B8B8, #FFFFFF, #B8B8B8);
+    --silver-gradient: linear-gradient(135deg, #D3D3D3, #F5F5F5);
+    --metal-shine: linear-gradient(45deg,
+            #FFFFFF 0%,
+            #E8E8E8 25%,
+            #FFFFFF 50%,
+            #E8E8E8 75%,
+            #FFFFFF 100%);
+
+    /* Accent Colors for Glows */
+    --glow-blue: rgba(100, 149, 237, 0.4);
+    --glow-silver: rgba(192, 192, 192, 0.5);
+    --glow-white: rgba(255, 255, 255, 0.8);
+    --glow-cyan: rgba(0, 255, 255, 0.3);
+
+    /* ===== GLASSMORPHISM ===== */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-bg-strong: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+    /* ===== NEUMORPHISM ===== */
+    --neomorph-shadow-light: -8px -8px 16px rgba(255, 255, 255, 0.8);
+    --neomorph-shadow-dark: 8px 8px 16px rgba(0, 0, 0, 0.1);
+    --neomorph-shadow-combined:
+        8px 8px 16px rgba(0, 0, 0, 0.1),
+        -8px -8px 16px rgba(255, 255, 255, 0.8);
+
+    /* ===== COLORED GLOWS / SHADOWS ===== */
+    --shadow-blue-sm: 0 4px 12px var(--glow-blue);
+    --shadow-blue-md: 0 8px 24px var(--glow-blue);
+    --shadow-blue-lg: 0 12px 40px var(--glow-blue);
+
+    --shadow-silver-sm: 0 4px 12px var(--glow-silver);
+    --shadow-silver-md: 0 8px 24px var(--glow-silver);
+
+    --shadow-white-glow: 0 0 20px var(--glow-white);
+    --shadow-cyan-glow: 0 0 30px var(--glow-cyan);
+
+    /* ===== SPACING ===== */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 40px;
+    --space-xl: 64px;
+    --space-2xl: 96px;
+
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-liquid: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Glassmorphism Utilities */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.glass-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Neumorphism Utilities */
+.neomorph {
+    background: var(--vapor-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--neomorph-shadow-combined);
+}
+
+.neomorph-inset {
+    background: var(--vapor-white);
+    border-radius: var(--radius-md);
+    box-shadow:
+        inset 4px 4px 8px rgba(0, 0, 0, 0.08),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Chrome Gradient Utilities */
+.chrome-bg {
+    background: var(--chrome-gradient-1);
+}
+
+.chrome-bg-2 {
+    background: var(--chrome-gradient-2);
+}
+
+.silver-bg {
+    background: var(--silver-gradient);
+}
+
+/* Colored Glow Utilities */
+.glow-blue {
+    box-shadow: var(--shadow-blue-md);
+}
+
+.glow-blue-hover:hover {
+    box-shadow: var(--shadow-blue-lg);
+}
+
+.glow-silver {
+    box-shadow: var(--shadow-silver-md);
+}
+
+.glow-white {
+    box-shadow: var(--shadow-white-glow);
+}
+
+/* ===== LIQUID METAL ANIMATION ===== */
+@keyframes liquidMetal {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes chromeShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.liquid-metal {
+    background: var(--metal-shine);
+    background-size: 200% 200%;
+    animation: liquidMetal 3s ease infinite;
+}
+
+.chrome-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.chrome-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.8),
+            transparent);
+    animation: chromeShimmer 2s infinite;
+}
+
+/* ===== GLASS REFLECTION ANIMATION ===== */
+@keyframes glassReflection {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: translateX(-100%);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translateX(100%);
+    }
+}
+
+.glass-reflection {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-reflection::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    animation: glassReflection 3s ease-in-out infinite;
+}
+
+/* ===== VAPOR BACKGROUND ===== */
+body {
+    background: var(--vapor-white);
+    color: var(--text-primary);
+}
