@@ -57,58 +57,84 @@
     color: #777;
 }
 
-/* Search Button - Right Edge */
+/* Search Button Wrapper with Dropdown */
+.search-btn-wrapper {
+    position: relative;
+    display: flex;
+}
+
+/* Search Button - Right Edge with Rounded Border */
 .unified-search-container .search-btn {
     background-color: #8d7a63;
     color: white;
     border: none;
     padding: 12px 18px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
     cursor: pointer;
     flex-shrink: 0;
     transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
 }
 
 .unified-search-container .search-btn i {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .unified-search-container .search-btn:hover {
     background-color: #a08968;
 }
 
-/* Search Action Buttons */
-.search-actions {
-    display: flex;
-    gap: 10px;
-    margin-left: 15px;
+/* Search Dropdown Menu */
+.search-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 8px;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    overflow: hidden;
 }
 
-.action-btn {
-    background-color: #333;
-    color: #aaa;
-    border: 1px solid #444;
-    padding: 10px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+.search-menu.show {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+.search-menu-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-size: 14px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+    border-bottom: 1px solid #333;
 }
 
-.action-btn i {
-    font-size: 16px;
+.search-menu-item:last-child {
+    border-bottom: none;
 }
 
-.action-btn:hover {
-    background-color: #444;
+.search-menu-item:hover {
+    background: rgba(212, 175, 55, 0.1);
     color: #d4af37;
-    border-color: #d4af37;
-    transform: translateY(-2px);
+}
+
+.search-menu-item i {
+    font-size: 14px;
+    width: 20px;
 }
 
 /* Navigation Actions (Right Side) */
@@ -192,44 +218,9 @@
     margin: 8px 0;
 }
 
-/* Cart Icon Wrapper - Icon with Badge */
-.cart-icon-wrapper {
-    background-color: #d4af37;
-    padding: 10px 12px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: 0.3s;
-}
-
-.cart-icon-wrapper:hover {
-    background-color: #e5c054;
-    transform: translateY(-2px);
-}
-
-.cart-icon-wrapper a {
-    color: #000 !important;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.cart-icon-wrapper i.fa-shopping-bag {
-    font-size: 16px;
-}
-
-/* Badge for Cart */
-.badge {
-    background-color: #000;
-    color: #d4af37;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 2px 6px;
-    min-width: 18px;
-    text-align: center;
+/* Cart Icon - Simple Icon Only (No Badge) */
+#cart-badge {
+    display: none !important;
 }
 
 /* Light Theme Overrides */

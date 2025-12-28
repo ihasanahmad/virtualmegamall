@@ -213,19 +213,6 @@
             </div>
         </div>
 
-        <!-- Search Action Buttons -->
-        <div class="search-actions">
-            <button class="action-btn" onclick="startVoiceSearch()" title="Voice Search">
-                <i class="fa-solid fa-microphone"></i>
-            </button>
-            <button class="action-btn" onclick="openScanner('barcode')" title="Barcode Scan">
-                <i class="fa-solid fa-barcode"></i>
-            </button>
-            <button class="action-btn" onclick="openScanner('image')" title="Image Search">
-                <i class="fa-solid fa-camera"></i>
-            </button>
-        </div>
-
         <!-- Right Side: Icons -->
         <div class="nav-actions">
             <!-- Sync/Compare Icon -->
@@ -255,12 +242,11 @@
                 </div>
             </div>
 
-            <!-- Cart Icon with Badge -->
-            <div class="icon-item cart-icon-wrapper" onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
+            <!-- Cart Icon (Icon Only) -->
+            <div class="icon-item" onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
                 <a href="cart.html" id="cart-icon" title="Shopping Cart"
                     style="color: inherit; text-decoration: none; position: relative;">
                     <i class="fa-solid fa-shopping-bag"></i>
-                    <span class="badge" id="cart-badge">0</span>
                     <div class="cart-preview" id="cart-preview">
                         <div class="cart-preview-header">Shopping Bag</div>
                         <div class="cart-preview-items" id="cart-preview-items"></div>
