@@ -57,13 +57,14 @@
     color: #777;
 }
 
-/* Icons Inside Input */
+/* Icons Inside Input - VISIBLE */
 .unified-search-container .input-icons {
     display: flex;
-    gap: 12px;
-    color: #777;
-    padding: 0 15px;
+    gap: 10px;
+    color: #aaa;
+    padding: 0 12px;
     flex-shrink: 0;
+    border-right: 1px solid #444;
 }
 
 .unified-search-container .input-icons i {
@@ -73,20 +74,27 @@
 }
 
 .unified-search-container .input-icons i:hover {
-    color: #fff;
+    color: #d4af37;
+    transform: scale(1.1);
 }
 
-/* Search Button - Right Edge */
+/* Search Button - RIGHT EDGE WITH ROUNDED BORDER */
 .unified-search-container .search-btn {
     background-color: #8d7a63;
     color: white;
     border: none;
-    border-left: 1px solid #333;
-    padding: 12px 20px;
-    border-radius: 0;
+    padding: 12px 18px;
+    border-radius: 0 6px 6px 0;
     cursor: pointer;
     flex-shrink: 0;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.unified-search-container .search-btn i {
+    font-size: 16px;
 }
 
 .unified-search-container .search-btn:hover {
@@ -174,34 +182,45 @@
     margin: 8px 0;
 }
 
-/* Cart Icon Wrapper with Background */
+/* Cart Icon Wrapper - Badge Only */
 .cart-icon-wrapper {
-    background-color: #333;
-    padding: 8px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    background-color: #d4af37;
+    padding: 8px 12px;
+    border-radius: 20px;
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .cart-icon-wrapper:hover {
-    background-color: #444;
+    background-color: #e5c054;
 }
 
-/* Badge for Cart */
-.badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background-color: #d4af37;
-    color: #000;
-    font-size: 10px;
+.cart-icon-wrapper a {
     font-weight: bold;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: #000 !important;
+    font-size: 14px;
+}
+
+/* Hide shopping bag icon, show badge as main element */
+.cart-icon-wrapper i.fa-shopping-bag {
+    display: none;
+}
+
+/* Badge for Cart - Main Display */
+.badge {
+    position: static;
+    background-color: transparent;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    display: inline;
 }
 
 /* Light Theme Overrides */
