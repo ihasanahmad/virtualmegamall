@@ -47,6 +47,7 @@
     <meta name="twitter:image" content="https://virtualmegamall.vercel.app/assets/og-image.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="navbar-addon.css"> <!-- New Navbar Styles -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="chat.css"> <!-- Live Chat Styles -->
@@ -130,15 +131,16 @@
 
     <nav class="navbar">
         <!-- Logo -->
-        <a href="index.html" class="logo" style="text-decoration:none;" aria-label="Virtual Mega Mall Homepage">VIRTUAL
-            MEGA MALL</a>
+        <div class="logo">
+            VIRTUAL <span class="gold-text">MEGA MALL</span>
+        </div>
 
-        <!-- Categories Dropdown Button + Search Bar -->
-        <div class="search-container">
+        <!-- Search Bar with Categories Button -->
+        <div class="search-bar-container">
             <!-- Categories Dropdown -->
             <div class="categories-dropdown">
                 <button class="categories-btn" onclick="toggleCategoriesMenu()">
-                    Categories <i class="fa-solid fa-chevron-down"></i>
+                    CATEGORIES <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div id="categories-menu" class="categories-menu">
                     <a href="brands.html"><i class="fa-solid fa-bag-shopping"></i> Shop All Brands</a>
@@ -153,14 +155,21 @@
                 </div>
             </div>
 
-            <div style="width:1px; height:20px; background:#ddd; margin:0 10px;"></div>
-            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
-            <div class="search-icons">
-                <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search" id="voice-btn"></i>
-                <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
-                <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
-                <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <!-- Input Wrapper with Icons Inside -->
+            <div class="input-wrapper">
+                <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
+                <div class="input-icons">
+                    <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search"
+                        id="voice-btn"></i>
+                    <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
+                    <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
+                </div>
             </div>
+
+            <!-- Search Button -->
+            <button class="search-btn" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
 
             <!-- Search Autocomplete Dropdown -->
             <div class="search-suggestions" id="search-suggestions">
@@ -219,50 +228,70 @@
         </div>
 
         <!-- Right Side: Selectors + Icons -->
-        <div class="nav-icons">
+        <div class="nav-actions">
             <!-- Currency Selector -->
-            <div class="nav-selector">
-                <select id="currency-selector" onchange="changeCurrency(this.value)">
-                    <option value="PKR">🇵🇰 PKR</option>
-                    <option value="USD">🇺🇸 USD</option>
-                    <option value="EUR">🇪🇺 EUR</option>
-                    <option value="GBP">🇬🇧 GBP</option>
-                    <option value="AED">🇦🇪 AED</option>
+            <div class="dropdown-item">
+                <select id="currency-selector" onchange="changeCurrency(this.value)"
+                    style="background: transparent; border: none; color: inherit; cursor: pointer; outline: none;">
+                    <option value="PKR">PKR</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="AED">AED</option>
                 </select>
+                <i class="fa-solid fa-caret-down"></i>
             </div>
+
             <!-- Language Selector -->
-            <div class="nav-selector">
-                <select id="language-selector" onchange="changeLanguage(this.value)">
+            <div class="dropdown-item">
+                <select id="language-selector" onchange="changeLanguage(this.value)"
+                    style="background: transparent; border: none; color: inherit; cursor: pointer; outline: none;">
                     <option value="en">EN</option>
                     <option value="ur">اردو</option>
                     <option value="ar">العربية</option>
                 </select>
+                <i class="fa-solid fa-caret-down"></i>
             </div>
+
             <!-- Theme Toggle -->
-            <button id="theme-toggle" class="nav-icon" onclick="cycleTheme()" title="Toggle Theme"
-                style="background: none; border: none; cursor: pointer; font-size: 20px;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
-            <a href="comparison.html" class="nav-icon" title="Compare Products">
-                <i class="fa-solid fa-code-compare"></i>
-            </a>
-            <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account">
-                <i class="fa-regular fa-user"></i>
-            </a>
-            <a href="cart.html" class="nav-icon cart-icon" id="cart-icon" title="Shopping Cart"
-                onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge" id="cart-badge">0</span>
-                <!-- Cart Preview Popup -->
-                <div class="cart-preview" id="cart-preview">
-                    <div class="cart-preview-header">Shopping Bag</div>
-                    <div class="cart-preview-items" id="cart-preview-items"></div>
-                    <div class="cart-preview-footer">
-                        <a href="cart.html" class="view-cart-btn">View Cart</a>
+            <div class="icon-item">
+                <button id="theme-toggle" onclick="cycleTheme()" title="Toggle Theme"
+                    style="background: none; border: none; cursor: pointer; font-size: 18px; color: inherit;">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+            </div>
+
+            <!-- Sync/Compare Icon -->
+            <div class="icon-item">
+                <a href="comparison.html" title="Compare Products" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-sync-alt"></i>
+                </a>
+            </div>
+
+            <!-- User Icon -->
+            <div class="icon-item">
+                <a href="login.html" id="user-icon" title="Login / Account"
+                    style="color: inherit; text-decoration: none;">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+
+            <!-- Cart Icon with Badge -->
+            <div class="icon-item cart-icon-wrapper" onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
+                <a href="cart.html" id="cart-icon" title="Shopping Cart"
+                    style="color: inherit; text-decoration: none; position: relative;">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span class="badge" id="cart-badge">0</span>
+                    <!-- Cart Preview Popup -->
+                    <div class="cart-preview" id="cart-preview">
+                        <div class="cart-preview-header">Shopping Bag</div>
+                        <div class="cart-preview-items" id="cart-preview-items"></div>
+                        <div class="cart-preview-footer">
+                            <a href="cart.html" class="view-cart-btn">View Cart</a>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
     </nav>
 
     <!-- NEW HORIZONTAL CATEGORY MENU -->

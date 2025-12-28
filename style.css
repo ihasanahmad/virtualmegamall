@@ -353,7 +353,7 @@ body {
 
 /* --- NAVIGATION BAR - Luxury Dark Mode --- */
 .navbar {
-    background: var(--surface-color);
+    background: #1a1a1a;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid #333;
@@ -406,14 +406,16 @@ body {
 }
 
 .logo {
-    color: var(--hazel-gold);
-    font-size: 22px;
+    color: #d4af37;
+    font-family: 'Times New Roman', serif;
+    font-size: 24px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     flex-shrink: 0;
-    text-shadow: 0 2px 10px rgba(197, 160, 101, 0.3);
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
     white-space: nowrap;
     min-width: fit-content;
+    text-transform: uppercase;
 }
 
 .nav-links {
