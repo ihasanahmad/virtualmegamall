@@ -240,13 +240,12 @@ body {
 }
 
 
-/* --- NAVIGATION BAR - Metallic Air Glass --- */
+/* --- NAVBAR - CLINICAL MINIMAL --- */
 .navbar {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
-    padding: 15px 40px;
+    background: #FFFFFF;
+    color: #000000;
+    padding: 20px 40px;
+    border-bottom: 1px solid #E5E5E5;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -254,157 +253,112 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(100, 149, 237, 0.15);
     gap: 20px;
 }
 
-/* REMOVED: Light theme overrides - single theme only */
-
+/* Logo - Simple Black Text, ALL CAPS */
 .logo {
-    color: var(--text-primary);
-    font-family: var(--font-primary);
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    flex-shrink: 0;
-    text-shadow: none;
-    white-space: nowrap;
-    min-width: fit-content;
+    color: #000000;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    background: var(--chrome-gradient-2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    white-space: nowrap;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
     gap: 20px;
-    flex-shrink: 0;
 }
 
-/* HORIZONTAL MENU - Metallic Air */
+/* HORIZONTAL MENU - Clinical Minimal */
 .horizontal-menu {
     display: flex;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
-    padding: 10px 0;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 20px 0;
     position: sticky;
     top: 80px;
     z-index: 900;
-    backdrop-filter: blur(16px);
 }
 
 .h-menu-link {
-    color: var(--text-secondary);
+    color: #000000;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 20px;
-    transition: all 0.3s;
-    letter-spacing: 0.5px;
-    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: opacity 0.2s ease;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
 }
 
 .h-menu-link:hover,
 .h-menu-link.active {
-    color: var(--text-primary);
-    background: rgba(192, 192, 192, 0.15);
+    opacity: 0.6;
 }
 
 .h-menu-link.special-3d {
-    color: var(--text-primary);
-    font-weight: 700;
-    border: 1px solid var(--text-primary);
+    border: 2px solid #000000;
     margin-left: 20px;
-    box-shadow: 0 0 10px rgba(100, 149, 237, 0.3);
 }
 
 .h-menu-link.special-3d:hover {
-    background: var(--text-primary);
+    background: #000000;
     color: #FFFFFF;
-    box-shadow: 0 0 20px rgba(100, 149, 237, 0.6);
 }
 
 .nav-icons {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-    min-width: fit-content;
+    gap: 12px;
 }
 
 .nav-icon {
     position: relative;
-    color: var(--text-primary);
-    font-size: 20px;
+    color: #000000;
+    font-size: 18px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: opacity 0.2s ease;
     padding: 8px;
-    border-radius: 50%;
 }
 
-/* Compare Icon - Chrome Style */
-.compare-icon {
+.nav-icon:hover {
+    opacity: 0.6;
+}
+
+/* Cart/Compare Icons - Simple Black */
+.compare-icon,
+.cart-icon {
     background: transparent;
     border: none;
-}
-
-.compare-icon:hover {
-    background: rgba(192, 192, 192, 0.15);
-}
-
-/* Cart Icon - Chrome Accent */
-.cart-icon {
-    background: var(--chrome-gradient-1);
-    border-radius: 8px;
-}
-
-.cart-icon:hover {
-    background: var(--chrome-gradient-2);
-    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
 .cart-count {
     position: absolute;
-    top: 0;
-    right: 0;
-    background: var(--text-primary);
+    top: -5px;
+    right: -5px;
+    background: #000000;
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 700;
     padding: 2px 6px;
     border-radius: 50%;
-    min-width: 18px;
+    min-width: 16px;
     text-align: center;
 }
 
-/* Compare Icon - Simple Style */
-.compare-icon {
-    background: transparent;
-    border: none;
-}
-
-/* Cart Icon */
-.cart-icon {
-    background: linear-gradient(135deg, rgba(197, 160, 101, 0.15), transparent);
-}
-
-.cart-icon:hover {
-    background: var(--hazel-gold);
-    color: #111;
-}
-
-/* Badges */
+/* Badges - Black on White */
 .cart-badge,
 .compare-badge {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
-    color: white;
+    background: #000000;
+    color: #FFFFFF;
     font-size: 10px;
     font-weight: 700;
     min-width: 18px;
@@ -413,12 +367,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
-}
-
-.compare-badge {
-    background: linear-gradient(135deg, var(--hazel-gold), var(--primary-hazel));
-    box-shadow: 0 2px 8px rgba(197, 160, 101, 0.5);
 }
 
 /* SEARCH BAR STYLES - Dark Mode */
