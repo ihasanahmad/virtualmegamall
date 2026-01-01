@@ -378,9 +378,15 @@ body.emox-theme {
    8. HERO SECTION
    ======================================== */
 .emox-hero {
-    background: var(--emox-bg-primary);
+    background: var(--emox-bg-primary) !important;
     padding: var(--emox-space-3xl) 0;
     text-align: center;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+    display: block;
 }
 
 .emox-hero-subtitle {
