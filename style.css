@@ -629,60 +629,57 @@ body {
     }
 }
 
-/* Cart Preview Popup */
+/* CART PREVIEW DROPDOWN - Clinical Minimal */
 .cart-preview {
     display: none;
     position: absolute;
     top: 100%;
     right: 0;
     width: 320px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    background: #FFFFFF;
+    border: 2px solid #000000;
     z-index: 1000;
-    margin-top: 15px;
-    overflow: hidden;
+    margin-top: 10px;
 }
 
-.cart-icon:hover .cart-preview {
+.cart-preview.show {
     display: block;
-    animation: fadeInUp 0.3s ease;
 }
 
 .cart-preview-header {
-    padding: 15px 20px;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
-    font-size: 14px;
-    color: var(--text-primary);
+    padding: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #E5E5E5;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000000;
 }
 
 .cart-preview-items {
     max-height: 250px;
     overflow-y: auto;
-    padding: 10px;
+    padding: 15px;
 }
 
 .cart-preview-item {
     display: flex;
     gap: 12px;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E5E5E5;
 }
 
 .cart-preview-item:hover {
-    background: rgba(192, 192, 192, 0.1);
+    background: rgba(0, 0, 0, 0.02);
 }
 
 .cart-preview-item img {
     width: 50px;
     height: 50px;
     object-fit: contain;
-    border-radius: 8px;
-    background: rgba(192, 192, 192, 0.05);
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
 }
 
 .cart-preview-item .item-info {
@@ -690,43 +687,49 @@ body {
 }
 
 .cart-preview-item .item-info h5 {
-    font-size: 13px;
+    font-size: 11px;
     margin-bottom: 4px;
-    color: var(--text-primary);
+    color: #000000;
+    text-transform: uppercase;
 }
 
 .cart-preview-item .item-info span {
-    font-size: 12px;
-    color: var(--text-secondary);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: #000000;
 }
 
 .cart-preview-footer {
     padding: 15px;
-    border-top: 1px solid rgba(192, 192, 192, 0.2);
+    border-top: 2px solid #000000;
 }
 
 .view-cart-btn {
     display: block;
     text-align: center;
-    padding: 12px;
-    background: var(--chrome-gradient-1);
-    color: var(--text-primary);
+    padding: 14px;
+    background: #000000;
+    color: #FFFFFF;
     text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: 0.3s;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 0.2s ease;
 }
 
 .view-cart-btn:hover {
-    background: var(--chrome-gradient-2);
-    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
+    background: #FFFFFF;
+    color: #000000;
+    border: 2px solid #000000;
 }
 
 .cart-preview-empty {
-    padding: 30px;
+    padding: 40px 20px;
     text-align: center;
-    color: var(--text-muted);
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 11px;
+    text-transform: uppercase;
 }
 
 /* Voice Search Active State */
