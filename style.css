@@ -369,24 +369,21 @@ body {
     justify-content: center;
 }
 
-/* SEARCH BAR STYLES - Dark Mode */
+/* SEARCH BAR - Clinical Minimal */
 .search-container {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #333;
-    border-radius: 0px;
-    padding: 5px 15px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    padding: 10px 20px;
     flex: 1;
-    max-width: 450px;
-    min-width: 250px;
-    transition: 0.3s;
+    max-width: 500px;
+    transition: border-color 0.2s ease;
 }
 
 .search-container:focus-within {
-    box-shadow: 0 0 15px rgba(197, 160, 101, 0.2);
-    border-color: var(--accent-gold);
-    background: rgba(255, 255, 255, 0.8);
+    border-color: #000000;
 }
 
 .search-container input {
@@ -394,74 +391,74 @@ body {
     background: transparent;
     outline: none;
     flex: 1;
-    padding: 10px;
-    color: var(--text-primary);
+    padding: 8px;
+    color: #000000;
+    font-family: var(--font-body);
     font-size: 14px;
 }
 
 .search-container input::placeholder {
-    color: var(--text-secondary);
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .search-icons {
     display: flex;
-    align-items: center;
-    gap: 15px;
-    color: var(--text-secondary);
+    gap: 8px;
+    color: #000000;
 }
 
 .search-icons i {
     cursor: pointer;
-    font-size: 18px;
-    transition: 0.2s;
-    padding: 5px;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+    padding: 4px;
 }
 
 .search-icons i:hover {
-    color: var(--text-primary);
-    transform: scale(1.1);
+    opacity: 0.6;
 }
 
-/* Category Select in Search Bar */
+/* Category Select */
 .category-select {
     border: none;
     outline: none;
     background: transparent;
-    color: #666;
+    color: #000000;
     font-size: 14px;
     cursor: pointer;
     padding: 5px;
+    font-family: var(--font-body);
 }
 
-/* Categories Dropdown Button & Menu - Metallic Air */
+/* Categories Dropdown - Clinical Minimal */
 .categories-dropdown {
     position: relative;
     display: inline-block;
 }
 
 .categories-btn {
-    background: var(--chrome-gradient-1);
-    border: 1px solid rgba(192, 192, 192, 0.3);
-    color: var(--text-primary);
-    font-size: 15px;
-    font-weight: 600;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    color: #000000;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 20px;
-    border-radius: 12px;
-    transition: 0.3s;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
 }
 
 .categories-btn:hover {
-    background: var(--chrome-gradient-2);
-    box-shadow: 0 5px 20px rgba(100, 149, 237, 0.3);
+    background: #000000;
+    color: #FFFFFF;
 }
 
 .categories-btn i {
-    font-size: 12px;
-    transition: transform 0.3s;
+    font-size: 10px;
 }
 
 .categories-menu {
@@ -469,100 +466,99 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: #FFFFFF;
     min-width: 260px;
-    border-radius: 16px;
-    border: 1px solid rgba(192, 192, 192, 0.2);
-    box-shadow: 0 15px 50px rgba(100, 149, 237, 0.2);
+    border: 2px solid #000000;
     z-index: 1000;
-    padding: 15px 0;
-    margin-top: 10px;
+    padding: 0;
+    margin-top: 2px;
 }
 
 .categories-menu.show {
     display: block;
-    animation: fadeInUp 0.3s ease;
 }
 
 .categories-menu a {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 14px 25px;
-    color: var(--text-secondary);
+    padding: 16px 20px;
+    color: #000000;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #E5E5E5;
     transition: all 0.2s ease;
 }
 
+.categories-menu a:last-child {
+    border-bottom: none;
+}
+
 .categories-menu a:hover {
-    background: rgba(192, 192, 192, 0.15);
-    color: var(--text-primary);
-    padding-left: 30px;
+    background: #000000;
+    color: #FFFFFF;
 }
 
 .categories-menu a i {
-    color: var(--text-primary);
-    font-size: 18px;
-    width: 25px;
+    font-size: 16px;
+    width: 20px;
     text-align: center;
 }
 
-/* Nav Buttons - Liquid Metal */
+/* Nav Buttons - Clinical Minimal */
 .nav-btn {
-    padding: 10px 24px;
-    border-radius: 12px;
+    padding: 12px 28px;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 0.2s ease;
 }
 
 .nav-btn.outlined {
-    border: 1px solid var(--text-primary);
-    color: var(--text-primary);
-    background: transparent;
+    border: 2px solid #000000;
+    color: #000000;
+    background: #FFFFFF;
 }
 
 .nav-btn.outlined:hover {
-    background: var(--text-primary);
+    background: #000000;
     color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
 }
 
 .nav-btn.filled {
-    background: var(--chrome-gradient-1);
-    color: var(--text-primary);
-    border: 1px solid rgba(192, 192, 192, 0.3);
+    background: #000000;
+    color: #FFFFFF;
+    border: 2px solid #000000;
 }
 
 .nav-btn.filled:hover {
-    background: var(--chrome-gradient-2);
-    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.3);
+    background: #FFFFFF;
+    color: #000000;
 }
 
 .search-btn {
-    background: var(--chrome-gradient-1) !important;
-    color: var(--text-primary) !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
     width: 35px !important;
     height: 35px !important;
     padding: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(192, 192, 192, 0.3) !important;
-    border-radius: 50% !important;
-    box-shadow: 0 2px 8px rgba(100, 149, 237, 0.2);
+    border: 1px solid #E5E5E5 !important;
+    border-radius: 0 !important;
     cursor: pointer;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
 }
 
 .search-btn:hover {
-    background: var(--chrome-gradient-2) !important;
-    transform: rotate(10deg);
-    box-shadow: 0 4px 12px rgba(100, 149, 237, 0.4);
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border-color: #000000 !important;
 }
 
 .nav-group-right {
