@@ -1,0 +1,482 @@
+/* ========================================
+   EMOX MINIMAL DESIGN SYSTEM
+   Next-Gen E-commerce Aesthetics
+   ======================================== */
+
+/* ========================================
+   1. COLOR VARIABLES - White/Neutral Palette
+   ======================================== */
+:root {
+    /* Backgrounds */
+    --emox-bg-primary: #FFFFFF;
+    --emox-bg-secondary: #F8F8F8;
+    --emox-bg-tertiary: #F5F5F7;
+
+    /* Text Colors */
+    --emox-text-primary: #1A1A1A;
+    --emox-text-secondary: #6B6B6B;
+    --emox-text-tertiary: #9B9B9B;
+
+    /* Borders & Dividers */
+    --emox-border-light: #E5E5E5;
+    --emox-border-medium: #D0D0D0;
+
+    /* Shadows */
+    --emox-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --emox-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --emox-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.08);
+    --emox-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.12);
+
+    /* Border Radius */
+    --emox-radius-sm: 12px;
+    --emox-radius-md: 20px;
+    --emox-radius-lg: 28px;
+    --emox-radius-xl: 32px;
+    --emox-radius-pill: 50px;
+    --emox-radius-circle: 50%;
+
+    /* Spacing Scale */
+    --emox-space-xs: 8px;
+    --emox-space-sm: 16px;
+    --emox-space-md: 24px;
+    --emox-space-lg: 32px;
+    --emox-space-xl: 48px;
+    --emox-space-2xl: 64px;
+    --emox-space-3xl: 96px;
+}
+
+/* ========================================
+   2. TYPOGRAPHY
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+body.emox-theme {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--emox-bg-primary);
+    color: var(--emox-text-primary);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.emox-hero-title {
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--emox-text-primary);
+    margin-bottom: var(--emox-space-md);
+}
+
+.emox-h1 {
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.emox-h2 {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.emox-h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.emox-body {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--emox-text-secondary);
+}
+
+/* ========================================
+   3. PILL SEARCH BAR (Hero Component)
+   ======================================== */
+.emox-hero-search {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.emox-search-pill {
+    display: flex;
+    align-items: center;
+    background: var(--emox-bg-primary);
+    border: 2px solid var(--emox-border-light);
+    border-radius: var(--emox-radius-pill);
+    padding: 8px 8px 8px 28px;
+    box-shadow: var(--emox-shadow-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 64px;
+}
+
+.emox-search-pill:focus-within {
+    border-color: var(--emox-text-primary);
+    box-shadow: var(--emox-shadow-xl);
+}
+
+.emox-search-pill input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 17px;
+    color: var(--emox-text-primary);
+    outline: none;
+    padding: 0 16px;
+}
+
+.emox-search-pill input::placeholder {
+    color: var(--emox-text-tertiary);
+}
+
+.emox-voice-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--emox-radius-circle);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.emox-voice-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.emox-voice-btn.active {
+    animation: pulse-voice 1.5s infinite;
+}
+
+@keyframes pulse-voice {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.emox-search-submit {
+    background: var(--emox-text-primary);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: var(--emox-radius-pill);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.emox-search-submit:hover {
+    background: #333;
+    transform: scale(1.02);
+}
+
+/* ========================================
+   4. CIRCULAR CATEGORY ICONS
+   ======================================== */
+.emox-categories {
+    display: flex;
+    gap: var(--emox-space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: var(--emox-space-2xl) 0;
+}
+
+.emox-category-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--emox-space-sm);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.emox-category-circle:hover {
+    transform: translateY(-4px);
+}
+
+.emox-category-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--emox-radius-circle);
+    background: var(--emox-bg-primary);
+    border: 2px solid var(--emox-border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: var(--emox-shadow-md);
+    transition: all 0.3s ease;
+}
+
+.emox-category-circle:hover .emox-category-icon {
+    box-shadow: var(--emox-shadow-lg);
+    border-color: var(--emox-text-primary);
+}
+
+.emox-category-icon img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.emox-category-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--emox-text-primary);
+}
+
+/* ========================================
+   5. MINIMAL PRODUCT CARDS
+   ======================================== */
+.emox-product-card {
+    background: var(--emox-bg-primary);
+    border-radius: var(--emox-radius-lg);
+    padding: var(--emox-space-md);
+    border: 1px solid var(--emox-border-light);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.emox-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--emox-shadow-lg);
+    border-color: var(--emox-border-medium);
+}
+
+.emox-product-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--emox-bg-secondary);
+    border-radius: var(--emox-radius-md);
+    overflow: hidden;
+    margin-bottom: var(--emox-space-md);
+}
+
+.emox-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.emox-product-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--emox-text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.emox-product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--emox-text-primary);
+}
+
+.emox-product-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--emox-text-tertiary);
+}
+
+/* ========================================
+   6. PILL BUTTONS
+   ======================================== */
+.emox-btn-pill {
+    padding: 14px 32px;
+    border-radius: var(--emox-radius-pill);
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.emox-btn-primary {
+    background: var(--emox-text-primary);
+    color: white;
+}
+
+.emox-btn-primary:hover {
+    background: #333;
+    transform: scale(1.02);
+}
+
+.emox-btn-secondary {
+    background: var(--emox-bg-secondary);
+    color: var(--emox-text-primary);
+}
+
+.emox-btn-secondary:hover {
+    background: var(--emox-bg-tertiary);
+}
+
+.emox-btn-outlined {
+    background: transparent;
+    color: var(--emox-text-primary);
+    border: 2px solid var(--emox-border-medium);
+}
+
+.emox-btn-outlined:hover {
+    border-color: var(--emox-text-primary);
+    background: var(--emox-bg-secondary);
+}
+
+/* ========================================
+   7. CONTAINER & LAYOUT
+   ======================================== */
+.emox-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--emox-space-lg);
+}
+
+.emox-section {
+    padding: var(--emox-space-3xl) 0;
+}
+
+.emox-grid {
+    display: grid;
+    gap: var(--emox-space-lg);
+}
+
+.emox-grid-2 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.emox-grid-3 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.emox-grid-4 {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* ========================================
+   8. HERO SECTION
+   ======================================== */
+.emox-hero {
+    background: var(--emox-bg-primary);
+    padding: var(--emox-space-3xl) 0;
+    text-align: center;
+}
+
+.emox-hero-subtitle {
+    font-size: 20px;
+    color: var(--emox-text-secondary);
+    margin-bottom: var(--emox-space-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========================================
+   9. MINIMAL NAVBAR
+   ======================================== */
+.emox-navbar {
+    background: var(--emox-bg-primary);
+    border-bottom: 1px solid var(--emox-border-light);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.emox-navbar-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--emox-space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.emox-logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--emox-text-primary);
+    text-decoration: none;
+}
+
+.emox-nav-icons {
+    display: flex;
+    align-items: center;
+    gap: var(--emox-space-md);
+}
+
+.emox-nav-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--emox-radius-circle);
+    background: var(--emox-bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    color: var(--emox-text-primary);
+}
+
+.emox-nav-icon:hover {
+    background: var(--emox-bg-tertiary);
+    transform: scale(1.05);
+}
+
+/* ========================================
+   10. RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .emox-hero-title {
+        font-size: 36px;
+    }
+
+    .emox-search-pill {
+        flex-direction: column;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .emox-search-pill input {
+        width: 100%;
+    }
+
+    .emox-categories {
+        gap: var(--emox-space-md);
+    }
+
+    .emox-category-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .emox-grid-2,
+    .emox-grid-3,
+    .emox-grid-4 {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

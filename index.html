@@ -42,6 +42,8 @@
     <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="mobile.css">
+    <!-- Emox Minimal Design System -->
+    <link rel="stylesheet" href="emox-minimal.css">
     <link rel="stylesheet" href="safari-fixes.css"> <!-- Safari Compatibility -->
     <link rel="stylesheet" href="chat.css"> <!-- Live Chat Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -52,7 +54,7 @@
     <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
 </head>
 
-<body>
+<body class="emox-theme">
 
     <!-- Mobile App Banner (Walmart/Shein style) -->
     <!-- Mobile App Banner - Removed for cleaner premium look -->
@@ -301,514 +303,570 @@
         <a href="3d-mall.html" class="h-menu-link special-3d">
             <i class="fa-solid fa-cube"></i> 3D MALL
         </a>
-    </div>
-    <!-- PREMIUM HERO SECTION -->
-    <div class="hero glass-panel"
-        style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1537726235470-8504e3beef77?q=80&w=2000'); background-attachment: fixed;">
-        <div class="hero-content">
-            <h1 class="fadeInUp anti-gravity-float">Pakistan's First <span
-                    style="color:var(--hazel-gold); font-style:italic;">3D
-                    Shopping</span> Experience</h1>
-            <p style="font-size:18px; max-width:600px; margin:0 auto 30px; opacity:0.9;">Step into the future of retail.
-                Explore premium brands in an immersive 3D environment from the comfort of your home.</p>
-            <div style="display:flex; justify-content:center; gap:20px;">
-                <a href="#brands" class="cta-button hover-lift"
-                    style="background: white; color: black; border: 2px solid white;">Shop
-                    Collections</a>
-                <a href="3d-mall.html" class="cta-button hover-lift">
-                    <i class="fa-solid fa-cube"></i> ENTER 3D MALL
+        <!-- EMOX MINIMAL HERO SECTION -->
+        <section class="emox-hero">
+            <div class="emox-container">
+                <h1 class="emox-hero-title fadeInUp">
+                    Experience Virtual <br />Mega Mall Tomorrow
+                </h1>
+                <p class="emox-hero-subtitle">
+                    Pakistan's most advanced AI-powered shopping platform. Browse premium brands with voice search,
+                    personalized recommendations, and seamless checkout.
+                </p>
+
+                <!-- Giant Pill Search Bar -->
+                <div class="emox-hero-search">
+                    <div class="emox-search-pill">
+                        <input type="text" id="emox-global-search"
+                            placeholder="Search for products, brands, or categories..." autocomplete="off">
+                        <button class="emox-voice-btn" onclick="startVoiceSearch()" aria-label="Voice Search">
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+                        <button class="emox-search-submit" onclick="performTextSearch()">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Circular Category Icons -->
+                <div class="emox-categories">
+                    <div class="emox-category-circle" onclick="window.location='category.html?type=clothing'">
+                        <div class="emox-category-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2329/2329939.png" alt="Fashion">
+                        </div>
+                        <span class="emox-category-label">Fashion</span>
+                    </div>
+
+                    <div class="emox-category-circle" onclick="window.location='category.html?type=tech'">
+                        <div class="emox-category-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659898.png" alt="Electronics">
+                        </div>
+                        <span class="emox-category-label">Electronics</span>
+                    </div>
+
+                    <div class="emox-category-circle" onclick="window.location='category.html?type=shoes'">
+                        <div class="emox-category-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2553/2553495.png" alt="Footwear">
+                        </div>
+                        <span class="emox-category-label">Footwear</span>
+                    </div>
+
+                    <div class="emox-category-circle" onclick="window.location='category.html?type=beauty'">
+                        <div class="emox-category-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3050/3050155.png" alt="Beauty">
+                        </div>
+                        <span class="emox-category-label">Beauty</span>
+                    </div>
+
+                    <div class="emox-category-circle" onclick="window.location='category.html?type=home'">
+                        <div class="emox-category-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1670/1670054.png" alt="Home">
+                        </div>
+                        <span class="emox-category-label">Home & Living</span>
+                    </div>
+
+                    <div class="emox-category-circle" onclick="window.location='category.html?type=jewelry'">
+                        <div class="emox-category-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2541/2541988.png" alt="Luxury">
+                        </div>
+                        <span class="emox-category-label">Luxury</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLASH SALE SECTION -->
+        <section class="container flash-sale-section">
+            <div class="section-header" style="border-bottom-color: #ff6b6b;">
+                <h3 style="color: #ff6b6b;"><i class="fa-solid fa-bolt"></i> Flash Sale - Up to 50% Off!</h3>
+                <div class="sale-timer">
+                    <span>Ends in:</span>
+                    <div class="timer-box">12</div>:<div class="timer-box">45</div>:<div class="timer-box">30</div>
+                </div>
+            </div>
+            <div class="product-grid" id="flash-sale-container">
+                <!-- Flash sale products with Phase 1 features -->
+                <div class="product-card sale-card anti-gravity-float hover-lift">
+                    <span class="sale-badge">-50%</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this, 'nike-air-max')"><i
+                            class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="product-img"
+                        style="object-fit: cover; width: 100%; height: 200px;">
+                    <h4>Nike Air Max</h4>
+                    <p class="brand-name">Nike Store</p>
+                    <div class="product-rating">
+                        <span class="stars">★★★★<span class="empty">★</span></span>
+                        <span class="rating-count">(128)</span>
+                    </div>
+                    <span class="stock-status low-stock">🔥 Only 3 left!</span>
+                    <p class="price"><del style="color:#999;">Rs. 24,000</del> Rs. 12,000</p>
+                    <button class="hover-lift"
+                        onclick="addToCart('Nike Air Max', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400')">Add
+                        to Cart</button>
+                </div>
+                <div class="product-card sale-card">
+                    <span class="sale-badge">-40%</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this, 'galaxy-buds')"><i
+                            class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&q=80"
+                        class="product-img" style="object-fit: cover; width: 100%; height: 200px;">
+                    <h4>Galaxy Buds Pro</h4>
+                    <p class="brand-name">Samsung</p>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">(256)</span>
+                    </div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <p class="price"><del style="color:#999;">Rs. 35,000</del> Rs. 21,000</p>
+                    <button
+                        onclick="addToCart('Galaxy Buds Pro', 'Rs. 21,000', 'Samsung', 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400')">Add
+                        to Cart</button>
+                </div>
+                <div class="product-card sale-card">
+                    <span class="sale-badge">-30%</span>
+                    <span class="new-badge">New</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this, 'khaadi-lawn')"><i
+                            class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&q=80"
+                        class="product-img" style="object-fit: cover; width: 100%; height: 200px;">
+                    <h4>Khaadi Lawn 3pc</h4>
+                    <p class="brand-name">Khaadi</p>
+                    <div class="product-rating">
+                        <span class="stars">★★★★<span class="empty">★</span></span>
+                        <span class="rating-count">(89)</span>
+                    </div>
+                    <span class="stock-status low-stock">🔥 Only 5 left!</span>
+                    <p class="price"><del style="color:#999;">Rs. 6,500</del> Rs. 4,550</p>
+                    <button
+                        onclick="addToCart('Khaadi Lawn 3pc', 'Rs. 4,550', 'Khaadi', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400')">Add
+                        to Cart</button>
+                </div>
+                <div class="product-card sale-card">
+                    <span class="sale-badge">-25%</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this, 'rolex-watch')"><i
+                            class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80"
+                        class="product-img" style="object-fit: cover; width: 100%; height: 200px;">
+                    <h4>Rolex Submariner</h4>
+                    <p class="brand-name">Rolex Official</p>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">(42)</span>
+                    </div>
+                    <span class="stock-status low-stock">🔥 Only 2 left!</span>
+                    <p class="price"><del style="color:#999;">Rs. 2,500,000</del> Rs. 1,875,000</p>
+                    <button
+                        onclick="addToCart('Rolex Submariner', 'Rs. 1,875,000', 'Rolex Official', 'https://via.placeholder.com/300/C5A065/FFF?text=Rolex+Watch')">Add
+                        to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER 1: Full Width Sponsored Banner -->
+        <section class="ad-banner-section">
+            <a href="advertise.html" class="ad-banner full-width">
+                <div class="ad-content">
+                    <span class="ad-label">Sponsored</span>
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=200&fit=crop&q=80"
+                        alt="Premium Shopping Experience" loading="lazy"
+                        style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+                </div>
+            </a>
+        </section>
+
+        <section id="brands" class="container">
+            <h2>Official Brand Stores</h2>
+
+            <div class="section-header">
+                <h3>Clothing & Fashion</h3>
+                <a href="category.html?type=clothing" class="view-all-btn">View All <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Clothing Category Slider -->
+            <div class="category-ad-slider" id="clothing-slider">
+                <div class="cat-slide active"><a href="store.html?brand=Khaadi"><img
+                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1100&h=180&fit=crop&q=80"
+                            alt="Khaadi Collection" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Gul Ahmed"><img
+                            src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1100&h=180&fit=crop&q=80"
+                            alt="Fashion Ad" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=J."><img
+                            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1100&h=180&fit=crop&q=80"
+                            alt="Fashion Ad" style="border-radius: 10px;"></a></div>
+            </div>
+            <div class="brand-grid" id="clothing-container">
+            </div>
+
+            <div class="section-header">
+                <h3>Shoes & Footwear</h3>
+                <a href="category.html?type=shoes" class="view-all-btn">View All <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Shoes Category Slider -->
+            <div class="category-ad-slider" id="shoes-slider">
+                <div class="cat-slide active"><a href="store.html?brand=Nike"><img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1100&h=180&fit=crop&q=80"
+                            alt="Nike Shoes" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Adidas"><img
+                            src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1100&h=180&fit=crop&q=80"
+                            alt="Adidas Shoes" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Bata"><img
+                            src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=1100&h=180&fit=crop&q=80"
+                            alt="Footwear" style="border-radius: 10px;"></a></div>
+            </div>
+            <div class="brand-grid" id="shoes-container">
+            </div>
+
+            <div class="section-header">
+                <h3>Electronics & Tech</h3>
+                <a href="category.html?type=tech" class="view-all-btn">View All <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Tech Category Slider -->
+            <div class="category-ad-slider" id="tech-slider">
+                <div class="cat-slide active"><a href="store.html?brand=Samsung"><img
+                            src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=1100&h=180&fit=crop&q=80"
+                            alt="Samsung" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Apple"><img
+                            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1100&h=180&fit=crop&q=80"
+                            alt="Apple" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Sony"><img
+                            src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=1100&h=180&fit=crop&q=80"
+                            alt="Gaming" style="border-radius: 10px;"></a></div>
+            </div>
+            <div class="brand-grid" id="tech-container">
+            </div>
+
+            <div class="section-header">
+                <h3>Watches & Jewelry</h3>
+                <a href="category.html?type=jewelry" class="view-all-btn">View All <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Watches Category Slider -->
+            <div class="category-ad-slider" id="watches-slider">
+                <div class="cat-slide active"><a href="store.html?brand=Rolex"><img
+                            src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1100&h=180&fit=crop&q=80"
+                            alt="Rolex" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Tissot"><img
+                            src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1100&h=180&fit=crop&q=80"
+                            alt="Watches" style="border-radius: 10px;"></a></div>
+                <div class="cat-slide"><a href="store.html?brand=Casio"><img
+                            src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=1100&h=180&fit=crop&q=80"
+                            alt="Watches" style="border-radius: 10px;"></a></div>
+            </div>
+            <div class="brand-grid" id="watch-container">
+            </div>
+        </section>
+
+        <!-- AD BANNER 3: Featured Brand Spotlight -->
+        <section class="ad-banner-section">
+            <div class="ad-banner featured">
+                <span class="ad-label">Featured Brand</span>
+                <a href="store.html?brand=Khaadi">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=250&fit=crop&q=80"
+                        alt="Featured Brand" loading="lazy"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px;">
                 </a>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- FLASH SALE SECTION -->
-    <section class="container flash-sale-section">
-        <div class="section-header" style="border-bottom-color: #ff6b6b;">
-            <h3 style="color: #ff6b6b;"><i class="fa-solid fa-bolt"></i> Flash Sale - Up to 50% Off!</h3>
-            <div class="sale-timer">
-                <span>Ends in:</span>
-                <div class="timer-box">12</div>:<div class="timer-box">45</div>:<div class="timer-box">30</div>
+        <section class="container">
+            <h2>Trending Now</h2>
+            <div class="product-grid">
+                <a href="product.html?id=running-shoes" class="product-card-glass">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                        aria-label="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80"
+                            class="product-img" alt="Running Shoes">
+                    </div>
+                    <h4>Running Shoes</h4>
+                    <p class="brand-name">Nike Store</p>
+                    <p class="price">Rs. 12,000</p>
+                    <button class="add-to-cart-btn"
+                        onclick="event.preventDefault(); event.stopPropagation(); addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
+                        to Cart</button>
+                </a>
+                <a href="product.html?id=galaxy-s24" class="product-card-glass">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                        aria-label="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80"
+                            class="product-img" alt="Galaxy S24">
+                    </div>
+                    <h4>Galaxy S24</h4>
+                    <p class="brand-name">Samsung Official</p>
+                    <p class="price">Rs. 350,000</p>
+                    <button class="add-to-cart-btn"
+                        onclick="event.preventDefault(); event.stopPropagation(); addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
+                        to Cart</button>
+                </a>
+                <a href="product.html?id=summer-kurta" class="product-card-glass">
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                        aria-label="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80"
+                            class="product-img" alt="Summer Kurta">
+                    </div>
+                    <h4>Summer Kurta</h4>
+                    <p class="brand-name">J. (Junaid Jamshed)</p>
+                    <p class="price">Rs. 4,500</p>
+                    <button class="add-to-cart-btn"
+                        onclick="event.preventDefault(); event.stopPropagation(); addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
+                        to Cart</button>
+                </a>
+                <a href="product.html?id=luxury-watch" class="product-card-glass">
+                    <span class="badge">Luxury</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                        aria-label="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80"
+                            class="product-img" alt="Luxury Watch">
+                    </div>
+                    <h4>Luxury Watch</h4>
+                    <p class="brand-name">Rolex Official</p>
+                    <p class="price">Rs. 1,875,000</p>
+                    <button class="add-to-cart-btn"
+                        onclick="event.preventDefault(); event.stopPropagation(); addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
+                        to Cart</button>
+                </a>
             </div>
-        </div>
-        <div class="product-grid" id="flash-sale-container">
-            <!-- Flash sale products with Phase 1 features -->
-            <div class="product-card sale-card anti-gravity-float hover-lift">
-                <span class="sale-badge">-50%</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'nike-air-max')"><i
-                        class="fa-regular fa-heart"></i></button>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
-                <h4>Nike Air Max</h4>
-                <p class="brand-name">Nike Store</p>
-                <div class="product-rating">
-                    <span class="stars">★★★★<span class="empty">★</span></span>
-                    <span class="rating-count">(128)</span>
-                </div>
-                <span class="stock-status low-stock">🔥 Only 3 left!</span>
-                <p class="price"><del style="color:#999;">Rs. 24,000</del> Rs. 12,000</p>
-                <button class="hover-lift"
-                    onclick="addToCart('Nike Air Max', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400')">Add
-                    to Cart</button>
+        </section>
+
+        <!-- AD BANNER 4: Bottom Banner before footer -->
+        <section class="ad-banner-section">
+            <div class="ad-banner-row triple">
+                <a href="store.html?brand=Nike" class="ad-banner third-width">
+                    <span class="ad-label">Ad</span>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=380&h=200&fit=crop&q=80"
+                        alt="Nike" style="border-radius: 10px;">
+                </a>
+                <a href="store.html?brand=Samsung" class="ad-banner third-width">
+                    <span class="ad-label">Ad</span>
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=380&h=200&fit=crop&q=80"
+                        alt="Samsung" style="border-radius: 10px;">
+                </a>
+                <a href="store.html?brand=Khaadi" class="ad-banner third-width">
+                    <span class="ad-label">Ad</span>
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=380&h=200&fit=crop&q=80"
+                        alt="Khaadi" loading="lazy" style="border-radius: 10px;">
+                </a>
             </div>
-            <div class="product-card sale-card">
-                <span class="sale-badge">-40%</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'galaxy-buds')"><i
-                        class="fa-regular fa-heart"></i></button>
-                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
-                <h4>Galaxy Buds Pro</h4>
-                <p class="brand-name">Samsung</p>
-                <div class="product-rating">
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-count">(256)</span>
-                </div>
-                <span class="stock-status in-stock">✓ In Stock</span>
-                <p class="price"><del style="color:#999;">Rs. 35,000</del> Rs. 21,000</p>
-                <button
-                    onclick="addToCart('Galaxy Buds Pro', 'Rs. 21,000', 'Samsung', 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400')">Add
-                    to Cart</button>
-            </div>
-            <div class="product-card sale-card">
-                <span class="sale-badge">-30%</span>
-                <span class="new-badge">New</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'khaadi-lawn')"><i
-                        class="fa-regular fa-heart"></i></button>
-                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
-                <h4>Khaadi Lawn 3pc</h4>
-                <p class="brand-name">Khaadi</p>
-                <div class="product-rating">
-                    <span class="stars">★★★★<span class="empty">★</span></span>
-                    <span class="rating-count">(89)</span>
-                </div>
-                <span class="stock-status low-stock">🔥 Only 5 left!</span>
-                <p class="price"><del style="color:#999;">Rs. 6,500</del> Rs. 4,550</p>
-                <button
-                    onclick="addToCart('Khaadi Lawn 3pc', 'Rs. 4,550', 'Khaadi', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400')">Add
-                    to Cart</button>
-            </div>
-            <div class="product-card sale-card">
-                <span class="sale-badge">-25%</span>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'rolex-watch')"><i
-                        class="fa-regular fa-heart"></i></button>
-                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
-                <h4>Rolex Submariner</h4>
-                <p class="brand-name">Rolex Official</p>
-                <div class="product-rating">
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-count">(42)</span>
-                </div>
-                <span class="stock-status low-stock">🔥 Only 2 left!</span>
-                <p class="price"><del style="color:#999;">Rs. 2,500,000</del> Rs. 1,875,000</p>
-                <button
-                    onclick="addToCart('Rolex Submariner', 'Rs. 1,875,000', 'Rolex Official', 'https://via.placeholder.com/300/C5A065/FFF?text=Rolex+Watch')">Add
-                    to Cart</button>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- AD BANNER 1: Full Width Sponsored Banner -->
-    <section class="ad-banner-section">
-        <a href="advertise.html" class="ad-banner full-width">
-            <div class="ad-content">
-                <span class="ad-label">Sponsored</span>
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=200&fit=crop&q=80"
-                    alt="Premium Shopping Experience" loading="lazy"
-                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
-            </div>
-        </a>
-    </section>
-
-    <section id="brands" class="container">
-        <h2>Official Brand Stores</h2>
-
-        <div class="section-header">
-            <h3>Clothing & Fashion</h3>
-            <a href="category.html?type=clothing" class="view-all-btn">View All <i
-                    class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <!-- Clothing Category Slider -->
-        <div class="category-ad-slider" id="clothing-slider">
-            <div class="cat-slide active"><a href="store.html?brand=Khaadi"><img
-                        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1100&h=180&fit=crop&q=80"
-                        alt="Khaadi Collection" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Gul Ahmed"><img
-                        src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1100&h=180&fit=crop&q=80"
-                        alt="Fashion Ad" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=J."><img
-                        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1100&h=180&fit=crop&q=80"
-                        alt="Fashion Ad" style="border-radius: 10px;"></a></div>
-        </div>
-        <div class="brand-grid" id="clothing-container">
-        </div>
-
-        <div class="section-header">
-            <h3>Shoes & Footwear</h3>
-            <a href="category.html?type=shoes" class="view-all-btn">View All <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <!-- Shoes Category Slider -->
-        <div class="category-ad-slider" id="shoes-slider">
-            <div class="cat-slide active"><a href="store.html?brand=Nike"><img
-                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1100&h=180&fit=crop&q=80"
-                        alt="Nike Shoes" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Adidas"><img
-                        src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1100&h=180&fit=crop&q=80"
-                        alt="Adidas Shoes" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Bata"><img
-                        src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=1100&h=180&fit=crop&q=80"
-                        alt="Footwear" style="border-radius: 10px;"></a></div>
-        </div>
-        <div class="brand-grid" id="shoes-container">
-        </div>
-
-        <div class="section-header">
-            <h3>Electronics & Tech</h3>
-            <a href="category.html?type=tech" class="view-all-btn">View All <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <!-- Tech Category Slider -->
-        <div class="category-ad-slider" id="tech-slider">
-            <div class="cat-slide active"><a href="store.html?brand=Samsung"><img
-                        src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=1100&h=180&fit=crop&q=80"
-                        alt="Samsung" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Apple"><img
-                        src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1100&h=180&fit=crop&q=80"
-                        alt="Apple" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Sony"><img
-                        src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=1100&h=180&fit=crop&q=80"
-                        alt="Gaming" style="border-radius: 10px;"></a></div>
-        </div>
-        <div class="brand-grid" id="tech-container">
-        </div>
-
-        <div class="section-header">
-            <h3>Watches & Jewelry</h3>
-            <a href="category.html?type=jewelry" class="view-all-btn">View All <i
-                    class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <!-- Watches Category Slider -->
-        <div class="category-ad-slider" id="watches-slider">
-            <div class="cat-slide active"><a href="store.html?brand=Rolex"><img
-                        src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1100&h=180&fit=crop&q=80"
-                        alt="Rolex" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Tissot"><img
-                        src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1100&h=180&fit=crop&q=80"
-                        alt="Watches" style="border-radius: 10px;"></a></div>
-            <div class="cat-slide"><a href="store.html?brand=Casio"><img
-                        src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=1100&h=180&fit=crop&q=80"
-                        alt="Watches" style="border-radius: 10px;"></a></div>
-        </div>
-        <div class="brand-grid" id="watch-container">
-        </div>
-    </section>
-
-    <!-- AD BANNER 3: Featured Brand Spotlight -->
-    <section class="ad-banner-section">
-        <div class="ad-banner featured">
-            <span class="ad-label">Featured Brand</span>
-            <a href="store.html?brand=Khaadi">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=250&fit=crop&q=80"
-                    alt="Featured Brand" loading="lazy"
-                    style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px;">
-            </a>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2>Trending Now</h2>
-        <div class="product-grid">
-            <a href="product.html?id=running-shoes" class="product-card-glass">
-                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
-                    aria-label="Add to Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" class="product-img"
-                        alt="Running Shoes">
-                </div>
-                <h4>Running Shoes</h4>
-                <p class="brand-name">Nike Store</p>
-                <p class="price">Rs. 12,000</p>
-                <button class="add-to-cart-btn"
-                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
-                    to Cart</button>
-            </a>
-            <a href="product.html?id=galaxy-s24" class="product-card-glass">
-                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
-                    aria-label="Add to Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80"
-                        class="product-img" alt="Galaxy S24">
-                </div>
-                <h4>Galaxy S24</h4>
-                <p class="brand-name">Samsung Official</p>
-                <p class="price">Rs. 350,000</p>
-                <button class="add-to-cart-btn"
-                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
-                    to Cart</button>
-            </a>
-            <a href="product.html?id=summer-kurta" class="product-card-glass">
-                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
-                    aria-label="Add to Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80"
-                        class="product-img" alt="Summer Kurta">
-                </div>
-                <h4>Summer Kurta</h4>
-                <p class="brand-name">J. (Junaid Jamshed)</p>
-                <p class="price">Rs. 4,500</p>
-                <button class="add-to-cart-btn"
-                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
-                    to Cart</button>
-            </a>
-            <a href="product.html?id=luxury-watch" class="product-card-glass">
-                <span class="badge">Luxury</span>
-                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
-                    aria-label="Add to Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80"
-                        class="product-img" alt="Luxury Watch">
-                </div>
-                <h4>Luxury Watch</h4>
-                <p class="brand-name">Rolex Official</p>
-                <p class="price">Rs. 1,875,000</p>
-                <button class="add-to-cart-btn"
-                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
-                    to Cart</button>
-            </a>
-        </div>
-    </section>
-
-    <!-- AD BANNER 4: Bottom Banner before footer -->
-    <section class="ad-banner-section">
-        <div class="ad-banner-row triple">
-            <a href="store.html?brand=Nike" class="ad-banner third-width">
-                <span class="ad-label">Ad</span>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=380&h=200&fit=crop&q=80"
-                    alt="Nike" style="border-radius: 10px;">
-            </a>
-            <a href="store.html?brand=Samsung" class="ad-banner third-width">
-                <span class="ad-label">Ad</span>
-                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=380&h=200&fit=crop&q=80"
-                    alt="Samsung" style="border-radius: 10px;">
-            </a>
-            <a href="store.html?brand=Khaadi" class="ad-banner third-width">
-                <span class="ad-label">Ad</span>
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=380&h=200&fit=crop&q=80"
-                    alt="Khaadi" loading="lazy" style="border-radius: 10px;">
-            </a>
-        </div>
-    </section>
-
-    <!-- Services Strip (above footer) -->
-    <section class="services-strip">
-        <div class="service-item">
-            <i class="fa-solid fa-credit-card"></i>
-            <div>
-                <strong>Bank Discount</strong>
-                <span>10% Off with HBL Cards</span>
-            </div>
-        </div>
-        <div class="service-item">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-                <strong>Free Delivery</strong>
-                <span>On orders over Rs. 5000</span>
-            </div>
-        </div>
-        <div class="service-item">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-                <strong>Secure Payment</strong>
-                <span>100% Protected</span>
-            </div>
-        </div>
-    </section>
-    <!-- TRUST STRIP -->
-    <!-- TRUST STRIP - Upgraded Visibility -->
-    <div class="trust-strip"
-        style="background: linear-gradient(to right, #1a1a2e, #16213e); border-top: 1px solid var(--hazel-gold); border-bottom: 1px solid var(--hazel-gold);">
-        <div class="container trust-container">
-            <div class="trust-item">
-                <i class="fa-solid fa-cube" style="color:var(--hazel-gold);"></i>
-                <div class="trust-text">
-                    <h4 style="color:white;">Immersive 3D</h4>
-                    <p style="color:#aaa;">Virtual Store Experience</p>
+        <!-- Services Strip (above footer) -->
+        <section class="services-strip">
+            <div class="service-item">
+                <i class="fa-solid fa-credit-card"></i>
+                <div>
+                    <strong>Bank Discount</strong>
+                    <span>10% Off with HBL Cards</span>
                 </div>
             </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-certificate" style="color:var(--hazel-gold);"></i>
-                <div class="trust-text">
-                    <h4 style="color:white;">100% Authentic</h4>
-                    <p style="color:#aaa;">Direct from Brands</p>
+            <div class="service-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div>
+                    <strong>Free Delivery</strong>
+                    <span>On orders over Rs. 5000</span>
                 </div>
             </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-shield-halved" style="color:var(--hazel-gold);"></i>
-                <div class="trust-text">
-                    <h4 style="color:white;">Secure Payment</h4>
-                    <p style="color:#aaa;">Bank & Card Protected</p>
+            <div class="service-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <strong>Secure Payment</strong>
+                    <span>100% Protected</span>
                 </div>
             </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-rotate-left" style="color:var(--hazel-gold);"></i>
-                <div class="trust-text">
-                    <h4 style="color:white;">Easy Returns</h4>
-                    <p style="color:#aaa;">7-Day No Questions</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TESTIMONIALS SECTION -->
-    <section class="container testimonials-section">
-        <div class="section-header">
-            <h3><i class="fa-regular fa-comments"></i> What Our Customers Say</h3>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Customer">
-                    <div>
-                        <h4>Ahmed Khan</h4>
-                        <div class="stars">★★★★★</div>
+        </section>
+        <!-- TRUST STRIP -->
+        <!-- TRUST STRIP - Upgraded Visibility -->
+        <div class="trust-strip"
+            style="background: linear-gradient(to right, #1a1a2e, #16213e); border-top: 1px solid var(--hazel-gold); border-bottom: 1px solid var(--hazel-gold);">
+            <div class="container trust-container">
+                <div class="trust-item">
+                    <i class="fa-solid fa-cube" style="color:var(--hazel-gold);"></i>
+                    <div class="trust-text">
+                        <h4 style="color:white;">Immersive 3D</h4>
+                        <p style="color:#aaa;">Virtual Store Experience</p>
                     </div>
                 </div>
-                <p>"Amazing quality and fast delivery! The product was exactly as described. Will definitely shop
-                    again."</p>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Customer">
-                    <div>
-                        <h4>Sara Ali</h4>
-                        <div class="stars">★★★★★</div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-certificate" style="color:var(--hazel-gold);"></i>
+                    <div class="trust-text">
+                        <h4 style="color:white;">100% Authentic</h4>
+                        <p style="color:#aaa;">Direct from Brands</p>
                     </div>
                 </div>
-                <p>"I love the variety of brands available. The customer support was also very helpful with my query."
-                </p>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Customer">
-                    <div>
-                        <h4>Bilal Ahmed</h4>
-                        <div class="stars">★★★★☆</div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-shield-halved" style="color:var(--hazel-gold);"></i>
+                    <div class="trust-text">
+                        <h4 style="color:white;">Secure Payment</h4>
+                        <p style="color:#aaa;">Bank & Card Protected</p>
                     </div>
                 </div>
-                <p>"Great experience overall. The packaging was secure and premium. Highly recommended!"</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-col">
-                <h4>Virtual Mega Mall</h4>
-                <p>The premium destination for all your shopping needs. Genuine brands, verified products, and seamless
-                    experience.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="advertise.html">Advertise With Us</a></li>
-                    <li><a href="admin.html">Vendor Portal</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Customer Help</h4>
-                <ul>
-                    <li><a href="help.html">Help Center / FAQs</a></li>
-                    <li><a href="profile.html">Track Order</a></li>
-                    <li><a href="profile.html">Returns & Refunds</a></li>
-                    <li><a href="chat.js" onclick="toggleChat(); return false;">Live Support</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Discover</h4>
-                <ul>
-                    <li><a href="brands.html">Brand Directory</a></li>
-                    <li><a href="comparison.html">Compare Products</a></li>
-                    <li><a href="index.html#clothing-container">Fashion Category</a></li>
-                    <li><a href="index.html#tech-container">Tech Category</a></li>
-                </ul>
-            </div>
-
-            <!-- Newsletter Column -->
-            <div class="footer-col newsletter-col">
-                <h4>SIGN UP FOR UPDATES</h4>
-                <p>Get access to our latest collections, exclusive deals and new arrivals. <a href="help.html">Privacy
-                        Policy</a></p>
-                <form class="footer-newsletter-form" onsubmit="subscribeNewsletter(event)">
-                    <input type="email" id="newsletter-email" placeholder="Email" required>
-                    <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
-                </form>
-                <div id="newsletter-success" class="newsletter-success" style="display:none;">
-                    <i class="fa-solid fa-check-circle"></i> Subscribed!
+                <div class="trust-item">
+                    <i class="fa-solid fa-rotate-left" style="color:var(--hazel-gold);"></i>
+                    <div class="trust-text">
+                        <h4 style="color:white;">Easy Returns</h4>
+                        <p style="color:#aaa;">7-Day No Questions</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Virtual Mega Mall. All Rights Reserved. <br>
-            <span style="font-size:12px; color:#666;">Developed by <a href="#"
-                    style="color:var(--hazel-gold); text-decoration:none;">HSN Developers</a></span>
-        </div>
-    </footer>
 
-    <!-- Quick View Modal -->
-    <div class="quick-view-modal" id="quick-view-modal">
-        <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
-        <div class="quick-view-content">
-            <div class="quick-view-image">
-                <img src="" alt="Product" id="qv-image">
+        <!-- TESTIMONIALS SECTION -->
+        <section class="container testimonials-section">
+            <div class="section-header">
+                <h3><i class="fa-regular fa-comments"></i> What Our Customers Say</h3>
             </div>
-            <div class="quick-view-details">
-                <div class="brand" id="qv-brand">Brand</div>
-                <h2 id="qv-name">Product Name</h2>
-                <div class="price" id="qv-price">Rs. 0</div>
-                <p class="description" id="qv-desc">Premium quality product with exceptional craftsmanship.</p>
-                <div class="quick-view-actions">
-                    <button class="add-btn" id="qv-add-btn"><i class="fa-solid fa-bag-shopping"></i> Add to
-                        Cart</button>
-                    <button class="view-btn" id="qv-view-btn">View Full Details</button>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Customer">
+                        <div>
+                            <h4>Ahmed Khan</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p>"Amazing quality and fast delivery! The product was exactly as described. Will definitely shop
+                        again."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Customer">
+                        <div>
+                            <h4>Sara Ali</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p>"I love the variety of brands available. The customer support was also very helpful with my
+                        query."
+                    </p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Customer">
+                        <div>
+                            <h4>Bilal Ahmed</h4>
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <p>"Great experience overall. The packaging was secure and premium. Highly recommended!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Virtual Mega Mall</h4>
+                    <p>The premium destination for all your shopping needs. Genuine brands, verified products, and
+                        seamless
+                        experience.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="advertise.html">Advertise With Us</a></li>
+                        <li><a href="admin.html">Vendor Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Customer Help</h4>
+                    <ul>
+                        <li><a href="help.html">Help Center / FAQs</a></li>
+                        <li><a href="profile.html">Track Order</a></li>
+                        <li><a href="profile.html">Returns & Refunds</a></li>
+                        <li><a href="chat.js" onclick="toggleChat(); return false;">Live Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="brands.html">Brand Directory</a></li>
+                        <li><a href="comparison.html">Compare Products</a></li>
+                        <li><a href="index.html#clothing-container">Fashion Category</a></li>
+                        <li><a href="index.html#tech-container">Tech Category</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Column -->
+                <div class="footer-col newsletter-col">
+                    <h4>SIGN UP FOR UPDATES</h4>
+                    <p>Get access to our latest collections, exclusive deals and new arrivals. <a
+                            href="help.html">Privacy
+                            Policy</a></p>
+                    <form class="footer-newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" id="newsletter-email" placeholder="Email" required>
+                        <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                    <div id="newsletter-success" class="newsletter-success" style="display:none;">
+                        <i class="fa-solid fa-check-circle"></i> Subscribed!
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Virtual Mega Mall. All Rights Reserved. <br>
+                <span style="font-size:12px; color:#666;">Developed by <a href="#"
+                        style="color:var(--hazel-gold); text-decoration:none;">HSN Developers</a></span>
+            </div>
+        </footer>
+
+        <!-- Quick View Modal -->
+        <div class="quick-view-modal" id="quick-view-modal">
+            <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
+            <div class="quick-view-content">
+                <div class="quick-view-image">
+                    <img src="" alt="Product" id="qv-image">
+                </div>
+                <div class="quick-view-details">
+                    <div class="brand" id="qv-brand">Brand</div>
+                    <h2 id="qv-name">Product Name</h2>
+                    <div class="price" id="qv-price">Rs. 0</div>
+                    <p class="description" id="qv-desc">Premium quality product with exceptional craftsmanship.</p>
+                    <div class="quick-view-actions">
+                        <button class="add-btn" id="qv-add-btn"><i class="fa-solid fa-bag-shopping"></i> Add to
+                            Cart</button>
+                        <button class="view-btn" id="qv-view-btn">View Full Details</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Social Proof Notification -->
-    <div id="social-proof-toast" class="social-proof-toast">
-        <div class="proof-content">
-            <img id="proof-img" src="" alt="Product">
-            <div class="proof-text">
-                <span id="proof-name" class="proof-name">Someone</span> from <span id="proof-city">Karachi</span>
-                <br>purchased <span id="proof-product" class="proof-product">Product Name</span>
-                <br><small id="proof-time">Just now</small>
+        <!-- Social Proof Notification -->
+        <div id="social-proof-toast" class="social-proof-toast">
+            <div class="proof-content">
+                <img id="proof-img" src="" alt="Product">
+                <div class="proof-text">
+                    <span id="proof-name" class="proof-name">Someone</span> from <span id="proof-city">Karachi</span>
+                    <br>purchased <span id="proof-product" class="proof-product">Product Name</span>
+                    <br><small id="proof-time">Just now</small>
+                </div>
+                <button class="proof-close" onclick="closeSocialProof()">&times;</button>
             </div>
-            <button class="proof-close" onclick="closeSocialProof()">&times;</button>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
