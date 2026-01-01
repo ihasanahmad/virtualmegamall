@@ -5,9 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Products | Virtual Mega Mall</title>
+
+    <!-- Theme Switcher (Must load first) -->
+    <script src="theme-switcher.js"></script>
+
+    <!-- Clinical Art Gallery Design System -->
+    <link rel="stylesheet" href="clinical-gallery.css">
+    <link rel="stylesheet" href="clinical-typography.css">
+    <link rel="stylesheet" href="clinical-forms.css">
+
+    <!-- Main Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* Special Styles for Comparison Table */
@@ -71,14 +84,27 @@
 </head>
 
 <body>
-
     <nav class="navbar">
-        <a href="index.html" class="logo" style="text-decoration:none;">VIRTUAL MEGA MALL</a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="brands.html">Brands</a>
+        <div class="logo">
+            <a href="index.html" style="text-decoration:none; color: inherit;">
+                VIRTUAL <span class="gold-text">MEGA MALL</span>
+            </a>
+        </div>
+        <div class="nav-actions">
+            <div class="icon-item">
+                <a href="index.html" title="Home" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-home"></i> Home
+                </a>
+            </div>
+            <div class="icon-item">
+                <a href="brands.html" title="Brands" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-store"></i> Brands
+                </a>
+            </div>
         </div>
     </nav>
+
+    <script src="navbar-functions.js"></script>
 
     <section class="container" style="min-height: 80vh;">
         <h1 style="text-align: center; margin-bottom: 40px;">Compare Products</h1>
