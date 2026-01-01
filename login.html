@@ -6,20 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Virtual Mega Mall</title>
 
-    <!-- Theme Switcher (Must load first) -->
-    <script src="theme-switcher.js"></script>
-
-    <!-- Clinical Art Gallery Design System -->
-    <link rel="stylesheet" href="clinical-gallery.css">
-    <link rel="stylesheet" href="clinical-typography.css">
-    <link rel="stylesheet" href="clinical-forms.css">
-
-    <!-- Main Styles -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
-    <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
-    <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
-    <link rel="stylesheet" href="mobile.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Firebase SDKs -->
@@ -31,251 +20,605 @@
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
 
-    <script src="cookie-consent.js" defer"></script> <!-- Cookie Consent Script -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 900px;
+            max-width: 100%;
+            min-height: 550px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .forms-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .signin-signup {
+            position: absolute;
+            top: 50%;
+            left: 75%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            display: grid;
+            grid-template-columns: 1fr;
+            z-index: 5;
+            transition: 1s 0.7s ease-in-out;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 5rem;
+            overflow: hidden;
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            transition: 0.2s 0.7s ease-in-out;
+        }
+
+        form.sign-in-form {
+            z-index: 2;
+        }
+
+        form.sign-up-form {
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            color: #444;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .input-field {
+            max-width: 380px;
+            width: 100%;
+            height: 55px;
+            background: #f0f0f0;
+            margin: 10px 0;
+            border-radius: 55px;
+            display: grid;
+            grid-template-columns: 15% 85%;
+            padding: 0 0.4rem;
+            position: relative;
+        }
+
+        .input-field i {
+            text-align: center;
+            line-height: 55px;
+            color: #acacac;
+            font-size: 1.1rem;
+        }
+
+        .input-field input {
+            background: none;
+            outline: none;
+            border: none;
+            line-height: 1;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .input-field input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .social-text {
+            padding: 0.7rem 0;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            height: 50px;
+            width: 50px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            color: #4481eb;
+            border-color: #4481eb;
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            width: 150px;
+            height: 49px;
+            border: none;
+            outline: none;
+            border-radius: 49px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.5s;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .panels-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-around;
+            text-align: center;
+            z-index: 6;
+        }
+
+        .left-panel {
+            pointer-events: all;
+            padding: 3rem 17% 2rem 12%;
+        }
+
+        .right-panel {
+            pointer-events: none;
+            padding: 3rem 12% 2rem 17%;
+        }
+
+        .panel .content {
+            color: #fff;
+            transition: 0.9s 0.6s ease-in-out;
+        }
+
+        .panel h3 {
+            font-weight: 700;
+            line-height: 1;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .panel p {
+            font-size: 0.95rem;
+            padding: 0.7rem 0;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .btn.transparent {
+            margin: 0;
+            background: none;
+            border: 2px solid #fff;
+            width: 130px;
+            height: 41px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .btn.transparent:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .image {
+            width: 100%;
+            transition: 1.1s 0.4s ease-in-out;
+        }
+
+        .image svg,
+        .image img {
+            width: 100%;
+        }
+
+        /* ANIMATION */
+        .container.sign-up-mode:before {
+            transform: translate(100%, -50%);
+            right: 52%;
+        }
+
+        .container.sign-up-mode .left-panel .image,
+        .container.sign-up-mode .left-panel .content {
+            transform: translateX(-800px);
+        }
+
+        .container.sign-up-mode .signin-signup {
+            left: 25%;
+        }
+
+        .container.sign-up-mode form.sign-in-form {
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .container.sign-up-mode form.sign-up-form {
+            z-index: 2;
+            opacity: 1;
+        }
+
+        .container.sign-up-mode .right-panel .image,
+        .container.sign-up-mode .right-panel .content {
+            transform: translateX(0px);
+        }
+
+        .container.sign-up-mode .left-panel {
+            pointer-events: none;
+        }
+
+        .container.sign-up-mode .right-panel {
+            pointer-events: all;
+        }
+
+        .container:before {
+            content: '';
+            position: absolute;
+            height: 2000px;
+            width: 2000px;
+            top: -10%;
+            right: 48%;
+            transform: translateY(-50%);
+            background: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+            transition: 1.8s ease-in-out;
+            border-radius: 50%;
+            z-index: 6;
+        }
+
+        .right-panel .image,
+        .right-panel .content {
+            transform: translateX(800px);
+        }
+
+        /* Role Switcher */
+        .role-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .role-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .role-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 870px) {
+            .container {
+                min-height: 800px;
+                height: 100vh;
+            }
+
+            .container:before {
+                width: 1500px;
+                height: 1500px;
+                left: 30%;
+                bottom: 68%;
+                transform: translateX(-50%);
+                right: initial;
+                top: initial;
+                transition: 2s ease-in-out;
+            }
+
+            .signin-signup {
+                width: 100%;
+                left: 50%;
+                top: 95%;
+                transform: translate(-50%, -100%);
+                transition: 1s 0.8s ease-in-out;
+            }
+
+            .panels-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 2fr 1fr;
+            }
+
+            .panel {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                padding: 2.5rem 8%;
+            }
+
+            .panel .content {
+                padding-right: 15%;
+                transition: 0.9s 0.8s ease-in-out;
+            }
+
+            .panel h3 {
+                font-size: 1.2rem;
+            }
+
+            .panel p {
+                font-size: 0.7rem;
+                padding: 0.5rem 0;
+            }
+
+            .btn.transparent {
+                width: 110px;
+                height: 35px;
+                font-size: 0.7rem;
+            }
+
+            .image {
+                width: 200px;
+                transition: 0.9s 0.6s ease-in-out;
+            }
+
+            .left-panel {
+                grid-row: 1 / 2;
+            }
+
+            .right-panel {
+                grid-row: 3 / 4;
+            }
+
+            form {
+                padding: 0 1.5rem;
+            }
+
+            .container.sign-up-mode:before {
+                transform: translate(-50%, 100%);
+                bottom: 32%;
+                right: initial;
+            }
+
+            .container.sign-up-mode .left-panel .image,
+            .container.sign-up-mode .left-panel .content {
+                transform: translateY(-300px);
+            }
+
+            .container.sign-up-mode .signin-signup {
+                top: 5%;
+                transform: translate(-50%, 0);
+                left: 50%;
+            }
+        }
+
+        @media (max-width: 570px) {
+            form {
+                padding: 0 1.5rem;
+            }
+
+            .image {
+                display: none;
+            }
+
+            .panel .content {
+                padding: 0.5rem 1rem;
+            }
+
+            .container:before {
+                bottom: 72%;
+                left: 50%;
+            }
+
+            .container.sign-up-mode:before {
+                bottom: 28%;
+                left: 50%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index.html" style="text-decoration:none; color: inherit;">
-                VIRTUAL <span class="gold-text">MEGA MALL</span>
-            </a>
+    <div class="container">
+        <!-- Role Switcher -->
+        <div class="role-switcher">
+            <button class="role-btn active" onclick="switchRole('customer')">Customer</button>
+            <button class="role-btn" onclick="switchRole('vendor')">Vendor</button>
         </div>
 
-        <!-- Right Side: Simple navigation for login page -->
-        <div class="nav-actions">
-            <div class="icon-item">
-                <a href="index.html" title="Home" style="color: inherit; text-decoration: none;">
-                    <i class="fa-solid fa-home"></i> Home
-                </a>
+        <div class="forms-container">
+            <div class="signin-signup">
+                <!-- Sign In Form -->
+                <form class="sign-in-form" id="sign-in-form">
+                    <h2 class="title">Sign In</h2>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="signin-email" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="signin-password" required>
+                    </div>
+                    <button type="submit" class="btn solid">SIGN IN</button>
+                    <p class="social-text">Or sign in with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon" onclick="event.preventDefault(); socialLogin('google')">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon" onclick="event.preventDefault(); socialLogin('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon" onclick="event.preventDefault(); socialLogin('linkedin')">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form class="sign-up-form" id="sign-up-form">
+                    <h2 class="title">Create Account</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Full Name" id="signup-name" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="signup-email" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="signup-password" required>
+                    </div>
+                    <button type="submit" class="btn solid">SIGN UP</button>
+                    <p class="social-text">Or sign up with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon" onclick="event.preventDefault(); socialLogin('google')">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon" onclick="event.preventDefault(); socialLogin('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon" onclick="event.preventDefault(); socialLogin('linkedin')">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
-    </nav>
 
-    <script src="navbar-functions.js"></script>
-
-    <div class="login-container">
-        <!-- Tab Switcher -->
-        <div class="tab-switcher">
-            <span id="tab-user" class="active" onclick="switchTab('user')">Customer</span>
-            <span id="tab-vendor" onclick="switchTab('vendor')">Vendor</span>
-        </div>
-
-        <div class="login-header">
-            <h2 id="form-title">Welcome Back!</h2>
-            <p id="form-desc">Sign in to continue shopping</p>
-        </div>
-
-        <!-- Social Login Options -->
-        <div class="social-login">
-            <button class="social-btn google" onclick="socialLogin('google')">
-                <i class="fa-brands fa-google"></i>
-                Continue with Google
-            </button>
-            <button class="social-btn apple" onclick="socialLogin('apple')">
-                <i class="fa-brands fa-apple"></i>
-                Continue with Apple
-            </button>
-            <button class="social-btn facebook" onclick="socialLogin('facebook')">
-                <i class="fa-brands fa-facebook-f"></i>
-                Continue with Facebook
-            </button>
-        </div>
-
-        <div class="divider">
-            <span>or continue with email</span>
-        </div>
-
-        <!-- Email/Password Form -->
-        <form id="auth-form">
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="email" required placeholder="name@example.com">
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Already have an account?</h3>
+                    <p>Welcome back! Stay connected by logging in with your credentials and continue your shopping
+                        experience.</p>
+                    <button class="btn transparent" id="sign-in-btn">Sign In</button>
+                </div>
+                <div class="image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                        <path fill="#fff" opacity="0.1"
+                            d="M472.7 270.3c-2.2-71.5-61.7-128.8-133.4-128.8-28.5 0-54.8 8.9-76.5 24.1-16.5-53.8-66.6-93-125.7-93C77.9 72.7 32.5 119 32.5 176.3c0 11.4 1.9 22.4 5.3 32.6C14.9 223.8 0 247.7 0 275.2 0 316.3 33.7 350 74.8 350h281.4c52.5 0 95.1-42.6 95.1-95.1 0-30.4-14.3-57.5-36.6-75.6z" />
+                    </svg>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="password" required placeholder="Enter your password">
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>New to Virtual Mega Mall?</h3>
+                    <p>Begin your amazing journey by creating an account with us today. Explore premium brands and
+                        exclusive deals!</p>
+                    <button class="btn transparent" id="sign-up-btn">Sign Up</button>
+                </div>
+                <div class="image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                        <circle fill="#fff" opacity="0.1" cx="250" cy="250" r="200" />
+                    </svg>
+                </div>
             </div>
-
-            <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
-            </div>
-
-            <input type="hidden" id="role" value="user">
-
-            <button type="submit" class="login-btn" id="submit-btn">Sign In</button>
-        </form>
-
-        <div class="switch-link">
-            <span id="switch-text">New to Mega Mall?</span>
-            <a onclick="toggleMode()" id="switch-btn">Create Account</a>
-        </div>
-
-        <!-- Trust Badges -->
-        <div class="trust-badges">
-            <span><i class="fa-solid fa-lock"></i> Secure</span>
-            <span><i class="fa-solid fa-shield-halved"></i> Protected</span>
-            <span><i class="fa-solid fa-check-circle"></i> Verified</span>
         </div>
     </div>
 
     <script>
-        let isLogin = true;
-        let currentRole = 'user';
+        // Animation Toggle
+        const sign_in_btn = document.querySelector("#sign-in-btn");
+        const sign_up_btn = document.querySelector("#sign-up-btn");
+        const container = document.querySelector(".container");
 
-        // Check if already logged in
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                // User is already logged in, redirect
-                const params = new URLSearchParams(window.location.search);
-                const returnUrl = params.get('return') || 'index.html';
-                window.location.href = returnUrl;
-            }
+        sign_up_btn.addEventListener('click', () => {
+            container.classList.add("sign-up-mode");
         });
 
-        function switchTab(role) {
-            currentRole = role;
-            const tabUser = document.getElementById('tab-user');
-            const tabVendor = document.getElementById('tab-vendor');
-            const roleInput = document.getElementById('role');
-            const title = document.getElementById('form-title');
-            const desc = document.getElementById('form-desc');
+        sign_in_btn.addEventListener('click', () => {
+            container.classList.remove("sign-up-mode");
+        });
 
-            if (role === 'user') {
-                tabUser.classList.add('active');
-                tabVendor.classList.remove('active');
-                title.innerText = isLogin ? "Welcome Back!" : "Create Account";
-                desc.innerText = isLogin ? "Sign in to continue shopping" : "Join Mega Mall today";
-                roleInput.value = "user";
-            } else {
-                tabVendor.classList.add('active');
-                tabUser.classList.remove('active');
-                title.innerText = isLogin ? "Vendor Login" : "Register Your Brand";
-                desc.innerText = isLogin ? "Access your store dashboard" : "Start selling on Mega Mall";
-                roleInput.value = "vendor";
-            }
+        // Role Switching
+        function switchRole(role) {
+            const buttons = document.querySelectorAll('.role-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            console.log('Switched to:', role);
+            // Store role for form submission
+            localStorage.setItem('userRole', role);
         }
 
-        function toggleMode() {
-            isLogin = !isLogin;
-            const btn = document.getElementById('submit-btn');
-            const switchText = document.getElementById('switch-text');
-            const switchBtn = document.getElementById('switch-btn');
-
-            switchTab(currentRole);
-
-            if (isLogin) {
-                btn.innerText = "Sign In";
-                switchText.innerText = "New to Mega Mall?";
-                switchBtn.innerText = "Create Account";
-            } else {
-                btn.innerText = "Create Account";
-                switchText.innerText = "Already have an account?";
-                switchBtn.innerText = "Sign In";
-            }
-        }
-
-        // Social Login with Firebase
-        async function socialLogin(provider) {
-            if (provider !== 'google') {
-                showAuthToast('Only Google Sign-In is available in this demo', 'error');
-                return;
-            }
-
-            const btns = document.querySelectorAll('.social-btn');
-            btns.forEach(b => b.style.opacity = '0.6');
-
-            const result = await signInWithGoogle();
-
-            btns.forEach(b => b.style.opacity = '1');
-
-            if (result.success) {
-                // Add role to Firestore
-                await db.collection('users').doc(result.user.uid).update({
-                    role: currentRole
-                });
-
-                showAuthToast('Signed in successfully!', 'success');
-
-                setTimeout(() => {
-                    const params = new URLSearchParams(window.location.search);
-                    const returnUrl = params.get('return') || (currentRole === 'vendor' ? 'admin.html' : 'index.html');
-                    window.location.href = returnUrl;
-                }, 1000);
-            } else {
-                showAuthToast(result.error, 'error');
-            }
-        }
-
-        // Email/Password Form Handler
-        document.getElementById('auth-form').addEventListener('submit', async (e) => {
+        // Form Submissions
+        document.getElementById('sign-in-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const btn = document.getElementById('submit-btn');
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            const role = localStorage.getItem('userRole') || 'customer';
 
-            btn.innerText = isLogin ? "Signing In..." : "Creating Account...";
-            btn.disabled = true;
-
-            let result;
-            if (isLogin) {
-                // Login
-                result = await signIn(email, password);
-
-                if (result.success) {
-                    showAuthToast('Welcome back!', 'success');
-
-                    setTimeout(() => {
-                        const params = new URLSearchParams(window.location.search);
-                        const returnUrl = params.get('return') || (currentRole === 'vendor' ? 'admin.html' : 'index.html');
-                        window.location.href = returnUrl;
-                    }, 1000);
-                } else {
-                    showAuthToast(result.error, 'error');
-                }
-            } else {
-                // Sign Up
-                const displayName = email.split('@')[0]; // Use email prefix as display name
-                result = await signUp(email, password, displayName);
-
-                if (result.success) {
-                    // Add role to user document
-                    await db.collection('users').doc(result.user.uid).update({
-                        role: currentRole
-                    });
-
-                    showAuthToast('Account created successfully!', 'success');
-                    toggleMode(); // Switch to login mode
-                } else {
-                    showAuthToast(result.error, 'error');
-                }
-            }
-
-            btn.innerText = isLogin ? "Sign In" : "Create Account";
-            btn.disabled = false;
+            signInWithEmail(email, password, role);
         });
 
-        // Forgot Password
-        document.querySelector('.forgot-password a').addEventListener('click', async (e) => {
+        document.getElementById('sign-up-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const role = localStorage.getItem('userRole') || 'customer';
 
-            if (!email) {
-                showAuthToast('Please enter your email first', 'error');
-                return;
-            }
-
-            const result = await resetPassword(email);
-            if (result.success) {
-                showAuthToast(result.message, 'success');
-            } else {
-                showAuthToast(result.error, 'error');
-            }
+            signUpWithEmail(name, email, password, role);
         });
+
+        // Social Login
+        function socialLogin(provider) {
+            console.log('Social login with:', provider);
+            const role = localStorage.getItem('userRole') || 'customer';
+
+            if (provider === 'google') {
+                continueWithGoogle(role);
+            } else if (provider === 'facebook') {
+                continueWithFacebook(role);
+            } else if (provider === 'linkedin') {
+                console.log('LinkedIn login not implemented yet');
+            }
+        }
     </script>
-
 </body>
 
 </html>
