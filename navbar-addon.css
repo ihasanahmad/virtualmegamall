@@ -14,7 +14,7 @@
     border-radius: 10px;
     flex: 1;
     max-width: 550px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);
     transition: all 0.3s ease;
