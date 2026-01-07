@@ -686,10 +686,34 @@ function searchProducts(query) {
 
 function searchFor(query) {
     document.getElementById('global-search').value = query;
-    document.getElementById('search-suggestions').classList.remove('active');
+    document.getElementById('search-suggestions')?.classList.remove('active');
     // Trigger search or navigate
     window.location = `category.html?search=${encodeURIComponent(query)}`;
 }
+
+// Add search button click handler
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBtn = document.querySelector('.search-btn');
+    const searchInput = document.getElementById('global-search');
+
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                searchFor(query);
+            }
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query) {
+                    searchFor(query);
+                }
+            }
+        });
+    }
+});
 
 // Debounce helper
 function debounce(func, wait) {
@@ -698,96 +722,6 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(() => func.apply(this, args), wait);
     };
-}
-
-/* =========================================
-   2. CART LOGIC
-   ========================================= */
-let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
-
-function updateCartDisplay() {
-    const totalQty = cartItems.reduce((acc, item) => acc + item.qty, 0);
-
-    // Update cart badge (new icon design)
-    const cartBadge = document.getElementById('cart-badge');
-    if (cartBadge) {
-        cartBadge.innerText = totalQty;
-        if (totalQty > 0) {
-            cartBadge.classList.remove('hidden');
-        } else {
-            cartBadge.classList.add('hidden');
-        }
-    }
-
-    // Automatically render if on cart page
-    if (window.location.pathname.includes("cart.html")) {
-        renderCartPage();
-    }
-}
-
-// --- PREMUIM UI HELPERS ---
-function showToast(message, icon = "fa-check-circle") {
-    // Create toast if not exists
-    let toast = document.getElementById('toast-notification');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'toast-notification';
-        toast.className = 'toast';
-        document.body.appendChild(toast);
-    }
-
-    toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
-    toast.classList.add('show');
-
-    // Hide after 3s
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
-
-function addToCart(btn, productDataStr) {
-    let product = productDataStr;
-    if (!product && btn.dataset.product) product = JSON.parse(btn.dataset.product);
-
-    // Fallback
-    if (!product) return;
-
-    const existingIndex = cartItems.findIndex(p => p.name === product.name);
-    if (existingIndex > -1) {
-        cartItems[existingIndex].qty += 1;
-    } else {
-        if (!product.qty) product.qty = 1;
-        cartItems.push(product);
-    }
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    updateCartDisplay();
-
-    // Premium Feedback
-    showToast(`Added ${product.name} to Cart`);
-
-    // Button Animation
-    btn.innerHTML = "<i class='fa-solid fa-check'></i>";
-    btn.style.background = "var(--primary-hazel)";
-    btn.style.color = "white";
-    setTimeout(() => {
-        btn.innerHTML = "Add to Cart";
-        btn.style.background = "";
-        btn.style.color = "";
-    }, 1000);
-}
-
-function removeFromCart(index) {
-    cartItems.splice(index, 1);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    updateCartDisplay();
-}
-
-function changeQty(index, delta) {
-    cartItems[index].qty += delta;
-    if (cartItems[index].qty < 1) cartItems[index].qty = 1;
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    updateCartDisplay();
-    renderCartPage();
 }
 
 // DEFINING THE MISSING RENDER FUNCTION

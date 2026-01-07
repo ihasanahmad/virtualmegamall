@@ -347,6 +347,10 @@
     animation: fadeInDown 0.3s ease;
 }
 
+.categories-menu.show {
+    display: block;
+}
+
 .categories-menu a {
     display: flex;
     align-items: center;
