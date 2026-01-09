@@ -127,16 +127,76 @@ async function continueWithGoogle(role) {
     }
 }
 
-// Facebook Sign In Wrapper (Placeholder)
+// Facebook Sign In Wrapper
 async function continueWithFacebook(role) {
-    showAuthToast('ℹ️ Facebook login coming soon! Use email/password for now.', 'error');
-    console.log('Facebook login not yet implemented');
+    try {
+        const result = await signInWithFacebook();
+
+        if (result.success) {
+            localStorage.setItem('userRole', role);
+
+            // Get return URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const returnUrl = urlParams.get('return') || (role === 'vendor' ? 'vendor-dash.html' : 'index.html');
+
+            showAuthToast('✅ Facebook sign in successful!', 'success');
+
+            setTimeout(() => {
+                window.location.href = returnUrl;
+            }, 1000);
+        } else {
+            showAuthToast(result.error || '❌ Facebook sign in failed', 'error');
+        }
+    } catch (error) {
+        console.error('Facebook sign in error:', error);
+
+        let userMessage = '❌ Facebook sign-in failed';
+
+        if (error.code === 'auth/account-exists-with-different-credential') {
+            userMessage = '❌ Account exists with different provider. Try Google or email/password.';
+        } else if (error.code === 'auth/popup-closed-by-user') {
+            userMessage = 'ℹ️ Sign-in popup was closed. Please try again.';
+        } else if (error.message) {
+            userMessage = '❌ ' + error.message.replace('Firebase: ', '').replace(/\(auth\/.*?\)\.?/, '').trim();
+        }
+
+        showAuthToast(userMessage, 'error');
+    }
 }
 
-// LinkedIn Sign In Wrapper (Placeholder)
+// LinkedIn Sign In Wrapper
 async function continueWithLinkedin(role) {
-    showAuthToast('ℹ️ LinkedIn login coming soon! Use email/password for now.', 'error');
-    console.log('LinkedIn login not yet implemented');
+    try {
+        const result = await signInWithLinkedIn();
+
+        if (result.success) {
+            localStorage.setItem('userRole', role);
+
+            // Get return URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const returnUrl = urlParams.get('return') || (role === 'vendor' ? 'vendor-dash.html' : 'index.html');
+
+            showAuthToast('✅ LinkedIn sign in successful!', 'success');
+
+            setTimeout(() => {
+                window.location.href = returnUrl;
+            }, 1000);
+        } else {
+            showAuthToast(result.error || '❌ LinkedIn sign in failed', 'error');
+        }
+    } catch (error) {
+        console.error('LinkedIn sign in error:', error);
+
+        let userMessage = '❌ LinkedIn sign-in failed';
+
+        if (error.code === 'auth/popup-closed-by-user') {
+            userMessage = 'ℹ️ Sign-in popup was closed. Please try again.';
+        } else if (error.message) {
+            userMessage = '❌ ' + error.message.replace('Firebase: ', '').replace(/\(auth\/.*?\)\.?/, '').trim();
+        }
+
+        showAuthToast(userMessage, 'error');
+    }
 }
 
 console.log('✅ Login authentication wrappers loaded');
