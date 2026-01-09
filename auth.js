@@ -164,10 +164,13 @@ function getErrorMessage(errorCode) {
         'auth/weak-password': 'Password should be at least 6 characters.',
         'auth/user-not-found': 'No account found with this email.',
         'auth/wrong-password': 'Incorrect password. Please try again.',
+        'auth/invalid-login-credentials': 'Account doesn\'t exist or wrong password. Check your credentials!',
+        'auth/invalid-credential': 'Account doesn\'t exist or wrong password. Check your credentials!',
         'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
         'auth/network-request-failed': 'Network error. Please check your connection.',
         'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
-        'auth/cancelled-popup-request': 'Only one popup request is allowed at a time.'
+        'auth/cancelled-popup-request': 'Only one popup request is allowed at a time.',
+        'auth/unauthorized-domain': 'Google login not configured for this domain. Please use email/password.'
     };
 
     return errorMessages[errorCode] || 'An error occurred. Please try again.';
