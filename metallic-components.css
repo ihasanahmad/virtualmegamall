@@ -1,0 +1,323 @@
+/* =========================================
+   METALLIC AIR COMPONENT LIBRARY
+   Reusable UI Components
+   ========================================= */
+
+/* ===== BUTTONS ===== */
+
+/* Base Button */
+.btn-metallic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    background: var(--chrome-gradient-1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-blue-sm);
+    cursor: pointer;
+    transition: all var(--transition-slow);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-metallic:hover {
+    background: var(--chrome-gradient-2);
+    box-shadow: var(--shadow-blue-md);
+    transform: translateY(-2px);
+}
+
+.btn-metallic:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-blue-sm);
+}
+
+/* Liquid Metal Button (with shimmer) */
+.btn-liquid {
+    background: var(--metal-shine);
+    background-size: 200% 200%;
+    animation: liquidMetal 3s ease infinite;
+}
+
+.btn-liquid:hover {
+    animation-duration: 1.5s;
+}
+
+/* Chrome Button */
+.btn-chrome {
+    background: var(--chrome-gradient-2);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    box-shadow: var(--shadow-silver-md);
+}
+
+.btn-chrome:hover {
+    background: var(--metal-shine);
+    background-size: 200% 200%;
+    box-shadow: var(--shadow-silver-md), var(--shadow-blue-sm);
+}
+
+/* Minimal Button */
+.btn-minimal {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+}
+
+.btn-minimal:hover {
+    background: var(--glass-bg);
+    border-color: rgba(100, 149, 237, 0.3);
+    box-shadow: var(--shadow-blue-sm);
+}
+
+/* ===== CARDS ===== */
+
+/* Glass Card */
+.card-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    padding: var(--space-md);
+    transition: all var(--transition-base);
+}
+
+.card-glass:hover {
+    background: var(--glass-bg-strong);
+    box-shadow: var(--glass-shadow), var(--shadow-blue-sm);
+    transform: translateY(-4px);
+}
+
+/* Neumorphic Card */
+.card-neomorph {
+    background: var(--vapor-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--neomorph-shadow-combined);
+    padding: var(--space-lg);
+    transition: all var(--transition-base);
+}
+
+.card-neomorph:hover {
+    box-shadow:
+        12px 12px 20px rgba(0, 0, 0, 0.12),
+        -12px -12px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* Chrome Border Card */
+.card-chrome {
+    background: var(--pure-white);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    position: relative;
+    background-clip: padding-box;
+}
+
+.card-chrome::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    padding: 2px;
+    background: var(--chrome-gradient-3);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* ===== INPUTS ===== */
+
+.input-metallic {
+    padding: 14px 20px;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: all var(--transition-base);
+}
+
+.input-metallic:focus {
+    background: var(--glass-bg-strong);
+    border-color: rgba(100, 149, 237, 0.4);
+    box-shadow: var(--shadow-blue-sm);
+}
+
+.input-metallic::placeholder {
+    color: var(--text-muted);
+}
+
+/* Minimal Input (bottom border only) */
+.input-minimal {
+    padding: 12px 4px;
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    outline: none;
+    transition: all var(--transition-base);
+}
+
+.input-minimal:focus {
+    border-bottom-color: var(--text-primary);
+    box-shadow: 0 2px 0 0 var(--glow-blue);
+}
+
+/* ===== DATA TABLES ===== */
+
+.table-financial {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-primary);
+}
+
+.table-financial thead {
+    background: var(--chrome-gradient-1);
+}
+
+.table-financial th {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.table-financial td {
+    padding: 14px 20px;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table-financial tbody tr {
+    transition: all var(--transition-fast);
+}
+
+.table-financial tbody tr:hover {
+    background: var(--glass-bg);
+    box-shadow: 0 2px 8px var(--glow-blue);
+}
+
+/* Numeric columns */
+.table-financial .numeric {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-align: right;
+}
+
+/* ===== MODALS ===== */
+
+.modal-glass {
+    position: fixed;
+    inset: 0;
+    background: rgba(248, 249, 250, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-blue-lg);
+    padding: var(--space-xl);
+    max-width: 600px;
+    width: 90%;
+}
+
+/* ===== BADGES ===== */
+
+.badge-chrome {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    background: var(--chrome-gradient-2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-silver-sm);
+}
+
+/* ===== DIVIDERS ===== */
+
+.divider-chrome {
+    height: 2px;
+    background: var(--chrome-gradient-3);
+    border: none;
+    margin: var(--space-lg) 0;
+}
+
+.divider-glow {
+    height: 1px;
+    background: rgba(100, 149, 237, 0.2);
+    border: none;
+    box-shadow: 0 0 10px var(--glow-blue);
+    margin: var(--space-md) 0;
+}
+
+/* ===== PROGRESS BARS ===== */
+
+.progress-chrome {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--metal-shine);
+    background-size: 200% 100%;
+    border-radius: var(--radius-full);
+    animation: liquidMetal 3s ease infinite;
+    transition: width var(--transition-slow);
+}
+
+/* ===== SKELETON LOADERS ===== */
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(90deg,
+            var(--vapor-white) 25%,
+            var(--pure-white) 50%,
+            var(--vapor-white) 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}

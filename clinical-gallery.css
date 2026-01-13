@@ -1,0 +1,188 @@
+/* =========================================
+   CLINICAL ART GALLERY - CORE DESIGN SYSTEM
+   Pure White/Black Swiss Medical Aesthetic
+   NO Gradients. NO Shadows. NO Colors.
+   ========================================= */
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+    /* Clinical Color Palette - STRICT */
+    --clinical-white: #FFFFFF;
+    --clinical-black: #000000;
+    --clinical-border: #E5E5E5;
+
+    /* Typography */
+    --font-heading: 'Helvetica Neue', 'Arial', sans-serif;
+    --font-body: 'Helvetica', 'Arial', sans-serif;
+    --font-mono: 'Courier New', 'Courier', monospace;
+
+    /* Spacing - 2x Standard for Premium Feel */
+    --spacing-xs: 10px;
+    --spacing-sm: 20px;
+    --spacing-md: 40px;
+    --spacing-lg: 60px;
+    --spacing-xl: 80px;
+    --spacing-2xl: 120px;
+
+    /* Borders */
+    --border-thin: 1px solid var(--clinical-border);
+    --border-thick: 2px solid var(--clinical-black);
+}
+
+/* ===== GLOBAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY - PURE WHITE ===== */
+body {
+    background: var(--clinical-white);
+    color: var(--clinical-black);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== CONTAINERS ===== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.container-narrow {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* ===== SECTIONS ===== */
+section {
+    padding: var(--spacing-2xl) 0;
+    background: var(--clinical-white);
+}
+
+/* ===== DIVIDERS ===== */
+hr {
+    border: none;
+    border-top: var(--border-thin);
+    margin: var(--spacing-lg) 0;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: var(--clinical-black);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.6;
+}
+
+/* ===== IMAGES ===== */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-mono {
+    font-family: var(--font-mono);
+}
+
+.border-top {
+    border-top: var(--border-thin);
+}
+
+.border-bottom {
+    border-bottom: var(--border-thin);
+}
+
+.border-all {
+    border: var(--border-thin);
+}
+
+.mt-sm {
+    margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+    margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+    margin-top: var(--spacing-lg);
+}
+
+.mb-sm {
+    margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+.pt-sm {
+    padding-top: var(--spacing-sm);
+}
+
+.pt-md {
+    padding-top: var(--spacing-md);
+}
+
+.pt-lg {
+    padding-top: var(--spacing-lg);
+}
+
+.pb-sm {
+    padding-bottom: var(--spacing-sm);
+}
+
+.pb-md {
+    padding-bottom: var(--spacing-md);
+}
+
+.pb-lg {
+    padding-bottom: var(--spacing-lg);
+}
+
+/* ===== NO SHADOWS ANYWHERE ===== */
+* {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* ===== NO BACKGROUND COLORS (except white) ===== */
+.bg-reset {
+    background: var(--clinical-white) !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+
+    section {
+        padding: var(--spacing-lg) 0;
+    }
+}

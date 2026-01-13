@@ -1,0 +1,208 @@
+/* =========================================
+   CLINICAL FORMS
+   Underline Inputs | ALL CAPS Buttons
+   Minimalist Swiss Style
+   ========================================= */
+
+/* ===== FORM GROUPS ===== */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ===== LABELS ===== */
+label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--clinical-black);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ===== TEXT INPUTS - UNDERLINE ONLY ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: var(--spacing-sm) 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--clinical-black);
+    /* Thick underline */
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--clinical-black);
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-bottom-color: var(--clinical-black);
+    opacity: 1;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--clinical-border);
+    opacity: 0.6;
+}
+
+/* ===== TEXTAREA ===== */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* ===== SELECT DROPDOWN ===== */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23000000'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    padding-right: 30px;
+}
+
+/* ===== BUTTONS - ALL CAPS, BLACK BORDER ===== */
+button,
+.btn,
+input[type="submit"],
+input[type="button"] {
+    padding: 18px 40px;
+    background: var(--clinical-white);
+    border: 2px solid var(--clinical-black);
+    color: var(--clinical-black);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+button:hover,
+.btn:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: var(--clinical-black);
+    color: var(--clinical-white);
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ===== BUTTON VARIANTS ===== */
+.btn-block {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-large {
+    padding: 24px 60px;
+    font-size: 16px;
+}
+
+.btn-small {
+    padding: 12px 24px;
+    font-size: 12px;
+}
+
+/* ===== CHECKBOX & RADIO ===== */
+input[type="checkbox"],
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--clinical-black);
+    background: var(--clinical-white);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background: var(--clinical-black);
+}
+
+/* ===== FORM VALIDATION ===== */
+input:invalid,
+textarea:invalid {
+    border-bottom-color: var(--clinical-black);
+}
+
+input:valid,
+textarea:valid {
+    border-bottom-color: var(--clinical-black);
+}
+
+/* ===== FIELDSET ===== */
+fieldset {
+    border: var(--border-thin);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+legend {
+    padding: 0 var(--spacing-sm);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ===== SEARCH INPUT ===== */
+input[type="search"] {
+    padding-right: 40px;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-container::after {
+    content: "→";
+    position: absolute;
+    right: 0;
+    bottom: var(--spacing-sm);
+    font-size: 20px;
+    pointer-events: none;
+}
+
+/* ===== DISABLED STATES ===== */
+input:disabled,
+button:disabled,
+textarea:disabled,
+select:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    button,
+    .btn {
+        padding: 14px 30px;
+        font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+}

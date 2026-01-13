@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>customer-frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,13 +30,32 @@
     <meta name="twitter:description"
         content="Pakistan's first 3D virtual shopping mall. Shop premium brands with immersive browsing experience.">
     <meta name="twitter:image" content="https://virtualmegamall.vercel.app/assets/og-image.jpg">
+
+    <!-- Clinical Art Gallery Design System -->
+    <link rel="stylesheet" href="clinical-gallery.css">
+    <link rel="stylesheet" href="clinical-typography.css">
+    <link rel="stylesheet" href="clinical-forms.css">
+    <link rel="stylesheet" href="clinical-product-grid.css">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="modern-ui.css"> <!-- Modern UI Design System -->
+    <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="safari-fixes.css"> <!-- Safari Compatibility -->
     <link rel="stylesheet" href="chat.css"> <!-- Live Chat Styles -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs (Required for Authentication & Database) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
+
+    <!-- Production Systems -->
+    <script src="logger.js"></script> <!-- Production Logging System -->
+    <script src="schema-markup.js" defer></script> <!-- SEO Schema Markup -->
     <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
 </head>
 
@@ -84,9 +88,10 @@
 
     <!-- Scripts -->
     <script src="chat.js" defer></script>
+    <script src="navbar-functions.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
-    <script src="cart-firestore.js" defer></script> <!-- New cart management -->
+    <script src="cart-firestore.js" defer></script>
     <script src="search_logic.js" defer></script>
     <script src="script.js" defer></script>
 
@@ -130,39 +135,67 @@
 
     <nav class="navbar">
         <!-- Logo -->
-        <a href="index.html" class="logo" style="text-decoration:none;" aria-label="Virtual Mega Mall Homepage">VIRTUAL
-            MEGA MALL</a>
+        <div class="logo">
+            VIRTUAL <span class="gold-text">MEGA MALL</span>
+        </div>
 
-        <!-- Categories Dropdown Button + Search Bar -->
-        <div class="search-container">
-            <!-- Categories Dropdown -->
-            <div class="categories-dropdown">
-                <button class="categories-btn" onclick="toggleCategoriesMenu()">
-                    Categories <i class="fa-solid fa-chevron-down"></i>
+        <!-- Search Bar with Categories Button -->
+        <div class="unified-search-container">
+            <button class="categories-btn" onclick="toggleCategoriesMenu()">
+                CATEGORIES <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div id="categories-menu" class="categories-menu">
+                <a href="brands.html"><i class="fa-solid fa-bag-shopping"></i> Shop All Brands</a>
+                <a href="category.html?type=clothing"><i class="fa-solid fa-shirt"></i> Clothing & Fashion</a>
+                <a href="category.html?type=shoes"><i class="fa-solid fa-shoe-prints"></i> Shoes & Footwear</a>
+                <a href="category.html?type=tech"><i class="fa-solid fa-mobile-screen"></i> Electronics & Tech</a>
+                <a href="category.html?type=jewelry"><i class="fa-solid fa-gem"></i> Watches & Jewelry</a>
+                <a href="category.html?type=beauty"><i class="fa-solid fa-spa"></i> Beauty & Skincare</a>
+                <a href="category.html?type=home"><i class="fa-solid fa-couch"></i> Home & Living</a>
+                <a href="category.html?type=sports"><i class="fa-solid fa-dumbbell"></i> Sports & Fitness</a>
+                <a href="category.html?type=kids"><i class="fa-solid fa-child"></i> Kids & Toys</a>
+            </div>
+
+
+            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
+
+            <!-- Inline Search Icons (Voice, Barcode, Image) -->
+            <div class="inline-search-icons">
+                <button class="inline-icon-btn" onclick="startVoiceSearch()" aria-label="Voice Search"
+                    data-tooltip="Voice Search">
+                    <i class="fa-solid fa-microphone"></i>
                 </button>
-                <div id="categories-menu" class="categories-menu">
-                    <a href="brands.html"><i class="fa-solid fa-bag-shopping"></i> Shop All Brands</a>
-                    <a href="category.html?type=clothing"><i class="fa-solid fa-shirt"></i> Clothing & Fashion</a>
-                    <a href="category.html?type=shoes"><i class="fa-solid fa-shoe-prints"></i> Shoes & Footwear</a>
-                    <a href="category.html?type=tech"><i class="fa-solid fa-mobile-screen"></i> Electronics & Tech</a>
-                    <a href="category.html?type=jewelry"><i class="fa-solid fa-gem"></i> Watches & Jewelry</a>
-                    <a href="category.html?type=beauty"><i class="fa-solid fa-spa"></i> Beauty & Skincare</a>
-                    <a href="category.html?type=home"><i class="fa-solid fa-couch"></i> Home & Living</a>
-                    <a href="category.html?type=sports"><i class="fa-solid fa-dumbbell"></i> Sports & Fitness</a>
-                    <a href="category.html?type=kids"><i class="fa-solid fa-child"></i> Kids & Toys</a>
+                <button class="inline-icon-btn" onclick="openScanner('barcode')" aria-label="Barcode Scanner"
+                    data-tooltip="Scan Barcode">
+                    <i class="fa-solid fa-barcode"></i>
+                </button>
+                <button class="inline-icon-btn" onclick="openScanner('image')" aria-label="Image Search"
+                    data-tooltip="Image Search">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+            </div>
+
+            <div class="search-btn-wrapper">
+                <button class="search-btn" onclick="toggleSearchMenu()" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="search-menu" id="search-menu">
+                    <button class="search-menu-item" onclick="performTextSearch()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Text Search
+                    </button>
+                    <button class="search-menu-item" onclick="startVoiceSearch()">
+                        <i class="fa-solid fa-microphone"></i> Voice Search
+                    </button>
+                    <button class="search-menu-item" onclick="openScanner('barcode')">
+                        <i class="fa-solid fa-barcode"></i> Barcode Scan
+                    </button>
+                    <button class="search-menu-item" onclick="openScanner('image')">
+                        <i class="fa-solid fa-camera"></i> Image Search
+                    </button>
                 </div>
             </div>
 
-            <div style="width:1px; height:20px; background:#ddd; margin:0 10px;"></div>
-            <input type="text" id="global-search" placeholder="Search products, brands..." autocomplete="off">
-            <div class="search-icons">
-                <i class="fa-solid fa-microphone" onclick="startVoiceSearch()" title="Voice Search" id="voice-btn"></i>
-                <i class="fa-solid fa-barcode" onclick="openScanner('barcode')" title="Scan Barcode"></i>
-                <i class="fa-solid fa-camera" onclick="openScanner('image')" title="Scan Image"></i>
-                <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-
-            <!-- Search Autocomplete Dropdown -->
             <div class="search-suggestions" id="search-suggestions">
                 <div class="suggestion-section" id="trending-section">
                     <div class="suggestion-title">🔥 Trending Searches</div>
@@ -218,51 +251,49 @@
             </div>
         </div>
 
-        <!-- Right Side: Selectors + Icons -->
-        <div class="nav-icons">
-            <!-- Currency Selector -->
-            <div class="nav-selector">
-                <select id="currency-selector" onchange="changeCurrency(this.value)">
-                    <option value="PKR">🇵🇰 PKR</option>
-                    <option value="USD">🇺🇸 USD</option>
-                    <option value="EUR">🇪🇺 EUR</option>
-                    <option value="GBP">🇬🇧 GBP</option>
-                    <option value="AED">🇦🇪 AED</option>
-                </select>
+        <!-- Right Side: Icons -->
+        <div class="nav-actions">
+            <!-- Sync/Compare Icon -->
+            <div class="icon-item">
+                <a href="comparison.html" title="Compare Products" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-sync-alt"></i>
+                </a>
             </div>
-            <!-- Language Selector -->
-            <div class="nav-selector">
-                <select id="language-selector" onchange="changeLanguage(this.value)">
-                    <option value="en">EN</option>
-                    <option value="ur">اردو</option>
-                    <option value="ar">العربية</option>
-                </select>
-            </div>
-            <!-- Theme Toggle -->
-            <button id="theme-toggle" class="nav-icon" onclick="cycleTheme()" title="Toggle Theme"
-                style="background: none; border: none; cursor: pointer; font-size: 20px;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
-            <a href="comparison.html" class="nav-icon" title="Compare Products">
-                <i class="fa-solid fa-code-compare"></i>
-            </a>
-            <a href="login.html" class="nav-icon" id="user-icon" title="Login / Account">
-                <i class="fa-regular fa-user"></i>
-            </a>
-            <a href="cart.html" class="nav-icon cart-icon" id="cart-icon" title="Shopping Cart"
-                onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge" id="cart-badge">0</span>
-                <!-- Cart Preview Popup -->
-                <div class="cart-preview" id="cart-preview">
-                    <div class="cart-preview-header">Shopping Bag</div>
-                    <div class="cart-preview-items" id="cart-preview-items"></div>
-                    <div class="cart-preview-footer">
-                        <a href="cart.html" class="view-cart-btn">View Cart</a>
+
+            <!-- User Icon with Dropdown -->
+            <div class="icon-item user-menu-wrapper" onclick="toggleUserMenu()">
+                <i class="fa-regular fa-user" title="Account"></i>
+                <div class="user-dropdown" id="user-dropdown">
+                    <a href="login.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </a>
+                    <a href="profile.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-user"></i> My Account
+                    </a>
+                    <a href="profile.html#orders" class="user-dropdown-item">
+                        <i class="fa-solid fa-box"></i> Orders
+                    </a>
+                    <div class="user-dropdown-divider"></div>
+                    <div class="user-dropdown-item" onclick="event.stopPropagation(); cycleTheme();">
+                        <i class="fa-solid fa-circle-half-stroke"></i> Toggle Theme
                     </div>
                 </div>
-            </a>
-        </div>
+            </div>
+
+            <!-- Cart Icon (Icon Only) -->
+            <div class="icon-item" onmouseenter="showCartPreview()" onmouseleave="hideCartPreview()">
+                <a href="cart.html" id="cart-icon" title="Shopping Cart"
+                    style="color: inherit; text-decoration: none; position: relative;">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <div class="cart-preview" id="cart-preview">
+                        <div class="cart-preview-header">Shopping Bag</div>
+                        <div class="cart-preview-items" id="cart-preview-items"></div>
+                        <div class="cart-preview-footer">
+                            <a href="cart.html" class="view-cart-btn">View Cart</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
     </nav>
 
     <!-- NEW HORIZONTAL CATEGORY MENU -->
@@ -494,46 +525,71 @@
     <section class="container">
         <h2>Trending Now</h2>
         <div class="product-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            <a href="product.html?id=running-shoes" class="product-card-glass">
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" class="product-img"
+                        alt="Running Shoes">
+                </div>
                 <h4>Running Shoes</h4>
                 <p class="brand-name">Nike Store</p>
                 <p class="price">Rs. 12,000</p>
-                <button
-                    onclick="addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Running Shoes', 'Rs. 12,000', 'Nike Store', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300')">Add
                     to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            </a>
+            <a href="product.html?id=galaxy-s24" class="product-card-glass">
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80"
+                        class="product-img" alt="Galaxy S24">
+                </div>
                 <h4>Galaxy S24</h4>
                 <p class="brand-name">Samsung Official</p>
                 <p class="price">Rs. 350,000</p>
-                <button
-                    onclick="addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Galaxy S24', 'Rs. 350,000', 'Samsung Official', 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300')">Add
                     to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            </a>
+            <a href="product.html?id=summer-kurta" class="product-card-glass">
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80"
+                        class="product-img" alt="Summer Kurta">
+                </div>
                 <h4>Summer Kurta</h4>
                 <p class="brand-name">J. (Junaid Jamshed)</p>
                 <p class="price">Rs. 4,500</p>
-                <button
-                    onclick="addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Summer Kurta', 'Rs. 4,500', 'J.', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300')">Add
                     to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80" class="product-img"
-                    style="object-fit: cover; width: 100%; height: 200px;">
+            </a>
+            <a href="product.html?id=luxury-watch" class="product-card-glass">
+                <span class="badge">Luxury</span>
+                <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this)"
+                    aria-label="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=80"
+                        class="product-img" alt="Luxury Watch">
+                </div>
                 <h4>Luxury Watch</h4>
                 <p class="brand-name">Rolex Official</p>
                 <p class="price">Rs. 1,875,000</p>
-                <button
-                    onclick="addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
+                <button class="add-to-cart-btn"
+                    onclick="event.preventDefault(); event.stopPropagation(); addToCart('Luxury Watch', 'Rs. 1,875,000', 'Rolex', 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300')">Add
                     to Cart</button>
-            </div>
+            </a>
         </div>
     </section>
 

@@ -118,7 +118,7 @@ const BarcodeScanner = ({ open, onClose }) => {
                 },
             }}
         >
-            <DialogTitle sx={{ color: '#d4af37', display: 'flex', justifyContent: 'space-between', align Items: 'center' }}>
+            <DialogTitle sx={{ color: '#d4af37', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 Scan Product Barcode
                 <IconButton onClick={handleClose} sx={{ color: '#d4af37' }}>
                     <Close />

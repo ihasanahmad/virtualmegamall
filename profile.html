@@ -2,11 +2,25 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account | Virtual Mega Mall</title>
+
+    <!-- Theme Switcher (Must load first) -->
     <script src="theme-switcher.js"></script>
+
+    <!-- Clinical Art Gallery Design System -->
+    <link rel="stylesheet" href="clinical-gallery.css">
+    <link rel="stylesheet" href="clinical-typography.css">
+    <link rel="stylesheet" href="clinical-forms.css">
+
+    <!-- Main Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* PROFILE SPECIFIC STYLES */
         .profile-container {
@@ -38,7 +52,7 @@
         }
 
         .profile-btn.active {
-            background: #e6b800;
+            background: var(--hazel-gold);
             color: black;
             font-weight: bold;
         }
@@ -89,7 +103,7 @@
 
         /* Vouchers */
         .voucher-card {
-            border: 2px dashed #e6b800;
+            border: 2px dashed var(--hazel-gold);
             padding: 20px;
             margin-bottom: 15px;
             background: #fffdf0;
@@ -111,14 +125,56 @@
     <script src="cookie-consent.js" defer></script> <!-- Cookie Consent Script -->
 </head>
 
-<body style="background-color: #0a0a0a;">
+<body>
     <nav class="navbar">
-        <div class="logo">MEGA MALL</div>
-        <div class="nav-links">
-            <a href="index.html">Back to Mall</a>
-            <a href="#" class="cart-btn">Cart (0)</a>
+        <!-- Logo -->
+        <div class="logo">
+            VIRTUAL <span class="gold-text">MEGA MALL</span>
+        </div>
+
+        <!-- Right Side: Icons -->
+        <div class="nav-actions">
+            <!-- Home Icon -->
+            <div class="icon-item">
+                <a href="index.html" title="Home" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-home"></i>
+                </a>
+            </div>
+
+            <!-- User Icon with Dropdown -->
+            <div class="icon-item user-menu-wrapper" onclick="toggleUserMenu()">
+                <i class="fa-regular fa-user" title="Account"></i>
+                <div class="user-dropdown" id="user-dropdown">
+                    <a href="profile.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-user"></i> My Account
+                    </a>
+                    <a href="profile.html#orders" class="user-dropdown-item">
+                        <i class="fa-solid fa-box"></i> Orders
+                    </a>
+                    <div class="user-dropdown-divider"></div>
+                    <div class="user-dropdown-item" onclick="event.stopPropagation(); cycleTheme();">
+                        <i class="fa-solid fa-circle-half-stroke"></i> Toggle Theme
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Icon -->
+            <div class="icon-item">
+                <a href="cart.html" id="cart-icon" title="Shopping Cart"
+                    style="color: inherit; text-decoration: none; position: relative;">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                </a>
+            </div>
         </div>
     </nav>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="navbar-functions.js"></script>
 
     <div class="profile-container">
         <div class="profile-sidebar glass-effect">

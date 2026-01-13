@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { productService } from '../services/api';
 import { useCart } from '../context/CartContext';
-import { useComparison } from '../context/Comparison Context';
+import { useComparison } from '../context/ComparisonContext';
 import {
     Container,
     Grid,

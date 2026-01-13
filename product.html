@@ -7,21 +7,28 @@
     <meta name="description"
         content="Shop premium products at Virtual Mega Mall - Pakistan's first 3D shopping experience">
     <title>Product Details | Virtual Mega Mall</title>
-    <meta name="description"
-        content="Shop premium products at Virtual Mega Mall. Authentic brands, best prices in Pakistan, and fast delivery to your doorstep.">
     <meta name="keywords" content="buy online, product details, luxury brands, virtual mall, best price pakistan">
     <meta property="og:title" content="Premium Product | Virtual Mega Mall">
     <meta property="og:description"
         content="Discover this amazing product at Virtual Mega Mall. 100% Authentic with easy returns.">
+
+    <!-- Theme Switcher (Must load first) -->
+    <script src="theme-switcher.js"></script>
+
+    <!-- Clinical Art Gallery Design System -->
+    <link rel="stylesheet" href="clinical-gallery.css">
+    <link rel="stylesheet" href="clinical-typography.css">
+    <link rel="stylesheet" href="clinical-forms.css">
+
+    <!-- Main Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
+    <link rel="stylesheet" href="navbar-addon.css"> <!-- Navbar Styles -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
+    <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
-            color: #fff;
-        }
+        /* Product page uses theme system backgrounds - no hardcoded colors */
 
         /* Breadcrumbs */
         .breadcrumbs {
@@ -481,14 +488,69 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo" style="text-decoration:none;">VIRTUAL MEGA MALL</a>
-        <div class="nav-icons">
-            <a href="comparison.html" class="nav-icon"><i class="fa-solid fa-code-compare"></i></a>
-            <a href="login.html" class="nav-icon"><i class="fa-regular fa-user"></i></a>
-            <a href="cart.html" class="nav-icon cart-icon"><i class="fa-solid fa-bag-shopping"></i><span
-                    class="cart-badge" id="cart-badge">0</span></a>
+        <!-- Logo -->
+        <div class="logo">
+            VIRTUAL <span class="gold-text">MEGA MALL</span>
+        </div>
+
+        <!-- Search Bar (simplified for product page) -->
+        <div class="unified-search-container" style="max-width: 400px;">
+            <input type="text" id="global-search" placeholder="Search products..." autocomplete="off">
+            <div class="search-btn-wrapper">
+                <button class="search-btn" onclick="window.location='index.html'" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Side: Icons -->
+        <div class="nav-actions">
+            <!-- Home Icon -->
+            <div class="icon-item">
+                <a href="index.html" title="Home" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-home"></i>
+                </a>
+            </div>
+
+            <!-- Compare Icon -->
+            <div class="icon-item">
+                <a href="comparison.html" title="Compare Products" style="color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-sync-alt"></i>
+                </a>
+            </div>
+
+            <!-- User Icon with Dropdown -->
+            <div class="icon-item user-menu-wrapper" onclick="toggleUserMenu()">
+                <i class="fa-regular fa-user" title="Account"></i>
+                <div class="user-dropdown" id="user-dropdown">
+                    <a href="login.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </a>
+                    <a href="profile.html" class="user-dropdown-item">
+                        <i class="fa-solid fa-user"></i> My Account
+                    </a>
+                    <a href="profile.html#orders" class="user-dropdown-item">
+                        <i class="fa-solid fa-box"></i> Orders
+                    </a>
+                    <div class="user-dropdown-divider"></div>
+                    <div class="user-dropdown-item" onclick="event.stopPropagation(); cycleTheme();">
+                        <i class="fa-solid fa-circle-half-stroke"></i> Toggle Theme
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Icon -->
+            <div class="icon-item">
+                <a href="cart.html" id="cart-icon" title="Shopping Cart"
+                    style="color: inherit; text-decoration: none; position: relative;">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+            </div>
         </div>
     </nav>
+
+    <script src="navbar-functions.js"></script>
 
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">

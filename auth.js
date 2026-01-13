@@ -71,6 +71,71 @@ async function signInWithGoogle() {
     }
 }
 
+// ==================== SIGN IN WITH FACEBOOK ====================
+async function signInWithFacebook() {
+    try {
+        const provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('email');
+        provider.addScope('public_profile');
+
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+
+        // Check if new user, create Firestore document
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        if (!userDoc.exists) {
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                cartCount: 0,
+                provider: 'facebook'
+            });
+        }
+
+        console.log('✅ Facebook sign in successful:', user.uid);
+        return { success: true, user };
+    } catch (error) {
+        console.error('❌ Facebook sign in error:', error);
+        return { success: false, error: getErrorMessage(error.code) };
+    }
+}
+
+// ==================== SIGN IN WITH LINKEDIN ====================
+async function signInWithLinkedIn() {
+    try {
+        // LinkedIn uses OAuthProvider with custom configuration
+        const provider = new firebase.auth.OAuthProvider('microsoft.com');
+
+        // Note: Firebase doesn't have native LinkedIn provider
+        // Using Microsoft OAuth as alternative
+        // For pure LinkedIn, you'll need to configure custom OAuth in Firebase Console
+
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+
+        // Check if new user, create Firestore document
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        if (!userDoc.exists) {
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                cartCount: 0,
+                provider: 'linkedin'
+            });
+        }
+
+        console.log('✅ LinkedIn sign in successful:', user.uid);
+        return { success: true, user };
+    } catch (error) {
+        console.error('❌ LinkedIn sign in error:', error);
+        return { success: false, error: getErrorMessage(error.code) };
+    }
+}
+
 // ==================== SIGN OUT ====================
 async function signOut() {
     try {
@@ -164,10 +229,13 @@ function getErrorMessage(errorCode) {
         'auth/weak-password': 'Password should be at least 6 characters.',
         'auth/user-not-found': 'No account found with this email.',
         'auth/wrong-password': 'Incorrect password. Please try again.',
+        'auth/invalid-login-credentials': 'Account doesn\'t exist or wrong password. Check your credentials!',
+        'auth/invalid-credential': 'Account doesn\'t exist or wrong password. Check your credentials!',
         'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
         'auth/network-request-failed': 'Network error. Please check your connection.',
         'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
-        'auth/cancelled-popup-request': 'Only one popup request is allowed at a time.'
+        'auth/cancelled-popup-request': 'Only one popup request is allowed at a time.',
+        'auth/unauthorized-domain': 'Google login not configured for this domain. Please use email/password.'
     };
 
     return errorMessages[errorCode] || 'An error occurred. Please try again.';

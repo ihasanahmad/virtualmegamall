@@ -23,9 +23,9 @@ const firebaseConfig = {
 // Initialize Firebase
 try {
     firebase.initializeApp(firebaseConfig);
-    console.log('✅ Firebase initialized successfully');
+    if (window.Logger) Logger.info('Firebase initialized successfully');
 } catch (error) {
-    console.error('❌ Firebase initialization error:', error);
+    if (window.Logger) Logger.error('Firebase initialization error:', error);
 }
 
 // Firebase services
@@ -36,10 +36,10 @@ const storage = firebase.storage();
 // Enable persistence (offline support)
 db.enablePersistence()
     .catch((err) => {
-        if (err.code == 'failed-precondition') {
-            console.warn('Multiple tabs open, persistence enabled in first tab only');
-        } else if (err.code == 'unimplemented') {
-            console.warn('Browser does not support persistence');
+        if (err.code === 'failed-precondition') {
+            if (window.Logger) Logger.warn('Multiple tabs open, persistence enabled in first tab only');
+        } else if (err.code === 'unimplemented') {
+            if (window.Logger) Logger.warn('Browser does not support persistence');
         }
     });
 
