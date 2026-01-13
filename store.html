@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="prism.css"> <!-- Prism Interface Design System -->
     <link rel="stylesheet" href="cookie-consent.css"> <!-- Cookie Consent Modal -->
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="barcode-scanner.css"> <!-- Barcode Scanner -->
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
@@ -888,7 +889,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span>Search</span>
             </button>
-            <button class="lv-scan-btn" onclick="openScanner('barcode')" title="Scan Barcode">
+            <button class="lv-scan-btn" onclick="startBarcodeScanner()" title="Scan Barcode">
                 <i class="fa-solid fa-barcode"></i>
             </button>
             <button class="lv-scan-btn" onclick="openScanner('image')" title="Scan Image">
@@ -1411,6 +1412,12 @@
 
     <!-- Global Scripts for Cart, etc. -->
     <script src="script.js"></script>
+    
+    <!-- QuaggaJS Library for Barcode Scanning -->
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1.8.4/dist/quagga.min.js"></script>
+    
+    <!-- Barcode Scanner Component -->
+    <script src="barcode-scanner.js"></script>
 
 </body>
 

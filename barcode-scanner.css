@@ -1,0 +1,315 @@
+/* =========================================
+   BARCODE SCANNER STYLES
+   ========================================= */
+
+.barcode-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.barcode-modal.active {
+    display: flex;
+}
+
+.barcode-modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(142, 124, 104, 0.3);
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.barcode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: rgba(142, 124, 104, 0.1);
+    border-bottom: 1px solid rgba(142, 124, 104, 0.2);
+}
+
+.barcode-header h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--hazel-gold, #C5A065);
+    letter-spacing: 1px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-scanner {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.close-scanner:hover {
+    background: rgba(142, 124, 104, 0.2);
+    color: white;
+}
+
+.barcode-scanner-container {
+    padding: 30px;
+    text-align: center;
+}
+
+/* Camera Viewport */
+.viewport {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    margin: 0 auto 20px;
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.viewport video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.viewport canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Scan Line Animation */
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--hazel-gold, #C5A065), transparent);
+    box-shadow: 0 0 10px var(--hazel-gold, #C5A065);
+    animation: scanAnimation 2s linear infinite;
+}
+
+@keyframes scanAnimation {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 100%;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+/* Scan Overlay Corners */
+.scan-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+    pointer-events: none;
+}
+
+.scan-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--hazel-gold, #C5A065);
+}
+
+.scan-corner.top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+}
+
+.scan-corner.top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+    border-top-right-radius: 10px;
+}
+
+.scan-corner.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+}
+
+.scan-corner.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: 10px;
+}
+
+/* Instructions */
+.barcode-instructions {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.barcode-instructions p {
+    margin: 10px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.barcode-instructions .small-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Result Display */
+.barcode-result {
+    padding: 20px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.barcode-result .result-icon {
+    font-size: 48px;
+    color: #00ff00;
+    margin-bottom: 10px;
+}
+
+.barcode-result p {
+    color: white;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.barcode-result .small-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Error Display */
+.barcode-error {
+    padding: 20px;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.barcode-error i {
+    font-size: 48px;
+    color: #ff4757;
+    margin-bottom: 10px;
+}
+
+.barcode-error p {
+    color: white;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Footer */
+.barcode-footer {
+    padding: 20px 25px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(142, 124, 104, 0.2);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-cancel {
+    padding: 12px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .barcode-modal-content {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .viewport {
+        height: 280px;
+    }
+    
+    .barcode-header h3 {
+        font-size: 16px;
+    }
+    
+    .barcode-instructions p {
+        font-size: 14px;
+    }
+}
+
+/* QuaggaJS Canvas Overlay Styling */
+#barcode-viewport canvas.drawingBuffer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
