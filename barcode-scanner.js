@@ -86,7 +86,7 @@ function createScannerModal() {
             </div>
         </div>
     `;
-    
+
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
@@ -95,7 +95,7 @@ function createScannerModal() {
  */
 function initQuagga() {
     const viewport = document.getElementById('barcode-viewport');
-    
+
     if (typeof Quagga === 'undefined') {
         showBarcodeError('Barcode scanner library not loaded. Please refresh the page.');
         return;
@@ -137,17 +137,17 @@ function initQuagga() {
         numOfWorkers: navigator.hardwareConcurrency || 4,
         frequency: 10,
         locate: true
-    }, function(err) {
+    }, function (err) {
         if (err) {
             console.error('Quagga initialization error:', err);
             showBarcodeError('Failed to access camera. Please ensure camera permissions are granted.');
             return;
         }
-        
+
         console.log("Barcode scanner initialized successfully");
         Quagga.start();
         barcodeScanner.isActive = true;
-        
+
         // Add detection listener
         Quagga.onDetected(onBarcodeDetected);
     });
@@ -158,19 +158,19 @@ function initQuagga() {
  */
 function onBarcodeDetected(result) {
     if (!result || !result.codeResult) return;
-    
+
     const code = result.codeResult.code;
     const format = result.codeResult.format;
-    
+
     console.log(`Barcode detected: ${code} (${format})`);
-    
+
     // Show result
     showBarcodeResult(code, format);
-    
+
     // Stop scanner
     Quagga.stop();
     barcodeScanner.isActive = false;
-    
+
     // Call callback function
     if (barcodeScanner.onDetectionCallback) {
         setTimeout(() => {
@@ -186,16 +186,17 @@ async function handleBarcodeDetection(code, format) {
     try {
         // Close scanner modal
         stopBarcodeScanner();
-        
+
         // Show loading toast
         showToast(`Searching for product with barcode: ${code}...`, 'fa-spinner fa-spin');
-        
-        // Call backend API to search by barcode
-        const response = await fetch(`/api/search/barcode/${code}`);
-        
+
+        // Search for product in backend using Railway API
+        const backendURL = 'https://virtualmall-backend-production.up.railway.app';
+        const response = await fetch(`${backendURL}/api/search/barcode/${code}`);
+
         if (response.ok) {
             const data = await response.json();
-            
+
             if (data.success && data.product) {
                 // Navigate to product page
                 showToast(`Product found: ${data.product.name}`, 'fa-check-circle');
@@ -225,12 +226,12 @@ function showBarcodeResult(code, format) {
     const resultDiv = document.getElementById('barcode-result');
     const barcodeText = document.getElementById('barcode-text');
     const barcodeAction = document.getElementById('barcode-action');
-    
+
     barcodeText.textContent = `${format}: ${code}`;
     barcodeAction.textContent = 'Searching for product...';
-    
+
     resultDiv.style.display = 'block';
-    
+
     // Hide instructions
     document.querySelector('.barcode-instructions').style.display = 'none';
 }
@@ -241,10 +242,10 @@ function showBarcodeResult(code, format) {
 function showBarcodeError(message) {
     const errorDiv = document.getElementById('barcode-error');
     const errorMessage = document.getElementById('error-message');
-    
+
     errorMessage.textContent = message;
     errorDiv.style.display = 'block';
-    
+
     // Hide viewport and instructions
     document.getElementById('barcode-viewport').style.display = 'none';
     document.querySelector('.barcode-instructions').style.display = 'none';
@@ -258,15 +259,15 @@ function stopBarcodeScanner() {
         Quagga.stop();
         barcodeScanner.isActive = false;
     }
-    
+
     // Hide modal
     const modal = document.getElementById('barcode-scanner-modal');
     if (modal) {
         modal.classList.remove('active');
     }
-    
+
     document.body.style.overflow = '';
-    
+
     // Reset UI
     setTimeout(() => {
         if (document.getElementById('barcode-viewport')) {

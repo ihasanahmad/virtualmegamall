@@ -98,10 +98,8 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
-        // Call backend chatbot API with absolute URL for local testing
-        const backendURL = window.location.protocol.includes('file')
-            ? 'http://localhost:5000'
-            : ''; // Use relative URL when served via HTTP
+        // Call backend chatbot API - use Railway URL in production
+        const backendURL = 'https://virtualmall-backend-production.up.railway.app';
 
         const response = await fetch(`${backendURL}/api/chatbot/message`, {
             method: 'POST',
