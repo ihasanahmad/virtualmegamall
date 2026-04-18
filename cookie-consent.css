@@ -176,3 +176,33 @@
         width: 100%;
     }
 }
+/* ============================================================
+   DARK LUXURY ELITE — COOKIE CONSENT OVERRIDES v2.0
+   ============================================================ */
+.cookie-banner,
+.cookie-consent-banner,
+[class*="cookie"] {
+    background: linear-gradient(145deg, #181818, #111) !important;
+    border: 1px solid rgba(212,175,55,0.2) !important;
+    border-radius: 16px !important;
+    color: rgba(240,230,208,0.7) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6) !important;
+}
+
+[class*="cookie-accept"],
+[class*="cookie-btn-primary"],
+[class*="cookie"] button:first-of-type {
+    background: linear-gradient(135deg, #d4af37, #b8941f) !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+}
+
+[class*="cookie-decline"],
+[class*="cookie-btn-secondary"] {
+    background: transparent !important;
+    border: 1px solid rgba(212,175,55,0.25) !important;
+    color: rgba(240,230,208,0.55) !important;
+    border-radius: 50px !important;
+}

@@ -403,3 +403,32 @@
         0 10px 40px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+/* ============================================================
+   DARK LUXURY ELITE OVERRIDES — prism.css v2.0
+   ============================================================ */
+
+.prism-card::before {
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent);
+}
+
+.prism-product-card::after {
+    background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+}
+
+.prism-product-card:hover {
+    box-shadow:
+        0 0 30px rgba(212,175,55,0.15),
+        0 20px 60px rgba(0,0,0,0.55);
+    border-color: rgba(212,175,55,0.4);
+}
+
+.prism-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    color: #000;
+    font-weight: 700;
+}
+
+.prism-btn:hover {
+    background: linear-gradient(135deg, #f0cc55 0%, #d4af37 100%);
+    box-shadow: 0 6px 24px rgba(212,175,55,0.4);
+}

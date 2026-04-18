@@ -423,3 +423,71 @@
         padding-bottom: 70px;
     }
 }
+/* ============================================================
+   DARK LUXURY ELITE — MOBILE OVERRIDES v2.0
+   ============================================================ */
+@media (max-width: 768px) {
+    .navbar {
+        background: rgba(4,4,4,0.98) !important;
+    }
+
+    .horizontal-menu {
+        top: 0 !important;
+        position: relative !important;
+        padding: 10px 12px !important;
+        gap: 4px !important;
+        overflow-x: auto !important;
+        justify-content: flex-start !important;
+        scrollbar-width: none !important;
+    }
+
+    .horizontal-menu::-webkit-scrollbar { display: none; }
+
+    .h-menu-link {
+        padding: 7px 14px !important;
+        font-size: 10px !important;
+        white-space: nowrap !important;
+    }
+
+    .unified-search-container {
+        height: 42px !important;
+        max-width: 100% !important;
+    }
+
+    .nav-actions { gap: 4px !important; }
+
+    .icon-item {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 15px !important;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 14px !important;
+    }
+
+    .product-card { padding: 14px !important; }
+
+    .container { padding: 40px 20px !important; }
+
+    .cart-preview {
+        background: linear-gradient(145deg, #181818, #111) !important;
+        border: 1px solid rgba(212,175,55,0.2) !important;
+        border-radius: 20px 20px 0 0 !important;
+    }
+
+    footer { padding: 40px 20px 20px !important; }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .newsletter-popup-content {
+        flex-direction: column !important;
+    }
+
+    .popup-image { min-height: 160px !important; }
+}

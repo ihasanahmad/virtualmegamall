@@ -444,3 +444,74 @@
         right: 20px;
     }
 }
+/* ============================================================
+   DARK LUXURY ELITE — CHAT OVERRIDES v2.0
+   ============================================================ */
+.chat-widget-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    box-shadow: 0 6px 28px rgba(212,175,55,0.4);
+}
+
+.chat-widget-btn:hover {
+    box-shadow: 0 10px 40px rgba(212,175,55,0.55);
+}
+
+.chat-widget-btn i { color: #000; }
+
+.chat-window {
+    background: linear-gradient(145deg, #161616, #0f0f0f) !important;
+    border: 1px solid rgba(212,175,55,0.2) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.7) !important;
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%) !important;
+    color: #000 !important;
+    border-radius: 18px 18px 0 0 !important;
+}
+
+.chat-header * { color: #000 !important; }
+
+.chat-messages {
+    background: transparent !important;
+}
+
+.chat-input-area {
+    background: rgba(20,20,20,0.98) !important;
+    border-top: 1px solid rgba(212,175,55,0.12) !important;
+    border-radius: 0 0 18px 18px !important;
+}
+
+.chat-input-area input {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(212,175,55,0.2) !important;
+    color: #f0e6d0 !important;
+    border-radius: 50px !important;
+}
+
+.chat-input-area button {
+    background: linear-gradient(135deg, #d4af37, #b8941f) !important;
+    color: #000 !important;
+    border-radius: 50% !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+}
+
+.message.bot .message-bubble {
+    background: rgba(25,25,25,0.95) !important;
+    border: 1px solid rgba(212,175,55,0.12) !important;
+    color: rgba(240,230,208,0.8) !important;
+}
+
+.message.user .message-bubble {
+    background: linear-gradient(135deg, #d4af37, #b8941f) !important;
+    color: #000 !important;
+}
+
+.chat-notification-badge {
+    background: #d4af37;
+    color: #000;
+    border-color: #080808;
+}

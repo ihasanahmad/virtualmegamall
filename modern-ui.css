@@ -688,3 +688,65 @@
 .transition-smooth {
     transition: all var--(transition-smooth);
 }
+/* ============================================================
+   DARK LUXURY ELITE OVERRIDES — appended v2.0
+   Overrides any light/white colours from this file
+   ============================================================ */
+
+:root {
+    --bg-white: #131313;
+    --bg-light: #181818;
+    --bg-lighter: #141414;
+    --bg-dark: #080808;
+    --text-dark: #f0e6d0;
+    --text-gray: rgba(240,230,208,0.55);
+    --text-light: rgba(240,230,208,0.35);
+    --primary-gradient: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    --accent-gradient: linear-gradient(135deg, #f0cc55 0%, #d4af37 100%);
+    --shadow-sm: 0 2px 12px rgba(0,0,0,0.45);
+    --shadow-md: 0 8px 32px rgba(0,0,0,0.5);
+    --shadow-lg: 0 16px 48px rgba(0,0,0,0.55);
+    --shadow-xl: 0 28px 64px rgba(0,0,0,0.65);
+    --shadow-glow: 0 0 30px rgba(212,175,55,0.2);
+}
+
+/* Dark luxury cards */
+.modern-card {
+    background: linear-gradient(145deg, #161616, #111);
+    border: 1px solid rgba(212,175,55,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+
+.glass-card {
+    background: rgba(15,15,15,0.8);
+    border: 1px solid rgba(212,175,55,0.15);
+    backdrop-filter: blur(20px);
+}
+
+.product-card {
+    background: linear-gradient(145deg, #161616, #111);
+    border: 1px solid rgba(212,175,55,0.12);
+}
+
+.product-card-title { color: #f0e6d0; }
+
+.product-card-price {
+    background: linear-gradient(135deg, #f0cc55 0%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modern-input-field {
+    background: rgba(20,20,20,0.95);
+    border-color: rgba(212,175,55,0.15);
+    color: #f0e6d0;
+}
+
+.modern-input-field:focus {
+    background: rgba(22,22,22,0.98);
+    border-color: rgba(212,175,55,0.5);
+    box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+}
+
+.modern-input-field::placeholder { color: rgba(240,230,208,0.25); }
